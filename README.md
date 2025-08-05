@@ -104,6 +104,16 @@ Enjoy chat realtime with ease using Intelliticks (https://app.intelliticks.com/)
 
 Contributions are welcome! If you find any issues or have suggestions, feel free to open an issue or submit a pull request.
 
+## Original Source
+This project is adapted and modified from:
+
+- [Alvalens's Portfolio Repository](https://github.com/Alvalens/Alvalens-porto-2-nextJs)
+
+Live Demo :
+
+- https://www.alvalens.my.id/
+
+
 ## Reference (inspiration)
 
 - https://www.frans.my.id/
