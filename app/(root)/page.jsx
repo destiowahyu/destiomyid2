@@ -614,7 +614,7 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    Let's connect
+                    Let&apos;s connect
                   </motion.h1>
                   <Hr />
                   <motion.p
