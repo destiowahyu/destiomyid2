@@ -255,7 +255,7 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    Hi! I'm Destio, an Informatics Engineering graduate focused on Software Engineering and web
+                    Hi! I&apos;m Destio, an Informatics Engineering graduate focused on Software Engineering and web
                     development. Beyond coding, I enjoy video editing and music as creative hobbies, combining both my
                     technical knowledge and artistic side to craft engaging digital projects.
                   </motion.p>
