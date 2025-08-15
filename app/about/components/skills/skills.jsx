@@ -1,10 +1,11 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { CodepenIcon, WebhookIcon, ActivityIcon, MobileIcon } from "./icons"
+import { CodepenIcon, VideoIcon, ActivityIcon, MobileIcon } from "./icons"
 
 const skillCategories = {
 	web: {
+		category: "web",
 		title: "Web Development",
 		icon: CodepenIcon,
 		description: "Building modern, responsive web applications",
@@ -12,80 +13,48 @@ const skillCategories = {
 			"HTML",
 			"CSS",
 			"JavaScript",
-			"TypeScript",
 			"PHP",
-			"Python",
 			"React",
 			"NextJS",
 			"TailwindCSS",
 			"Bootstrap",
 			"NodeJS",
-			"ExpressJS",
-			"Laravel",
-			"Flask",
-			"Django",
-			"Firebase"
+
 		],
-		tools: ["Visual Studio Code", "Git", "Github", "Figma", "Vite", "Docker", "Kubernetes", "Google Cloud", "Postman"],
+		tools: ["Visual Studio Code", "Git", "Github", "Figma", "Casa OS", "Docker", "Linux", "Armbian", "Mikrotik", "OpenWRT",],
 	},
-	api: {
-		title: "REST API",
-		icon: WebhookIcon,
-		description: "Creating robust and scalable backend services",
+	video: {
+		category: "video",
+		title: "Video & Photo Editing",
+		icon: VideoIcon,
+		description: "Professional video & photo editing and post-production",
 		languages: [
-			"NodeJS",
-			"ExpressJS",
-			"PHP",
-			"Laravel",
-			"Python",
-			"FastAPI",
-			"Flask",
-			"Django",
-			"MySQL",
-			"PostgreSQL",
-			"MongoDB",
-			"Firebase",
+			"Adobe Premiere Pro",
+			"Adobe After Effects",
+			"Adobe Photoshop",
+			"DaVinci Resolve",
+			"Capcut",
 		],
-		tools: ["Postman", "Docker", "Kubernetes", "Swagger", "Git", "Github", "Google Cloud", "IBM Cloud"],
+		tools: ["Masking Techniques", "Roto Brush", "Pen Tool", "Graphic Design", "Color Grading", "Keyframe Animation", "Video Effects", "Audio Editing", "3D Camera Tracking", "Motion Tracking", "Green Screen", "Video Compression", "Export Optimization"],
 	},
-	ai: {
-		title: "AI & Machine Learning",
+	music: {
+		category: "music",
+		title: "Music Production",
 		icon: ActivityIcon,
-		description: "Developing intelligent solutions with ML/AI",
+		description: "Music production and audio engineering",
 		languages: [
-			"Python",
-			"TensorFlow",
-			"PyTorch",
-			"Scikit-learn",
-			"Pandas",
-			"NumPy",
-			"Jupyter",
-			"OpenAI API",
-			"Gemini API",
-			"LangChain",
+			"Cubase",
+			"Studio One",
+			"Bandlab",
+			"Audacity",
 		],
 		tools: [
-			"Jupyter Notebook",
-			"Google Colab",
-			"Google Cloud AI",
-			"AWS SageMaker",
-			"IBM Watson",
-		],
-	},
-	mobile: {
-		title: "Mobile Development",
-		icon: MobileIcon,
-		description: "Cross-platform mobile app development",
-		languages: [
-			"React Native",
-			"JavaScript",
-			"TypeScript",
-			"Dart",
-			"Flutter",
-		],
-		tools: [
-			"Android Studio",
-			"React Native CLI",
+			"Audio Recording",
+			"Sound Mixing",
+			"Vocal Processing",
+			"Music Composing",
+			"Music Cover Production",
+			"Audio Mastering",
 		],
 	},
 };
@@ -98,8 +67,8 @@ function SkillCard({ skill, isSelected, onClick }) {
       onClick={onClick}
       className={`relative cursor-pointer group p-6 rounded-2xl backdrop-blur-lg border transition-all duration-300 ${
 		isSelected
-			? "bg-gray-100 border-gray-600 border-2 shadow-2xl dark:bg-gray-900 dark:border-gray-300"
-			: "bg-gray-300 border-gray-300/20 shadow-xl hover:bg-white/20 hover:border-gray-300/30 dark:bg-gray-400 dark:border-gray-700/40 dark:hover:bg-gray-500 dark:hover:border-gray-600/50"
+			? "bg-gray-100 border-gray-600 border-2 shadow-2xl dark:bg-gray-600 dark:border-gray-300"
+			: "bg-gray-300 border-gray-300/20 shadow-xl hover:bg-white/20 hover:border-gray-300/30 dark:bg-gray-900 dark:border-gray-700/40 dark:hover:bg-gray-800 dark:hover:border-gray-600/50"
 		}`}
 
 			whileHover={{
@@ -122,7 +91,7 @@ function SkillCard({ skill, isSelected, onClick }) {
 			<div className="relative z-10 flex flex-col items-center text-center space-y-4">
         <div
           className={`p-4 rounded-xl transition-all duration-300 ${
-            isSelected ? "bg-white/30 dark:bg-gray-800/60" : "bg-white/10 dark:bg-gray-800/40 group-hover:bg-white/20 dark:group-hover:bg-gray-800/60"
+            isSelected ? "bg-gray-400/60 dark:bg-gray-800/60" : "bg-gray-400/60 dark:bg-gray-900/60 group-hover:bg-gray-100/60 dark:group-hover:bg-gray-800/60"
           }`}>
           <Icon className={`w-8 h-8 ${isSelected ? "text-black dark:text-white" : "text-gray-700 dark:text-gray-300"}`} />
 				</div>
@@ -159,6 +128,22 @@ function SkillCard({ skill, isSelected, onClick }) {
 function SkillDetails({ selectedSkill }) {
 	if (!selectedSkill) return null;
 
+	// Function to get appropriate labels based on category
+	const getLabels = (category) => {
+		switch (category) {
+			case 'web':
+				return { first: "Languages & Frameworks", second: "Tools & Technologies" };
+			case 'video':
+				return { first: "Software & Applications", second: "Techniques & Skills" };
+			case 'music':
+				return { first: "Software & DAWs", second: "Production Skills" };
+			default:
+				return { first: "Languages & Frameworks", second: "Tools & Technologies" };
+		}
+	};
+
+	const labels = getLabels(selectedSkill.category || 'web');
+
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
@@ -166,14 +151,14 @@ function SkillDetails({ selectedSkill }) {
 			exit={{ opacity: 0, y: -20 }}
 			transition={{ duration: 0.5 }}
 			className="mt-12 space-y-8">
-			{/* Languages & Frameworks */}
+			{/* First Section */}
       <motion.div
         className="backdrop-blur-lg bg-gray-100 dark:bg-gray-800 border border-gray-300/30 dark:border-gray-700/40 rounded-2xl p-8"
 				initial={{ opacity: 0, x: -50 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.2 }}>
         <h3 className="text-2xl font-semibold text-black dark:text-white mb-6 text-center">
-					Languages & Frameworks
+					{labels.first}
 				</h3>
 				<div className="flex flex-wrap justify-center gap-3">
 					{selectedSkill.languages.map((lang, index) => (
@@ -192,14 +177,14 @@ function SkillDetails({ selectedSkill }) {
 				</div>
 			</motion.div>
 
-			{/* Tools */}
+			{/* Second Section */}
       <motion.div
         className="backdrop-blur-lg bg-gray-100 dark:bg-gray-800 border border-gray-300/30 dark:border-gray-700/40 rounded-2xl p-8"
 				initial={{ opacity: 0, x: 50 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.4 }}>
         <h3 className="text-2xl font-semibold text-black dark:text-white mb-6 text-center">
-					Tools & Technologies
+					{labels.second}
 				</h3>
 				<div className="flex flex-wrap justify-center gap-3">
 					{selectedSkill.tools.map((tool, index) => (
@@ -241,7 +226,7 @@ export default function Skills() {
 				</motion.div>
 
 				{/* Skill Categories Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
 					{Object.entries(skillCategories).map(([key, skill], index) => (
 						<motion.div
 							key={key}
