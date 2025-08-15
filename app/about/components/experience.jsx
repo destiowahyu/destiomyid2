@@ -158,7 +158,7 @@ function TimelineCard({ experience, index, isEven }) {
 					: "md:justify-center md:-translate-x-68"
 			} justify-center mb-4`}>
 			{/* KOTAK WAKTU DAN TEMPAT */}
-			<div className="bg-gradient-to-r from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-700 text-black dark:text-white px-12 py-3 rounded-xl shadow-lg border border-gray-300 dark:border-gray-600 min-w-max">
+			<div className="bg-gradient-to-r from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-700/70 text-black dark:text-white px-12 py-3 rounded-xl shadow-lg border border-gray-300 dark:border-gray-600 min-w-max">
 				<div className="flex items-center justify-center gap-6">
 					<div className="text-center">
 						<div className="text-sm font-bold">{experience.startDate}</div>
