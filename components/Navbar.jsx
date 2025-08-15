@@ -32,6 +32,7 @@ const ThemeToggle = ({ isNavOpen }) => {
     <button
       className={`theme-toggle-btn flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200 
         ${isNavOpen ? "text-white" : resolvedTheme === "light" ? "text-black" : "text-white"}`}
+      style={{ color: isNavOpen ? "#ffffff" : resolvedTheme === "light" ? "#000000" : "#ffffff" }}
       onClick={toggleTheme}
       aria-label="Toggle theme"
     >
@@ -294,7 +295,7 @@ const Navbar = () => {
             }}
           >
             <Image
-              src={Logotype || "/placeholder.svg"}
+              src={Logotype}
               alt="Destio Wahyu"
               width={120}
               height={40}

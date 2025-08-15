@@ -94,13 +94,14 @@ function SkillCard({ skill, isSelected, onClick }) {
 	const Icon = skill.icon;
 
 	return (
-		<motion.div
-			onClick={onClick}
-			className={`relative cursor-pointer group p-6 rounded-2xl backdrop-blur-lg border transition-all duration-300 ${
-				isSelected
-					? "bg-white/20 border-black border-2 shadow-lg"
-					: "bg-white/10 border-gray-300/20 hover:bg-white/20 hover:border-gray-300/30"
-			}`}
+    <motion.div
+      onClick={onClick}
+      className={`relative cursor-pointer group p-6 rounded-2xl backdrop-blur-lg border transition-all duration-300 ${
+		isSelected
+			? "bg-gray-100 border-gray-600 border-2 shadow-2xl dark:bg-gray-900 dark:border-gray-300"
+			: "bg-gray-300 border-gray-300/20 shadow-xl hover:bg-white/20 hover:border-gray-300/30 dark:bg-gray-400 dark:border-gray-700/40 dark:hover:bg-gray-500 dark:hover:border-gray-600/50"
+		}`}
+
 			whileHover={{
 				scale: 1.05,
 				rotateY: 5,
@@ -119,19 +120,36 @@ function SkillCard({ skill, isSelected, onClick }) {
 			)}
 
 			<div className="relative z-10 flex flex-col items-center text-center space-y-4">
-				<div
-					className={`p-4 rounded-xl transition-all duration-300 ${
-						isSelected ? "bg-white/30" : "bg-white/10 group-hover:bg-white/20"
-					}`}>
-					<Icon className="w-8 h-8 text-black" />
+        <div
+          className={`p-4 rounded-xl transition-all duration-300 ${
+            isSelected ? "bg-white/30 dark:bg-gray-800/60" : "bg-white/10 dark:bg-gray-800/40 group-hover:bg-white/20 dark:group-hover:bg-gray-800/60"
+          }`}>
+          <Icon className={`w-8 h-8 ${isSelected ? "text-black dark:text-white" : "text-gray-700 dark:text-gray-300"}`} />
 				</div>
 				<div>
-					<h3 className="font-semibold text-black text-lg mb-2">
-						{skill.title}
-					</h3>
-					<p className="text-gray-600 text-sm leading-relaxed">
-						{skill.description}
-					</p>
+				<h3
+				className={`font-semibold text-lg mb-2 ${
+					isSelected
+					? "text-white dark:text-white"
+					: "text-black dark:text-black"
+				}`}
+				>
+				{skill.title}
+				</h3>
+
+				<p
+				className={`text-sm leading-relaxed ${
+					isSelected
+					? "text-white dark:text-white"
+					: "text-black dark:text-black"
+				}`}
+				>
+				{skill.description}
+				</p>
+
+
+
+
 				</div>
 			</div>
 		</motion.div>
@@ -149,12 +167,12 @@ function SkillDetails({ selectedSkill }) {
 			transition={{ duration: 0.5 }}
 			className="mt-12 space-y-8">
 			{/* Languages & Frameworks */}
-			<motion.div
-				className="backdrop-blur-lg bg-white/20 border border-gray-300/30 rounded-2xl p-8"
+      <motion.div
+        className="backdrop-blur-lg bg-gray-100 dark:bg-gray-800 border border-gray-300/30 dark:border-gray-700/40 rounded-2xl p-8"
 				initial={{ opacity: 0, x: -50 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.2 }}>
-				<h3 className="text-2xl font-semibold text-black mb-6 text-center">
+        <h3 className="text-2xl font-semibold text-black dark:text-white mb-6 text-center">
 					Languages & Frameworks
 				</h3>
 				<div className="flex flex-wrap justify-center gap-3">
@@ -164,10 +182,10 @@ function SkillDetails({ selectedSkill }) {
 							initial={{ opacity: 0, scale: 0.8 }}
 							animate={{ opacity: 1, scale: 1 }}
 							transition={{ delay: 0.3 + index * 0.1 }}
-							className="px-4 py-2 bg-gradient-to-r from-gray-200/60 to-white/40 
-									 border border-gray-400/40 rounded-full text-black font-medium
-									 backdrop-blur-sm hover:scale-105 transition-transform cursor-default
-									 hover:bg-gradient-to-r hover:from-gray-300/60 hover:to-white/50">
+            className="px-4 py-2 bg-gradient-to-r from-gray-200/60 to-white/40 dark:from-gray-800/60 dark:to-gray-900/40
+                   border border-gray-400/40 dark:border-gray-700/60 rounded-full text-black dark:text-gray-200 font-medium
+                   backdrop-blur-sm hover:scale-105 transition-transform cursor-default
+                   hover:bg-gradient-to-r hover:from-gray-300/60 hover:to-white/50 dark:hover:from-gray-700/60 dark:hover:to-gray-800/50">
 							{lang}
 						</motion.span>
 					))}
@@ -175,12 +193,12 @@ function SkillDetails({ selectedSkill }) {
 			</motion.div>
 
 			{/* Tools */}
-			<motion.div
-				className="backdrop-blur-lg bg-white/20 border border-gray-300/30 rounded-2xl p-8"
+      <motion.div
+        className="backdrop-blur-lg bg-gray-100 dark:bg-gray-800 border border-gray-300/30 dark:border-gray-700/40 rounded-2xl p-8"
 				initial={{ opacity: 0, x: 50 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.4 }}>
-				<h3 className="text-2xl font-semibold text-black mb-6 text-center">
+        <h3 className="text-2xl font-semibold text-black dark:text-white mb-6 text-center">
 					Tools & Technologies
 				</h3>
 				<div className="flex flex-wrap justify-center gap-3">
@@ -190,10 +208,10 @@ function SkillDetails({ selectedSkill }) {
 							initial={{ opacity: 0, scale: 0.8 }}
 							animate={{ opacity: 1, scale: 1 }}
 							transition={{ delay: 0.5 + index * 0.1 }}
-							className="px-4 py-2 bg-gradient-to-r from-gray-300/60 to-gray-100/40 
-									 border border-gray-500/40 rounded-full text-black font-medium
-									 backdrop-blur-sm hover:scale-105 transition-transform cursor-default
-									 hover:bg-gradient-to-r hover:from-gray-400/60 hover:to-gray-200/50">
+            className="px-4 py-2 bg-gradient-to-r from-gray-300/60 to-gray-100/40 dark:from-gray-800/60 dark:to-gray-900/40
+                   border border-gray-500/40 dark:border-gray-700/60 rounded-full text-black dark:text-gray-200 font-medium
+                   backdrop-blur-sm hover:scale-105 transition-transform cursor-default
+                   hover:bg-gradient-to-r hover:from-gray-400/60 hover:to-gray-200/50 dark:hover:from-gray-700/60 dark:hover:to-gray-800/50">
 							{tool}
 						</motion.span>
 					))}

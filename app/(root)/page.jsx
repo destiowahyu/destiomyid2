@@ -327,7 +327,7 @@ const MyPage = () => {
                       damping: 20,
                     }}
                   >
-                    <FreeMovingImage className="bg-slate-300 dark:bg-gray-700 rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] shadow-2xl overflow-hidden">
+                    <FreeMovingImage className="relative bg-slate-300 dark:bg-gray-700 rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] shadow-2xl overflow-hidden will-change-transform">
                       <Image
                         src={Destio2 || "/placeholder.svg"}
                         layout="fill"
@@ -335,8 +335,8 @@ const MyPage = () => {
                         alt="Destio"
                         placeholder="blur"
                       />
+                      <div className="absolute inset-0 bg-black/0 dark:bg-black/30 pointer-events-none"></div>
                     </FreeMovingImage>
-                    <div className="absolute inset-0 bg-black/0 dark:bg-black/30"></div>
                   </motion.div>
                 </div>
                 <div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 py-5">
@@ -382,7 +382,7 @@ const MyPage = () => {
               </div>
             </div>
             <div className="section">
-              <div className="relative md:h-screen w-screen gap-4 p-10 flex justify-center items-center flex-col overflow-hidden">
+              <div className="relative h-screen w-screen gap-4 p-6 md:p-10 flex justify-center items-center flex-col overflow-hidden">
                 <div className="z-0 mb-48 md:mb-0  md:absolute top-1/4  md:right-[10%] md:-translate-y-16 ">
                   <motion.div
                     initial={{
@@ -402,11 +402,11 @@ const MyPage = () => {
                       damping: 20,
                     }}
                   >
-                    <FreeMovingImage className="bg-slate-300 dark:bg-gray-700 rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] shadow-2xl overflow-hidden">
+                    <FreeMovingImage className="relative bg-slate-300 dark:bg-gray-700 rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] shadow-2xl overflow-hidden">
                       <Image
                         src={ProjectAll || "/placeholder.svg"}
                         layout="fill"
-                        className="object-cover"
+                        className="object-cover pointer-events-none"
                         alt="Alvalens Projects"
                         placeholder="blur"
                       />
@@ -459,8 +459,8 @@ const MyPage = () => {
               </div>
             </div>
             <div className="section">
-              <div className="relative md:h-screen w-screen gap-4 p-10 flex justify-center items-center flex-col overflow-hidden">
-                <div className="z-0 mb-48 md:mb-0  md:absolute top-1/4  md:right-[10%] md:-translate-y-16 ">
+              <div className="relative h-screen w-screen gap-4 p-6 md:p-10 flex justify-center items-center flex-col overflow-hidden">
+                <div className="hidden md:block md:mb-0  md:absolute top-1/4  md:right-[10%] md:-translate-y-16 ">
                   <motion.div
                     initial={{
                       x: 300,
@@ -485,7 +485,7 @@ const MyPage = () => {
                 </div>
                 <div className="z-10 w-full md:w-auto md:left-[10%] md:top-1/3 col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start px-6 py-5">
                   <motion.h1
-                    className="dark:bg-[rgb(17,24,39)] dark:bg-gray-800 lg:bg-transparent dark:lg:bg-transparent bg-opacity-50 px-3 md-px-0 text-black dark:text-white text-5xl md:text-8xl font-bold"
+                    className="dark:bg-[rgb(17,24,39)] dark:bg-gray-800 lg:bg-transparent dark:lg:bg-transparent bg-opacity-50 px-3 md-px-0 text-black dark:text-white text-4xl md:text-8xl font-bold"
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -497,7 +497,7 @@ const MyPage = () => {
                   </motion.h1>
                   <Hr />
                   <motion.p
-                    className="title text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-8"
+                    className="title text-base md:text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-6 md:mb-8"
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{

@@ -50,7 +50,7 @@ export const ThemeProvider = ({ children }) => {
         style.innerHTML = `
           html.light,
           html.light body,
-          html.light * {
+          html.light *:not(button):not(a) {
             color: black;
           }
           
@@ -69,7 +69,8 @@ export const ThemeProvider = ({ children }) => {
           
           html.light p,
           html.light span,
-          html.light div:not(.bg-gray-700):not(.bg-gray-800):not(.bg-gray-900),
+          html.light div:not([class*="bg-"]) {
+          color: rgba(95, 95, 95, 1); },
           html.light a {
             color: rgba(95, 95, 95, 1);
           }
@@ -107,7 +108,7 @@ export const ThemeProvider = ({ children }) => {
         }, 0)
       } else {
         // Dark mode - force dark colors
-        document.body.style.setProperty("background-color", "rgb(17, 24, 39)", "important")
+        document.body.style.setProperty("background-color", "rgb(17, 24, 39)")
         document.body.style.setProperty("color", "rgb(243, 244, 246)", "important")
 
         // Create aggressive CSS injection for dark mode
@@ -135,10 +136,15 @@ export const ThemeProvider = ({ children }) => {
         
         html.dark p,
         html.dark span,
-        html.dark div,
         html.dark a {
             color: rgba(173, 173, 173, 1) !important;
         }
+        
+        html.dark div:not([class*="bg-"]) {
+        color: rgba(173, 173, 173, 1) !important;
+        }
+
+
         `
         document.head.appendChild(style)
 
@@ -146,6 +152,12 @@ export const ThemeProvider = ({ children }) => {
         setTimeout(() => {
           const allElements = document.querySelectorAll("*")
           allElements.forEach((element) => {
+            // Respect explicit text color utilities from Tailwind on selected areas
+            const hasExplicitColor = Array.from(element.classList || []).some((cls) =>
+              ["text-black", "text-white"].includes(cls)
+            )
+            if (hasExplicitColor) return
+
             element.style.setProperty("color", "rgba(173, 173, 173, 1)", "important")
           })
         }, 0)
