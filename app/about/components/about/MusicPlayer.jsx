@@ -12,6 +12,56 @@ import {
   faListUl
 } from "@fortawesome/free-solid-svg-icons";
 
+// Audio Spectrum Visualizer Component
+const AudioSpectrum = ({ isPlaying, audioRef }) => {
+  const [spectrumData, setSpectrumData] = useState(new Array(32).fill(0));
+  const animationRef = useRef(null);
+
+  useEffect(() => {
+    if (!isPlaying) {
+      setSpectrumData(new Array(32).fill(0));
+      return;
+    }
+
+    // Simple animated spectrum without Web Audio API to avoid conflicts
+    const updateSpectrum = () => {
+      const newSpectrumData = spectrumData.map(() => 
+        Math.random() * 0.8 + 0.2
+      );
+      setSpectrumData(newSpectrumData);
+      animationRef.current = requestAnimationFrame(updateSpectrum);
+    };
+
+    updateSpectrum();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPlaying]);
+
+  return (
+    <div className="flex items-end justify-center space-x-1 h-16 mb-4">
+      {spectrumData.map((height, index) => (
+        <motion.div
+          key={index}
+          className="w-1 bg-gradient-to-t from-purple-500 to-blue-500 rounded-full shadow-sm"
+          style={{
+            height: `${Math.max(4, height * 60)}px`,
+            opacity: height > 0.1 ? 0.8 : 0.3
+          }}
+          animate={{
+            height: `${Math.max(4, height * 60)}px`,
+            opacity: height > 0.1 ? 0.8 : 0.3
+          }}
+          transition={{ duration: 0.1 }}
+        />
+      ))}
+    </div>
+  );
+};
+
 // Playlist array - mudah untuk menambah/mengurangi lagu
 const playlist = [
   {
@@ -214,13 +264,7 @@ const MusicPlayer = () => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  const skipForward = () => {
-    audioRef.current.currentTime = Math.min(currentTime + 10, duration);
-  };
 
-  const skipBackward = () => {
-    audioRef.current.currentTime = Math.max(currentTime - 10, 0);
-  };
 
   return (
     <motion.div 
@@ -263,6 +307,9 @@ const MusicPlayer = () => {
             Track {currentTrackIndex + 1} of {playlist.length}
           </p>
         </div>
+
+        {/* Audio Spectrum Visualizer */}
+        <AudioSpectrum isPlaying={isPlaying} audioRef={audioRef} />
 
         {/* Playlist */}
         {showPlaylist && (
@@ -332,7 +379,7 @@ const MusicPlayer = () => {
             <>
               <div 
                 ref={progressRef}
-                className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 cursor-pointer relative"
+                className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2 cursor-pointer relative"
                 onClick={handleProgressClick}
               >
                 <motion.div 
@@ -412,6 +459,8 @@ const MusicPlayer = () => {
           </motion.button>
         </div>
 
+
+
         {/* Volume Control */}
         <div className="flex items-center justify-center space-x-3">
           <motion.button
@@ -432,20 +481,20 @@ const MusicPlayer = () => {
           </motion.button>
           
           <div className="flex items-center space-x-2">
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={isMuted ? 0 : volume}
-              onChange={handleVolumeChange}
-              disabled={isLoading || error}
-              className={`w-24 h-2 rounded-lg appearance-none slider ${
-                isLoading || error 
-                  ? 'bg-gray-300 dark:bg-gray-600 cursor-not-allowed' 
-                  : 'bg-gray-200 dark:bg-gray-700 cursor-pointer'
-              }`}
-            />
+                         <input
+               type="range"
+               min="0"
+               max="1"
+               step="0.01"
+               value={isMuted ? 0 : volume}
+               onChange={handleVolumeChange}
+               disabled={isLoading || error}
+               className={`w-24 h-2 rounded-lg appearance-none slider ${
+                 isLoading || error 
+                   ? 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed' 
+                   : 'bg-gray-300 dark:bg-gray-700 cursor-pointer'
+               }`}
+             />
             <span className="text-xs text-gray-500 dark:text-gray-400 min-w-[2rem] text-center">
               {Math.round((isMuted ? 0 : volume) * 100)}%
             </span>

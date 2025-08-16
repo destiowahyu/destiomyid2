@@ -51,7 +51,7 @@ export default function Page() {
 						</motion.div>
 					</div>
 					<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 pt-4 md:pt-0">
-						<h1 className="text-black dark:text-white text-5xl md:text-8xl font-bold">
+						<h1 className="dark:bg-[rgb(17,24,39)] lg:bg-transparent dark:lg:bg-transparent px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold">
 							About Me
 						</h1>
 						<Hr />
