@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Card from "./spotify/card";
+import MusicPlayer from "./MusicPlayer";
 import { motion } from "framer-motion";
 import Me1 from "@/public/image/des4.webp";
 import Me2 from "@/public/image/des6.webp";
@@ -108,7 +108,7 @@ export default function About() {
 						I strive to keep learning, adapting, and creating impactful digital 
 						experiences.
 					</p>
-					<Card />
+					<MusicPlayer />
 				</motion.div>
 			</div>
 		</>
