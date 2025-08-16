@@ -13,7 +13,7 @@ import Experience from "./components/experience.jsx";
 import Education from "./components/education.jsx";
 
 // images
-import Hero from "@/public/image/me2.jpg";
+import Hero from "@/public/image/des3.jpg";
 
 import Hr from "@/components/Hr";
 import About from "./components/about/about.jsx";
@@ -47,7 +47,7 @@ export default function Page() {
 								objectFit="cover"
 								placeholder="blur"
 							/>
-							<div className="absolute inset-0 bg-black/0 dark:bg-black/30 pointer-events-none" />
+							<div className="absolute inset-0 bg-black/0 dark:bg-black/10 pointer-events-none" />
 						</motion.div>
 					</div>
 					<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 pt-4 md:pt-0">

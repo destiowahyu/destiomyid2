@@ -21,7 +21,7 @@ const skillCategories = {
 			"NodeJS",
 
 		],
-		tools: ["Visual Studio Code", "Git", "Github", "Figma", "Casa OS", "Docker", "Linux", "Armbian", "Mikrotik", "OpenWRT",],
+		tools: ["Visual Studio Code", "Mariadb", "MySQL", "PHPMyAdmin", "Adminer", "Git", "Github", "Figma", "Casa OS", "Docker", "Docker Compose", "Linux", "Armbian", "Mikrotik", "OpenWRT",],
 	},
 	video: {
 		category: "video",

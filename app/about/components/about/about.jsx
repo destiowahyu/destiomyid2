@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Card from "./spotify/card";
 import { motion } from "framer-motion";
-import Me1 from "@/public/image/me1.jpg";
-import Me2 from "@/public/image/me2.jpg";
-import Me3 from "@/public/image/me3.jpg";
+import Me1 from "@/public/image/des4.webp";
+import Me2 from "@/public/image/des6.webp";
+import Me3 from "@/public/image/des5.webp";
 import Hr from "@/components/Hr";
 import { useState } from "react";
 

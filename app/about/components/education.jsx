@@ -10,9 +10,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import Me4 from "@/public/image/me4.jpeg";
-import Me5 from "@/public/image/me5.jpg";
-import Me6 from "@/public/image/me6.jpg";
+import Me4 from "@/public/image/des8.jpg";
+import Me5 from "@/public/image/des7.jpg";
+import Me6 from "@/public/image/des9.jpg";
 
 function Wrapper({ children }) {
 	return (
