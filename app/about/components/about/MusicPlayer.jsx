@@ -16,29 +16,41 @@ import {
 const playlist = [
   {
     id: 1,
-    title: "Lagu 1",
-    artist: "Artist 1",
-    src: "/music/1.mp3"
+    title: "Kita ke Sana",
+    artist: "Hindia",
+    src: "/music/kitakesana.mp3"
   },
   {
     id: 2,
-    title: "Lagu 2", 
-    artist: "Artist 2",
-    src: "/music/2.mp3"
+    title: "Nina", 
+    artist: ".Feast",
+    src: "/music/nina.mp3"
   },
   {
     id: 3,
-    title: "Lagu 3",
-    artist: "Artist 3", 
-    src: "/music/3.mp3"
+    title: "Duka",
+    artist: "Last Child", 
+    src: "/music/duka.mp3"
+  },
+  {
+    id: 4,
+    title: "Tak Ada Ujungnya",
+    artist: "Rony Parulian", 
+    src: "/music/takadaujungnya.mp3"
+  },
+  {
+    id: 5,
+    title: "L",
+    artist: "Hal", 
+    src: "/music/l.mp3"
+  },
+  {
+    id: 6,
+    title: "Cincin",
+    artist: "Hindia", 
+    src: "/music/cincin.mp3"
   }
-  // Tambahkan lagu baru di sini dengan format yang sama
-  // {
-  //   id: 4,
-  //   title: "Lagu Baru",
-  //   artist: "Artist Baru",
-  //   src: "/music/lagu-baru.mp3"
-  // }
+
 ];
 
 const MusicPlayer = () => {
