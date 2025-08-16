@@ -93,36 +93,20 @@ export default function About() {
 						type: "spring",
 					}}>
 					<h2 className="text-2xl font-bold tracking-wider mb-3">
-						Destio Wahyu
+						Destio Wahyu Lanio
 					</h2>
 					<p className="text-gray-600 text-justify title text-lg">
-						Hey there, I&rsquo;m Destio Wahyu, a
-						<span className="text-black font-medium">
-							{" "}
-							passionate Web Developer
-						</span>{" "}
-						with a growing expertise in
-						<span className="text-black font-medium">
-							{" "}
-							Artificial Intelligence.
-						</span>{" "}
-						Hailing from Pasuruan, East Java, Indonesia, I&rsquo;m currently
-						pursuing my degree in{" "}
-						<span className="text-black font-medium">
-							Computer Science
-						</span>{" "}
-						at{" "}
-						<span className="text-black font-medium">
-							Universitas Negeri Malang.
-						</span>{" "}
-						My work bridges modern web technologies and intelligent systems—from
-						building responsive, scalable websites to exploring generative AI
-						and LLM-based solutions. Beyond development, I stay curious about
-						design and emerging technologies. In today&rsquo;s ever-changing
-						digital landscape, I believe being a
-						<span className="text-black font-medium"> lifelong learner</span> is
-						essential. Let&rsquo;s connect and explore the evolving intersection
-						of web and AI together!
+						Hey there, I&rsquo;m Destio, 
+						a fresh graduate in Software Engineering from Universitas 
+						Dian Nuswantoro (UDINUS) with a strong passion for Web Development 
+						and the creative industry. I enjoy building functional and 
+						user-friendly web applications using modern technologies, 
+						while also excelling in video editing, photo editing, 
+						and graphic design. Beyond tech and design, I love music and 
+						often create my own covers, handling everything from recording 
+						to mixing. With this mix of technical and creative skills, 
+						I strive to keep learning, adapting, and creating impactful digital 
+						experiences.
 					</p>
 					<Card />
 				</motion.div>
