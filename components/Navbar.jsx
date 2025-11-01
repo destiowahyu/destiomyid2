@@ -256,15 +256,15 @@ const Navbar = () => {
   // Don't render until mounted to avoid hydration issues
   if (!mounted) {
     return (
-      <nav className="px-5 md:px-24 w-screen fixed backdrop-filter backdrop-blur-md inset-0 flex flex-row justify-between items-center h-16 z-50 bg-gray-900">
+      <nav className="px-5 md:px-24 w-screen fixed backdrop-filter backdrop-blur-md inset-0 flex flex-row justify-between items-center h-16 z-50 bg-gray-900 dark:bg-gray-900">
         <div className="ml-2 md:ml-0">
-          <div className="h-8 w-24 bg-gray-700 animate-pulse rounded"></div>
+          <div className="h-8 w-24 bg-gray-700 dark:bg-gray-700 animate-pulse rounded"></div>
         </div>
         <div className="flex flex-row items-center space-x-4">
-          <div className="w-10 h-10 bg-gray-700 animate-pulse rounded-full"></div>
-          <div className="flex flex-col space-y-1.5">
-            <div className="w-10 h-1 bg-gray-700 animate-pulse rounded-full"></div>
-            <div className="w-10 h-1 bg-gray-700 animate-pulse rounded-full"></div>
+          <div className="w-10 h-10 bg-gray-700 dark:bg-gray-700 animate-pulse rounded-full"></div>
+          <div className="flex flex-col space-y-1 justify-center items-center">
+            <div className="w-7 h-0.5 bg-gray-700 dark:bg-gray-700 animate-pulse rounded-full"></div>
+            <div className="w-7 h-0.5 bg-gray-700 dark:bg-gray-700 animate-pulse rounded-full"></div>
           </div>
         </div>
       </nav>
@@ -279,10 +279,10 @@ const Navbar = () => {
         style={{
           backgroundColor: isNavOpen
             ? resolvedTheme === "light"
-              ? "rgba(107, 114, 128, 0.5)"
+              ? "rgb(230, 230, 230)"
               : "rgba(17, 24, 39, 0.5)" 
             : resolvedTheme === "light"
-              ? "rgba(230, 230, 230, 0.8)"
+              ? "rgb(230, 230, 230)"
               : "rgba(17, 24, 39, 0.8)",
           transition: "background-color 0.1s ease",
         }}
@@ -292,7 +292,9 @@ const Navbar = () => {
             onClick={handleLogoClick}
             className="ml-2 md:ml-0 transition-all ease duration-200 cursor-pointer hover:opacity-80"
             style={{
-              filter: isNavOpen ? "brightness(0) invert(1)" : resolvedTheme === "dark" ? "invert(1)" : "none",
+              filter: isNavOpen 
+                ? (resolvedTheme === "light" ? "brightness(0)" : "brightness(0) invert(1)")
+                : (resolvedTheme === "light" ? "brightness(0)" : "invert(1)"),
             }}
           >
             <Image
@@ -308,22 +310,30 @@ const Navbar = () => {
           <LanguageToggle />
           <ThemeToggle isNavOpen={isNavOpen} />
           <button
-            className="burger button flex flex-col justify-center items-center space-y-1.5"
+            className="burger button flex flex-col justify-center items-center space-y-1"
             onClick={toggleNav}
             aria-label="Toggle menu"
+            style={{
+              marginTop: isNavOpen ? "-4px" : "0px",
+              transition: "margin-top 0.2s ease",
+            }}
           >
             <div
-              className="w-10 h-1 rounded-full transition-all ease duration-200"
+              className="w-7 h-0.5 rounded-full transition-all ease duration-200"
               style={{
-                backgroundColor: isNavOpen ? "white" : resolvedTheme === "light" ? "black" : "white",
-                transform: isNavOpen ? "rotate(45deg) translateX(5px) translateY(7px)" : "rotate(0deg) translateY(0px)",
+                backgroundColor: isNavOpen 
+                  ? (resolvedTheme === "light" ? "black" : "white")
+                  : (resolvedTheme === "light" ? "black" : "white"),
+                transform: isNavOpen ? "rotate(45deg) translateX(3px) translateY(4px)" : "rotate(0deg) translateY(0px)",
               }}
             ></div>
             <div
-              className="w-10 h-1 rounded-full transition-all ease duration-200"
+              className="w-7 h-0.5 rounded-full transition-all ease duration-200"
               style={{
-                backgroundColor: isNavOpen ? "white" : resolvedTheme === "light" ? "black" : "white",
-                transform: isNavOpen ? "rotate(-45deg) translateY(-2px) translateX(-1px)" : "rotate(0deg) translateY(0px)",
+                backgroundColor: isNavOpen 
+                  ? (resolvedTheme === "light" ? "black" : "white")
+                  : (resolvedTheme === "light" ? "black" : "white"),
+                transform: isNavOpen ? "rotate(-45deg) translateY(-2px) translateX(-0px)" : "rotate(0deg) translateY(0px)",
               }}
             ></div>
           </button>

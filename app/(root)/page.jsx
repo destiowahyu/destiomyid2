@@ -169,6 +169,16 @@ const MyPage = () => {
   const { resolvedTheme } = useTheme()
   const { language } = useLanguage()
   const t = translations[language]
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Set loading to false after page loads
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
     useEffect(() => {
     const forceColors = () => {
@@ -233,6 +243,45 @@ const MyPage = () => {
       }
     }, [])
 
+
+  // Wireframe skeleton for initial load
+  if (isLoading) {
+    return (
+      <div 
+        className="fixed inset-0 bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] z-40"
+        style={{
+          backgroundColor: resolvedTheme === "light" ? "rgb(230, 230, 230)" : "rgb(17, 24, 39)"
+        }}
+      >
+        <div className="mx-auto container grid grid-cols-1 md:grid-cols-3 gap-4 p-10 overflow-hidden md:px-20 pt-24">
+          {/* Left content skeleton */}
+          <div className="col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start space-y-6">
+            {/* Mobile image skeleton */}
+            <div className="block md:hidden w-60 h-60 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-full"></div>
+            {/* Title skeleton */}
+            <div className="h-16 md:h-20 w-3/4 bg-gray-300 dark:bg-gray-700 animate-pulse rounded"></div>
+            {/* Subtitle skeleton */}
+            <div className="h-6 w-1/2 bg-gray-300 dark:bg-gray-700 animate-pulse rounded"></div>
+            {/* Description skeleton */}
+            <div className="space-y-2 w-full">
+              <div className="h-4 w-full bg-gray-300 dark:bg-gray-700 animate-pulse rounded"></div>
+              <div className="h-4 w-5/6 bg-gray-300 dark:bg-gray-700 animate-pulse rounded"></div>
+              <div className="h-4 w-4/5 bg-gray-300 dark:bg-gray-700 animate-pulse rounded"></div>
+            </div>
+            {/* Buttons skeleton */}
+            <div className="flex flex-row space-x-4 mt-10">
+              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 animate-pulse rounded"></div>
+              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-700 animate-pulse rounded"></div>
+            </div>
+          </div>
+          {/* Right image skeleton */}
+          <div className="hidden md:flex col-span-1 mx-auto justify-center items-center">
+            <div className="w-80 h-96 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -312,7 +361,7 @@ const MyPage = () => {
                   >
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Button variation="primary">
-                        <Link href={"/docs/cv.pdf"} target="_blank" rel="noopener noreferrer" download>
+                        <Link href={"/docs/cv-destio.pdf"} target="_blank" rel="noopener noreferrer" download>
                           {t.home.downloadCV}
                         </Link>
                       </Button>

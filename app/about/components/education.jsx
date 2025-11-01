@@ -45,87 +45,39 @@ export default function Education() {
 	const achievementsByYear = {
 		2025: [
 			{
-				icon: faMedal,
-				title: "1st place (Gold Medal)",
-				subtitle: "Fesmaro IT Business Competition",
-				date: "Mar 2025",
-				color: "from-yellow-400 to-orange-500",
-			},
-			{
 				icon: faAward,
-				title: "Finalist",
-				subtitle: "Hackfest Build to Billion 2025",
-				date: "Apr 2025",
+				title: "Certification Scheme Of Web Developer",
+				subtitle: "Indonesian Professional Certification Authority (BNSP)",
+				date: "Jan 2025",
 				color: "from-blue-500 to-purple-600",
 			},
 			{
-				icon: faMedal,
-				title: "3rd place (Bronze Medal)",
-				subtitle: "Faculty of Engineering Most Outstanding Student",
-				date: "Feb 2025",
-				color: "from-amber-600 to-yellow-600",
+				icon: faAward,
+				title: "TOEFL Score: 490",
+				subtitle: "Center for Foreign Language Training (CLFT) UDINUS",
+				date: "Jan 2025",
+				color: "from-blue-500 to-purple-600",
 			},
 		],
 		2024: [
 			{
-				icon: faTrophy,
-				title: "Special Award | Gold Medal | Incubation Opportunity",
-				subtitle: "Indonesia Inventor Day 2024 (IID)",
-				date: "Aug 2024",
-				color: "from-yellow-400 to-orange-500",
-			},
-			{
-				icon: faMedal,
-				title: "1st place (Gold Medal)",
-				subtitle: "Tech & Trade Expo 2024",
-				date: "Jul 2024",
-				color: "from-yellow-400 to-orange-500",
-			},
-			{
-				icon: faMedal,
-				title: "2nd place (Silver Medal)",
-				subtitle: "IdeaFest 2024",
-				date: "Jul 2024",
-				color: "from-slate-400 to-slate-500",
-			},
-			{
 				icon: faAward,
-				title: "Finalist",
-				subtitle: "37th National Student Science Week (PIMNAS)",
-				date: "Oct 2024",
+				title: "SEMNASTI | Indonesia's Cyber Security Challenge in Building a Robust Defense",
+				subtitle: "Himpunan Mahasiswa Teknik Informatika (HMTI) UDINUS",
+				date: "Nov 2024",
 				color: "from-blue-500 to-purple-600",
-			},
-			{
-				icon: faMedal,
-				title: "3rd place (Bronze Medal)",
-				subtitle: "Student Digital Innovation Competition (LIDM)",
-				date: "Jun 2024",
-				color: "from-amber-600 to-yellow-600",
-			},
-			{
-				icon: faMedal,
-				title: "3rd place (Bronze Medal)",
-				subtitle: "Fesmaro UI/UX Design",
-				date: "Jun 2024",
-				color: "from-amber-600 to-yellow-600",
 			},
 		],
 		2023: [
 			{
 				icon: faAward,
-				title: "Finalist",
-				subtitle: "36th National Student Science Week (PIMNAS)",
-				date: "Nov 2023",
+				title: "SEMNASTI | Cyber Security Awarness for Securing Data",
+				subtitle: "Himpunan Mahasiswa Teknik Informatika (HMTI) UDINUS",
+				date: "Jun 2023",
 				color: "from-blue-500 to-purple-600",
 			},
-			{
-				icon: faMedal,
-				title: "3rd place (Bronze Medal)",
-				subtitle: "FORKAFEST 3.0 Web Development competition",
-				date: "Jan 2023",
-				color: "from-amber-600 to-yellow-600",
-			},
 		],
+
 	};
 
 	// Flatten all achievements into a single array for easier limiting
@@ -137,8 +89,8 @@ export default function Education() {
 
 	const visibleAchievements = isExpanded
 		? allAchievements
-		: allAchievements.slice(0, 6);
-	const hasMoreAchievements = allAchievements.length > 6;
+		: allAchievements.slice(0, 2);
+	const hasMoreAchievements = allAchievements.length > 2;
 
 	return (
 		<Wrapper>
@@ -150,10 +102,10 @@ export default function Education() {
 					initial={{ opacity: 0, y: 30 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}>
-					<h1 className="text-3xl md:text-4xl font-bold tracking-tighter">
+					<h1 className="text-3xl md:text-4xl font-bold tracking-tighter text-black dark:text-white">
 						Education
 					</h1>
-					<p className="text-muted-foreground max-w-[800px] mx-auto">
+					<p className="text-muted-foreground max-w-[800px] mx-auto text-gray-600 dark:text-gray-400">
 						Get to know more about my educational background.
 					</p>
 				</motion.div>
@@ -165,12 +117,12 @@ export default function Education() {
 						initial={{ opacity: 0, x: -50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, delay: 0.2 }}>
-						<div className="font-medium text-lg mb-4">2022 - Present</div>
+						<div className="font-medium text-lg mb-4 text-black dark:text-white">2021 - 2025</div>
 						<div>
-							<h2 className="font-semibold text-xl">
-								Universitas Negeri Malang
+							<h2 className="font-semibold text-xl text-black dark:text-white">
+								Universitas Dian Nuswantoro
 							</h2>
-							<h3 className="text-md font-normal mb-3">
+							<h3 className="text-md font-normal mb-3 text-gray-700 dark:text-gray-300">
 								S1 Teknik Informatika | Computer Science
 							</h3>
 							<div className="gap-4 mb-4 flex items-stretch md:h-[300px] xl:h-[400px]">
@@ -203,55 +155,30 @@ export default function Education() {
 								</div>
 							</div>
 							<div className="flex items-center gap-2">
-								<p className="text-gray-600 text-justify title text-lg">
-									Aspiring to become a professional Software Engineer, I&rsquo;m
-									currently pursuing my Bachelor&rsquo;s degree in{" "}
-									<span className="text-black font-medium">
-										Computer Science
-									</span>{" "}
-									at{" "}
-									<span className="text-black font-medium">
-										Universitas Negeri Malang
-									</span>
-									. My journey in tech is driven by curiosity and
-									creativity—combining web development with cutting-edge AI
-									research and implementation.
+								<p className="text-gray-600 dark:text-gray-300 text-justify title text-lg">
+									I&rsquo;m
+									Informatics Engineering student at Dian Nuswantoro University, 
+									passionate about software development and system optimization. 
+									My journey in tech started from curiosity. experimenting with networks, Linux servers, and self-hosted systems,
+									then evolved into building practical web applications that solve real problems.
 									<br />
 									<br />
-									As the{" "}
-									<span className="text-black font-medium">
-										Co-Lead of Google Developer Group on Campus (GDGoC)
-									</span>{" "}
-									at my university, I&rsquo;ve led technical initiatives,
-									mentored peers, and helped build impactful digital solutions.
-									I&rsquo;ve actively participated in various{" "}
-									<span className="text-black font-medium">
-										national or international technology competitions
-									</span>
-									, earning recognition through awards such as{" "}
-									<span className="text-black font-medium">
-										PIMNAS Finalist, Indonesia Inventor Day Gold Medalist, Top 3
-										at LIDM 2024
-									</span>
-									, and more.
+									As the developer behind Zeea Laundry, a web-based laundry management 
+									system built for a real business, I focus on creating efficient and user-friendly 
+									solutions while applying modern development methods like Agile. 
+									I also enjoy exploring areas like networking, Docker, 
+									and automation to make systems more reliable and scalable.
 									<br />
-									<br />I am passionate about solving real-world problems
-									through code, especially at the intersection of{" "}
-									<span className="text-black font-medium">
-										Web Development
-									</span>{" "}
-									and{" "}
-									<span className="text-black font-medium">
-										Artificial Intelligence
-									</span>
-									. Constantly learning, building, and collaborating—I&rsquo;m
-									excited to keep growing and contributing to the evolving tech
-									landscape.
+									<br />
+									Driven by curiosity and hands-on experience, 
+									I&rsquo;m constantly learning, building, and improving. 
+									I aim to grow as a full-stack developer who bridges everyday needs with smart, 
+									well-crafted technology.
 								</p>
 							</div>
 							<div className="flex flex-wrap gap-2 mt-4 text-sm">
-								<div className="bg-gray-300 text-black px-2 py-1 rounded-2xl">
-									GPA: 3.9 out of 4
+								<div className="bg-gray-300 dark:bg-gray-700 text-black dark:text-white px-2 py-1 rounded-2xl">
+									GPA: 3.73 out of 4.00
 								</div>
 							</div>
 						</div>
@@ -262,8 +189,8 @@ export default function Education() {
 						initial={{ opacity: 0, x: 50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, delay: 0.4 }}>
-						<h2 className="font-semibold text-xl mt-7">Achievements</h2>
-						<p className="text-md font-normal mb-3 md:mb-6">
+						<h2 className="font-semibold text-xl mt-7 text-black dark:text-white">Achievements</h2>
+						<p className="text-md font-normal mb-3 md:mb-6 text-gray-700 dark:text-gray-300">
 							Some of my achievements during my study.
 						</p>
 
@@ -285,17 +212,17 @@ export default function Education() {
 											visibleAchievements[index - 1]?.year !==
 												achievement.year ? (
 												<div className="flex items-center gap-3 mb-3 mt-2">
-													<div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-														<span className="text-xs font-bold text-gray-600">
+													<div className="w-8 h-8 rounded-full bg-gray-400/40 dark:bg-gray-700 flex items-center justify-center">
+														<span className="text-xs font-bold text-gray-600 dark:text-gray-300">
 															{achievement.year}
 														</span>
 													</div>
-													<div className="flex-1 h-px bg-gradient-to-r from-gray-300 to-transparent"></div>
+													<div className="flex-1 h-px bg-gradient-to-r from-gray-300 dark:from-gray-600 to-transparent"></div>
 												</div>
 											) : null}
 
 											{/* Glassmorphism achievement card with monochrome to color effect */}
-											<div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-4 shadow-lg hover:bg-white/30 transition-all duration-300 hover:shadow-xl grayscale hover:grayscale-0">
+											<div className="bg-white/20 dark:bg-gray-800/90 backdrop-blur-md border border-white/30 dark:border-gray-700/50 rounded-2xl p-4 shadow-lg hover:bg-white/30 dark:hover:bg-gray-700/80 transition-all duration-300 hover:shadow-xl hover:grayscale-1">
 												<div className="flex items-center gap-4">
 													<div
 														className={`aspect-square w-10 rounded-full bg-gradient-to-r ${achievement.color} flex items-center justify-center text-primary-foreground transition-all duration-300`}>
@@ -305,9 +232,9 @@ export default function Education() {
 														/>
 													</div>
 													<div>
-														<h3 className="font-medium">{achievement.title}</h3>
-														<p className="text-sm">{achievement.subtitle}</p>
-														<div className="text-xs text-gray-500 mt-1">
+														<h3 className="font-medium text-black dark:text-white">{achievement.title}</h3>
+														<p className="text-sm text-gray-700 dark:text-gray-300">{achievement.subtitle}</p>
+														<div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
 															{achievement.date}
 														</div>
 													</div>
@@ -320,7 +247,7 @@ export default function Education() {
 
 							{/* Transparent bottom overlay when not expanded */}
 							{!isExpanded && hasMoreAchievements && (
-								<div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-stale-300 via-stale/70 to-transparent pointer-events-none"></div>
+								<div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-200 dark:from-gray-900 via-gray-100/70 dark:via-gray-900/70 to-transparent pointer-events-none"></div>
 							)}
 
 							{/* Expand/Collapse Button */}
@@ -332,11 +259,11 @@ export default function Education() {
 									transition={{ delay: 0.5 }}>
 									<button
 										onClick={() => setIsExpanded(!isExpanded)}
-										className="flex items-center gap-2 px-6 py-3 bg-white/30 backdrop-blur-md border border-white/40 rounded-full hover:bg-white/40 transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-xl">
+										className="flex items-center gap-2 px-6 py-3 bg-white/30 dark:bg-gray-700/60 backdrop-blur-md border border-white/40 dark:border-gray-600/50 rounded-full hover:bg-white/40 dark:hover:bg-gray-700/80 transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-xl text-black dark:text-white">
 										<span>
 											{isExpanded
 												? `Show Less`
-												: `Show ${allAchievements.length - 4} More`}
+												: `Show ${allAchievements.length - 2} More`}
 										</span>
 										<FontAwesomeIcon
 											icon={isExpanded ? faChevronUp : faChevronDown}
