@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { useTheme } from "@/components/ThemeProvider"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons"
+import LanguageToggle from "./LanguageToggle"
 
 const ThemeToggle = ({ isNavOpen }) => {
   const { theme, setTheme, resolvedTheme, mounted } = useTheme()
@@ -279,7 +280,7 @@ const Navbar = () => {
           backgroundColor: isNavOpen
             ? resolvedTheme === "light"
               ? "rgba(107, 114, 128, 0.5)"
-              : "rgba(17, 24, 39, 0.5)"
+              : "rgba(17, 24, 39, 0.5)" 
             : resolvedTheme === "light"
               ? "rgba(230, 230, 230, 0.8)"
               : "rgba(17, 24, 39, 0.8)",
@@ -304,6 +305,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex flex-row items-center space-x-4">
+          <LanguageToggle />
           <ThemeToggle isNavOpen={isNavOpen} />
           <button
             className="burger button flex flex-col justify-center items-center space-y-1.5"
@@ -321,7 +323,7 @@ const Navbar = () => {
               className="w-10 h-1 rounded-full transition-all ease duration-200"
               style={{
                 backgroundColor: isNavOpen ? "white" : resolvedTheme === "light" ? "black" : "white",
-                transform: isNavOpen ? "rotate(-45deg) translateY(-2px)" : "rotate(0deg) translateY(0px)",
+                transform: isNavOpen ? "rotate(-45deg) translateY(-2px) translateX(-1px)" : "rotate(0deg) translateY(0px)",
               }}
             ></div>
           </button>

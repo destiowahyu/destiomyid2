@@ -1,0 +1,85 @@
+{
+  "en": {
+    "home": {
+      "name": "Destio Wahyu Lanio",
+      "title": "Web Developer, Network Enthusiast, Video Editor",
+      "description": "Hi! I’m Destio, an Informatics Engineering graduate passionate about Web Development, Computer Networking, and video editing. I enjoy creating efficient digital systems, managing servers, and building user-friendly web applications. Outside tech, I love video editing and music, where I combine creativity and technical skills to produce engaging digital works.",
+      "downloadCV": "Download CV",
+      "contactMe": "Contact Me"
+    },
+    "about": {
+      "title": "About Me",
+      "description": "A brief introduction about me and my interest.",
+      "learnMore": "Learn More"
+    },
+    "projects": {
+      "title": "My Projects",
+      "description": "This is some of my projects that I have done",
+      "currentlyWorking": "and currently working on.",
+      "learnMore": "Learn More"
+    },
+    "education": {
+      "title": "Education",
+      "description": "My educational journey and",
+      "academicAchievements": "academic achievements.",
+      "university": "Universitas Dian Nuswantoro",
+      "universityPeriod": "2021 - 2025",
+      "degree": "Bachelor of Computer Science",
+      "gpa": "GPA: 3.73/4.00",
+      "universityDescription": "Graduated with a degree in Informatics Engineering, specializing in Software Engineering, and particularly passionate about web development.",
+      "highSchool": "SMAN 1 Rembang",
+      "highSchoolPeriod": "2018 - 2021",
+      "major": "Science Major",
+      "highSchoolDescription": "Graduated with excellent academic performance and active in various school activities.",
+      "learnMore": "Learn More"
+    },
+    "contact": {
+      "title": "Let's connect",
+      "description": "Feel free to contact me if you have any",
+      "contactText": "questions or just want to say hi.",
+      "email": "destiowahyu@gmail.com"
+    }
+  },
+  "id": {
+    "home": {
+      "name": "Destio Wahyu Lanio",
+      "title": "Web Developer, Network Enthusiast, Video Editor",
+      "description": "Hai! Aku Destio, lulusan Teknik Informatika yang suka banget sama dunia web development, video editing, dan jaringan komputer. Aku senang ngulik cara bikin sistem digital yang efisien, ngatur server, dan ngebangun aplikasi web yang simpel tapi berguna. Di luar dunia teknologi, aku juga suka ngedit video dan main musik buat nyalurin sisi kreatifku lewat karya digital yang seru.",
+      "downloadCV": "Unduh CV",
+      "contactMe": "Ngobrol Yuk!"
+    },
+    "about": {
+      "title": "Tentang Aku",
+      "description": "Kenalan dulu yuk, biar tahu aku suka ngapain.",
+      "learnMore": "Gas ke sini"
+    },
+    "projects": {
+      "title": "Proyekku",
+      "description": "Ini nih beberapa proyek yang pernah ku kerjain",
+      "currentlyWorking": "dan yang sedang ku kerjain.",
+      "learnMore": "Mau liat dong"
+    },
+    "education": {
+      "title": "Pendidikan",
+      "description": "Perjalanan pendidikanku dan",
+      "academicAchievements": "prestasi akademik.",
+      "university": "Universitas Dian Nuswantoro",
+      "universityPeriod": "2021 - 2025",
+      "degree": "Sarjana Ilmu Komputer",
+      "gpa": "IPK: 3.73/4.00",
+      "universityDescription": "Lulusan Teknik Informatika dengan IPK 3.73/4.00! Aku suka ngulik hal-hal seputar Software Engineering dan web development, terutama bikin aplikasi yang simpel tapi bermanfaat.",
+      "highSchool": "SMAN 1 Rembang",
+      "highSchoolPeriod": "2018 - 2021",
+      "major": "MIPA",
+      "highSchoolDescription": "Lulus dengan prestasi akademik yang sangat baik dan aktif dalam berbagai kegiatan sekolah.",
+      "learnMore": "Kepoin ah.."
+    },
+    "contact": {
+      "title": "Ngobrol Yuk!",
+      "description": "Ngga usah ragu kalau punya pertanyaan atau ",
+      "contactText": "cuma pengen ngobrol.",
+      "email": "destiowahyu@gmail.com"
+    }
+  }
+}
+

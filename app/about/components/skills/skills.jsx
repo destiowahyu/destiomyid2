@@ -37,24 +37,35 @@ const skillCategories = {
 		],
 		tools: ["Masking Techniques", "Roto Brush", "Pen Tool", "Graphic Design", "Color Grading", "Keyframe Animation", "Video Effects", "Audio Editing", "3D Camera Tracking", "Motion Tracking", "Green Screen", "Video Compression", "Export Optimization"],
 	},
-	music: {
-		category: "music",
-		title: "Music Production",
+	network: {
+		category: "network",
+		title: "Networking & System Administration",
 		icon: ActivityIcon,
 		description: "Music production and audio engineering",
 		languages: [
-			"Cubase",
-			"Studio One",
-			"Bandlab",
-			"Audacity",
+			"Mikrotik Winbox",
+			"Linux",
+			"Armbian",
+			"Casa OS",
+			"OpenWRT",
+			"VirtualBox",
+			"Docker",
+			"SSH",
+			"Putty",
+			"Nextcloud",
+			"Nginx",
+			"Apache",
+			"MySQL",
 		],
 		tools: [
-			"Audio Recording",
-			"Sound Mixing",
-			"Vocal Processing",
-			"Music Composing",
-			"Music Cover Production",
-			"Audio Mastering",
+			"Network Configuration",
+			"VLAN Configuration",
+			"Linux Server Setup",
+			"SSH Access",
+			"Self Hosting Services",
+			"Docker Container Management",
+			"Network Troubleshooting",
+			"File Sharing",
 		],
 	},
 };
@@ -67,8 +78,8 @@ function SkillCard({ skill, isSelected, onClick }) {
       onClick={onClick}
       className={`relative cursor-pointer group p-6 rounded-2xl backdrop-blur-lg border transition-all duration-300 ${
 		isSelected
-			? "bg-gray-100 border-gray-600 border-2 shadow-2xl dark:bg-gray-600 dark:border-gray-300"
-			: "bg-gray-300 border-gray-300/20 shadow-xl hover:bg-white/20 hover:border-gray-300/30 dark:bg-gray-900 dark:border-gray-700/40 dark:hover:bg-gray-800 dark:hover:border-gray-600/50"
+			? "bg-gray-300 border-gray-900 border-4 shadow-2xl dark:border-gray-100"
+			: "dark:bg-gray-300 border-gray-300/20 shadow-xl hover:bg-white/20 hover:border-gray-300/30 dark:bg-gray-900 dark:border-gray-700/40 dark:hover:bg-gray-800 dark:hover:border-gray-600/50"
 		}`}
 
 			whileHover={{
@@ -135,8 +146,8 @@ function SkillDetails({ selectedSkill }) {
 				return { first: "Languages & Frameworks", second: "Tools & Technologies" };
 			case 'video':
 				return { first: "Software & Applications", second: "Techniques & Skills" };
-			case 'music':
-				return { first: "Software & DAWs", second: "Production Skills" };
+			case 'network':
+				return { first: "Tools & Platforms", second: "Network & System Skills" };
 			default:
 				return { first: "Languages & Frameworks", second: "Tools & Technologies" };
 		}

@@ -7,6 +7,7 @@ import "./nprogress.css"
 import { Analytics } from "@vercel/analytics/react"
 import ClientTopProgressBar from "@/components/ClientTopProgressBar"
 import { ThemeProvider } from "@/components/ThemeProvider"
+import { LanguageProvider } from "@/components/LanguageProvider"
 import { Suspense } from "react"
 
 export const metadata = {
@@ -82,12 +83,14 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <ThemeProvider>
-          <Suspense fallback={null}>
-            <ClientTopProgressBar />
-            <Navbar />
-            {children}
-            <Analytics />
-          </Suspense>
+          <LanguageProvider>
+            <Suspense fallback={null}>
+              <ClientTopProgressBar />
+              <Navbar />
+              {children}
+              <Analytics />
+            </Suspense>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

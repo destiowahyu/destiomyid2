@@ -1,7 +1,7 @@
 import Image from "next/image";
 import MusicPlayer from "./MusicPlayer";
 import { motion } from "framer-motion";
-import Me1 from "@/public/image/des4.webp";
+import Me1 from "@/public/image/des10.jpg";
 import Me2 from "@/public/image/des6.webp";
 import Me3 from "@/public/image/des5.webp";
 import Hr from "@/components/Hr";

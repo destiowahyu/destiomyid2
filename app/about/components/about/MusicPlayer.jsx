@@ -16,39 +16,45 @@ import {
 const playlist = [
   {
     id: 1,
+    title: "Everything you are",
+    artist: "Hindia", 
+    src: "/music/everything.mp3"
+  },
+  {
+    id: 2,
     title: "Kita ke Sana",
     artist: "Hindia",
     src: "/music/kitakesana.mp3"
   },
   {
-    id: 2,
+    id: 3,
     title: "Nina", 
     artist: ".Feast",
     src: "/music/nina.mp3"
   },
   {
-    id: 3,
+    id: 4,
     title: "Duka",
     artist: "Last Child", 
     src: "/music/duka.mp3"
   },
   {
-    id: 4,
+    id: 5,
     title: "Tak Ada Ujungnya",
     artist: "Rony Parulian", 
     src: "/music/takadaujungnya.mp3"
-  },
-  {
-    id: 5,
-    title: "L",
-    artist: "Hal", 
-    src: "/music/l.mp3"
   },
   {
     id: 6,
     title: "Cincin",
     artist: "Hindia", 
     src: "/music/cincin.mp3"
+  },
+  {
+    id: 7,
+    title: "Serana",
+    artist: "For Revenge", 
+    src: "/music/serana.mp3"
   }
 
 ];

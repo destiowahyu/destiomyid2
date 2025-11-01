@@ -270,6 +270,13 @@
   justify-content: center;
 }
 
+.section:has([data-contact-section]),
+.section[data-contact-section] {
+  height: auto !important;
+  min-height: 100vh;
+  max-height: none !important;
+}
+
 .navbar {
   z-index: 49;
 }

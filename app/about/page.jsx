@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Button from "@/components/Button";
 import Image from "next/legacy/image";
@@ -19,8 +19,37 @@ import Hr from "@/components/Hr";
 import About from "./components/about/about.jsx";
 
 export default function Page() {
+	const [isColored, setIsColored] = useState(false);
+	const imageRef = useRef(null);
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
+	}, []);
+
+	// Effect untuk menghilangkan grayscale hanya saat sedang scroll (mobile)
+	useEffect(() => {
+		let scrollTimeout;
+
+		const handleScroll = () => {
+			// Aktifkan warna saat scroll
+			setIsColored(true);
+			
+			// Clear timeout sebelumnya
+			clearTimeout(scrollTimeout);
+			
+			// Set timeout untuk kembali grayscale setelah scroll berhenti
+			scrollTimeout = setTimeout(() => {
+				setIsColored(false);
+			}, 150); // Delay 150ms setelah scroll berhenti
+		};
+
+		// Listen scroll untuk mobile
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		return () => {
+			clearTimeout(scrollTimeout);
+			window.removeEventListener("scroll", handleScroll);
+		};
 	}, []);
 
 	return (
@@ -36,30 +65,34 @@ export default function Page() {
 					{/* hero */}
 					<div className="z-0 mb-48 md:mb-0  md:absolute top-1/4  md:right-[10%] md:-translate-y-16 ">
 						<motion.div
+							ref={imageRef}
 							initial={{ scale: 1 }}
 							animate={{ scale: 1.6 }}
 							transition={{ ease: "circOut", duration: 1 }}
-							className="relative bg-slate-300 dark:bg-gray-700 rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] shadow-2xl overflow-hidden grayscale hover:grayscale-0">
+							className={`relative bg-slate-300 dark:bg-gray-700 rounded-sm h-[320px] md:h-[600px] w-[80vw] md:w-[30vw] shadow-2xl overflow-hidden transition-all duration-500 ${
+								isColored ? "grayscale-0" : "grayscale"
+							} md:hover:grayscale-0`}>
 							<Image
 								src={Hero}
 								alt="Destio Wahyu"
 								layout="fill"
 								objectFit="cover"
+								objectPosition="center 20%"
 								placeholder="blur"
 							/>
 							<div className="absolute inset-0 bg-black/0 dark:bg-black/10 pointer-events-none" />
 						</motion.div>
 					</div>
-					<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 pt-4 md:pt-0">
-						<h1 className="text-black dark:text-white text-5xl md:text-8xl font-bold">
+					<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[65%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 pt-4 md:pt-0">
+						<h1 className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold">
 							About Me
 						</h1>
 						<Hr />
 						<p className="title text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-5 ">
-							A brief introduction about me and{" "}
+							A brief introduction about me{" "}
 							<span className="bg-gray-300 dark:bg-gray-700 bg-opacity-90 dark:bg-opacity-50 px-2 py-1 rounded text-black dark:text-white">
 								{" "}
-								my interest.
+								and my interest.
 							</span>
 						</p>
 						<motion.div

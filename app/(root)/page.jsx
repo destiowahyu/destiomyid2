@@ -9,8 +9,8 @@ import { useState, useEffect, useRef } from "react"
 import Button from "@/components/Button"
 import Destio from "@/public/image/des.jpg"
 import Destio2 from "@/public/image/des2.jpg"
-import Setup from "@/public/image/setup.jpg"
-import ProjectAll from "@/public/image/projects.png"
+import Setup from "@/public/image/connect.jpg"
+import ProjectAll from "@/public/image/projects.jpg"
 import Hr from "@/components/Hr"
 
 // icons
@@ -22,6 +22,8 @@ import { faEnvelope, faGraduationCap } from "@fortawesome/free-solid-svg-icons"
 
 // Add this import at the top
 import { useTheme } from "@/components/ThemeProvider"
+import { useLanguage } from "@/components/LanguageProvider"
+import translations from "@/json/translations.json"
 
 // Cursor Trail Effect
 const CursorTrail = () => {
@@ -108,11 +110,11 @@ const FreeMovingImage = ({ children, className, ...props }) => {
   }
 
   // More dramatic and free movement
-  const rotateX = isHovered ? mousePosition.y * -25 : 0 // Increased rotation
+  const rotateX = isHovered ? mousePosition.y * -25 : 0 
   const rotateY = isHovered ? mousePosition.x * 25 : 0
-  const translateX = isHovered ? mousePosition.x * 20 : 0 // Increased translation
+  const translateX = isHovered ? mousePosition.x * 20 : 0
   const translateY = isHovered ? mousePosition.y * 20 : 0
-  const scale = isHovered ? 1.08 : 1 // Slightly more scale
+  const scale = isHovered ? 1.08 : 1
 
   return (
     <motion.div
@@ -165,6 +167,8 @@ const MyPage = () => {
 
   // Add this inside the MyPage component, right after the fullpageOptions
   const { resolvedTheme } = useTheme()
+  const { language } = useLanguage()
+  const t = translations[language]
 
     useEffect(() => {
     const forceColors = () => {
@@ -176,10 +180,10 @@ const MyPage = () => {
             !element.closest(".bg-gray-800") &&
             !element.closest(".bg-gray-900")
             ) {
-            element.style.color = "black" // HAPUS BARIS INI
+            element.style.color = "black" 
             }
         } else {
-            element.style.color = "rgb(243, 244, 246)" // HAPUS JUGA BARIS INI
+            element.style.color = "rgb(243, 244, 246)"
         }
         })
     }
@@ -188,6 +192,46 @@ const MyPage = () => {
     setTimeout(forceColors, 100)
     setTimeout(forceColors, 500)
     }, [resolvedTheme])
+
+    // Force contact section to have auto height
+    useEffect(() => {
+      const contactSection = document.querySelector('[data-contact-section]')
+      if (!contactSection) return
+
+      const enforceContactSectionHeight = () => {
+        if (contactSection) {
+          contactSection.style.setProperty('height', 'auto', 'important')
+          contactSection.style.setProperty('min-height', '100vh', 'important')
+          contactSection.style.setProperty('max-height', 'none', 'important')
+        }
+      }
+
+      enforceContactSectionHeight()
+      
+      // Use MutationObserver to watch for style changes
+      const observer = new MutationObserver(() => {
+        enforceContactSectionHeight()
+      })
+      
+      observer.observe(contactSection, {
+        attributes: true,
+        attributeFilter: ['style', 'class'],
+        childList: false,
+        subtree: false
+      })
+      
+      // Also run periodically as backup
+      const interval = setInterval(enforceContactSectionHeight, 200)
+      
+      // Run on resize
+      window.addEventListener('resize', enforceContactSectionHeight)
+      
+      return () => {
+        observer.disconnect()
+        clearInterval(interval)
+        window.removeEventListener('resize', enforceContactSectionHeight)
+      }
+    }, [])
 
 
   return (
@@ -231,7 +275,7 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    Destio Wahyu Lanio
+                    {t.home.name}
                   </motion.h1>
 
                   <motion.h3
@@ -243,7 +287,7 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    Video Editor, Web Developer, Musician
+                    {t.home.title}
                   </motion.h3>
 
                   <motion.p
@@ -255,9 +299,7 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    Hi! I&apos;m Destio, an Informatics Engineering graduate focused on Software Engineering and web
-                    development. Beyond coding, I enjoy video editing and music as creative hobbies, combining both my
-                    technical knowledge and artistic side to craft engaging digital projects.
+                    {t.home.description}
                   </motion.p>
                   <motion.div
                     className="buttons flex flex-row justify-center items-center space-x-4 mt-10"
@@ -271,14 +313,14 @@ const MyPage = () => {
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Button variation="primary">
                         <Link href={"/docs/cv.pdf"} target="_blank" rel="noopener noreferrer" download>
-                          Download CV
+                          {t.home.downloadCV}
                         </Link>
                       </Button>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Button variation="secondary">
                         <a href="#contact" className="text-gray-700 dark:text-gray-200">
-                          Contact Me
+                          {t.home.contactMe}
                         </a>
                       </Button>
                     </motion.div>
@@ -341,7 +383,7 @@ const MyPage = () => {
                 </div>
                 <div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 py-5">
                     <motion.h1
-                    className="dark:bg-[rgb(17,24,39)] lg:bg-transparent dark:lg:bg-transparent px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold"
+                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold"
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -349,7 +391,7 @@ const MyPage = () => {
                         type: "spring",
                     }}
                     >
-                    About Me
+                    {t.about.title}
                     </motion.h1>
 
                   <Hr />
@@ -362,7 +404,7 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    A brief introduction about me and my interest.
+                    {t.about.description}
                   </motion.p>
                   <motion.div
                     initial={{ y: 40, opacity: 0 }}
@@ -375,7 +417,7 @@ const MyPage = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button variation="primary">
-                      <Link href="/about">Learn More</Link>
+                      <Link href="/about">{t.about.learnMore}</Link>
                     </Button>
                   </motion.div>
                 </div>
@@ -407,7 +449,7 @@ const MyPage = () => {
                         src={ProjectAll || "/placeholder.svg"}
                         layout="fill"
                         className="object-cover pointer-events-none"
-                        alt="Alvalens Projects"
+                        alt="Destio Projects"
                         placeholder="blur"
                       />
                       <div className="absolute inset-0 bg-black/0 dark:bg-black/50"></div>
@@ -416,7 +458,7 @@ const MyPage = () => {
                 </div>
                 <div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 py-5">
                   <motion.h1
-                    className="dark:bg-[rgb(17,24,39)] dark:bg-gray-800 lg:bg-transparent dark:lg:bg-transparent bg-opacity-50 px-3 md-px-0 text-black dark:text-white text-5xl md:text-8xl font-bold"
+                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold"
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -424,7 +466,7 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    My Projects
+                    {t.projects.title}
                   </motion.h1>
                   <Hr />
                   <motion.p
@@ -436,9 +478,9 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    This is some of my projects that I have done{" "}
+                    {t.projects.description}{" "}
                     <span className="bg-gray-300 dark:bg-gray-700 bg-opacity-90 dark:bg-opacity-50 px-2 py-1 rounded text-black dark:text-white">
-                      and currently working on.
+                      {t.projects.currentlyWorking}
                     </span>
                   </motion.p>
                   <motion.div
@@ -452,7 +494,7 @@ const MyPage = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button variation="primary">
-                      <Link href="/projects">Learn More</Link>
+                      <Link href="/projects">{t.projects.learnMore}</Link>
                     </Button>
                   </motion.div>
                 </div>
@@ -483,9 +525,9 @@ const MyPage = () => {
 
                   </motion.div>
                 </div>
-                <div className="z-10 w-full md:w-auto md:left-[10%] md:top-1/3 col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start px-6 py-5">
+                <div className="z-10 w-full md:w-auto md:left-[10%] md:top-1/3 col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start px-10 py-5">
                   <motion.h1
-                    className="dark:bg-[rgb(17,24,39)] dark:bg-gray-800 lg:bg-transparent dark:lg:bg-transparent bg-opacity-50 px-3 md-px-0 text-black dark:text-white text-4xl md:text-8xl font-bold"
+                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-4xl md:text-8xl font-bold"
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -493,7 +535,7 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    Education
+                    {t.education.title}
                   </motion.h1>
                   <Hr />
                   <motion.p
@@ -505,10 +547,10 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    My educational journey and{" "}
+                    {t.education.description}{" "}
                     <span className="bg-gray-300 dark:bg-gray-700 bg-opacity-90 dark:bg-opacity-50 px-2 py-1 rounded text-black dark:text-white">
                       {" "}
-                      academic achievements.
+                      {t.education.academicAchievements}
                     </span>
                   </motion.p>
                   <motion.div
@@ -522,35 +564,35 @@ const MyPage = () => {
                   >
                     <div className="bg-gray-100  dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-80 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 ease-out hover:transform hover:scale-105">
                       <div className="flex items-center mb-4">
-                        <div className="w-12 h-12 bg-gray-700 dark:bg-gray-600 rounded-full flex items-center justify-center mr-4">
-                          <FontAwesomeIcon icon={faGraduationCap} className="text-white text-xl" />
+                        <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-700 dark:bg-gray-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                          <FontAwesomeIcon icon={faGraduationCap} className="text-white text-lg md:text-xl" />
                         </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-black dark:text-white">Universitas Dian Nuswantoro</h3>
-                          <p className="text-gray-600 dark:text-gray-400 font-medium">2021 - 2025</p>
+                        <div className="flex flex-col items-start">
+                          <h3 className="text-xl font-bold text-black dark:text-white text-left">{t.education.university}</h3>
+                          <p className="text-gray-600 dark:text-gray-400 font-medium text-left">{t.education.universityPeriod}</p>
                         </div>
                       </div>
                       <p className="text-gray-700 dark:text-gray-300 mb-2 font-semibold">
-                        Bachelor of Computer Science
+                        {t.education.degree}
                       </p>
-                      <p className="text-gray-600 dark:text-gray-400 mb-2">GPA: 3.73/4.00</p>
+                      <p className="text-gray-600 dark:text-gray-400 mb-2">{t.education.gpa}</p>
                       <p className="text-gray-600 dark:text-gray-400 text-sm">
-                        Graduated with a degree in Informatics Engineering, specializing in Software Engineering, and particularly passionate about web development.
+                        {t.education.universityDescription}
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-80 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 ease-out hover:transform hover:scale-105">
                       <div className="flex items-center mb-4">
-                        <div className="w-12 h-12 bg-gray-700 dark:bg-gray-600 rounded-full flex items-center justify-center mr-4">
-                          <FontAwesomeIcon icon={faGraduationCap} className="text-white text-xl" />
+                        <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-700 dark:bg-gray-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                          <FontAwesomeIcon icon={faGraduationCap} className="text-white text-lg md:text-xl" />
                         </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-black dark:text-white">SMAN 1 Rembang</h3>
-                          <p className="text-gray-600 dark:text-gray-400 font-medium">2018 - 2021</p>
+                        <div className="flex flex-col items-start">
+                          <h3 className="text-xl font-bold text-black dark:text-white text-left">{t.education.highSchool}</h3>
+                          <p className="text-gray-600 dark:text-gray-400 font-medium text-left">{t.education.highSchoolPeriod}</p>
                         </div>
                       </div>
-                      <p className="text-gray-700 dark:text-gray-300 mb-2 font-semibold">Science Major</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-2 font-semibold">{t.education.major}</p>
                       <p className="text-gray-600 dark:text-gray-400 text-sm">
-                        Graduated with excellent academic performance and active in various school activities.
+                        {t.education.highSchoolDescription}
                       </p>
                     </div>
                   </motion.div>
@@ -566,14 +608,14 @@ const MyPage = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button variation="primary">
-                      <Link href="/about">Learn More</Link>
+                      <Link href="/about">{t.education.learnMore}</Link>
                     </Button>
                   </motion.div>
                 </div>
               </div>
             </div>
-            <div className="section">
-              <div className="relative md:h-screen w-screen  gap-4 p-10 flex justify-center items-center flex-col overflow-hidden">
+            <div className="section" data-contact-section>
+              <div className="relative md:min-h-screen w-screen gap-4 p-10 md:pb-20 flex justify-center items-center flex-col overflow-hidden md:overflow-visible">
                 <div className="z-0 mb-48 md:mb-0  md:absolute top-1/4  md:right-[10%] md:-translate-y-16 ">
                   <motion.div
                     initial={{
@@ -604,9 +646,9 @@ const MyPage = () => {
                     </FreeMovingImage>
                   </motion.div>
                 </div>
-                <div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[50%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 overflow-hidden">
+                <div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[48%] md:top-1/4 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 py-5 md:pb-48">
                   <motion.h1
-                    className="dark:bg-[rgb(17,24,39)] dark:bg-gray-800 lg:bg-transparent dark:lg:bg-transparent bg-opacity-50 px-3 md-px-0 text-black dark:text-white text-5xl md:text-8xl font-bold mb-2"
+                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 py-2 md:px-0 md:py-0 text-black dark:text-white text-5xl md:text-8xl font-bold mb-2"
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -614,7 +656,7 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    Let&apos;s connect
+                    {t.contact.title}
                   </motion.h1>
                   <Hr />
                   <motion.p
@@ -626,9 +668,9 @@ const MyPage = () => {
                       type: "spring",
                     }}
                   >
-                    Feel free to contact me if you have any{" "}
+                    {t.contact.description}{" "}
                     <span className="bg-gray-300 dark:bg-gray-700 bg-opacity-90 dark:bg-opacity-50 px-2 py-1 rounded text-black dark:text-white">
-                      questions or just want to say hi.
+                      {t.contact.contactText}
                     </span>
                   </motion.p>
                   <motion.p
@@ -641,10 +683,10 @@ const MyPage = () => {
                     }}
                   >
                     <a href="mailto:destiowahyu@gmail.com?subject=Hello&body=Hello Destio,">
-                      destiowahyu@gmail.com
+                      {t.contact.email}
                     </a>
                   </motion.p>
-                  <div className="flex justify-center items-center space-x-4">
+                  <div className="flex justify-center items-center space-x-4 mb-8 md:mb-16">
                     <motion.a
                       href="mailto:destiowahyu@gmail.com?subject=Hello&body=Hello Destio,"
                       className="flex justify-center items-center bg-gray-700 w-14 h-14 rounded-full text-gray-100 hover:bg-gray-400 hover:scale-110 transition-all ease-out duration-300"
