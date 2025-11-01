@@ -17,30 +17,30 @@ import Hero from "@/public/image/des3.jpg";
 
 import Hr from "@/components/Hr";
 import About from "./components/about/about.jsx";
+import { useLanguage } from "@/components/LanguageProvider";
+import aboutTranslations from "@/json/about.json";
 
 export default function Page() {
 	const [isColored, setIsColored] = useState(false);
 	const imageRef = useRef(null);
+	const { language } = useLanguage();
+	const t = aboutTranslations[language] || aboutTranslations["en"];
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
-	// Effect untuk menghilangkan grayscale hanya saat sedang scroll (mobile)
 	useEffect(() => {
 		let scrollTimeout;
 
 		const handleScroll = () => {
-			// Aktifkan warna saat scroll
 			setIsColored(true);
 			
-			// Clear timeout sebelumnya
 			clearTimeout(scrollTimeout);
 			
-			// Set timeout untuk kembali grayscale setelah scroll berhenti
 			scrollTimeout = setTimeout(() => {
 				setIsColored(false);
-			}, 150); // Delay 150ms setelah scroll berhenti
+			}, 150);
 		};
 
 		// Listen scroll untuk mobile
@@ -85,14 +85,14 @@ export default function Page() {
 					</div>
 					<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[65%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 pt-4 md:pt-0">
 						<h1 className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold">
-							About Me
+							{t.hero.title}
 						</h1>
 						<Hr />
 						<p className="title text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-5 ">
-							A brief introduction about me{" "}
+							{t.hero.description}{" "}
 							<span className="bg-gray-300 dark:bg-gray-700 bg-opacity-90 dark:bg-opacity-50 px-2 py-1 rounded text-black dark:text-white">
 								{" "}
-								and my interest.
+								{t.hero.descriptionHighlight}
 							</span>
 						</p>
 						<motion.div
@@ -106,7 +106,7 @@ export default function Page() {
 								});
 							}}
 							className="mb-3">
-							<Button variation="primary">Scroll Down</Button>
+							<Button variation="primary">{t.hero.scrollDown}</Button>
 						</motion.div>
 					</div>
 				</div>

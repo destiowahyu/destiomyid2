@@ -1,0 +1,233 @@
+{
+  "en": {
+    "hero": {
+      "title": "About Me",
+      "description": "A brief introduction about me",
+      "descriptionHighlight": "and my interest.",
+      "scrollDown": "Scroll Down"
+    },
+    "about": {
+      "title": "Who Am I?",
+      "name": "Destio Wahyu Lanio",
+      "description": "Hey there, I'm Destio, a fresh graduate in Software Engineering from Universitas Dian Nuswantoro (UDINUS) with a strong passion for Web Development and the creative industry. I enjoy building functional and user-friendly web applications using modern technologies, while also excelling in video editing, photo editing, and graphic design. Beyond tech and design, I love music and often create my own covers, handling everything from recording to mixing. I'm also passionate about networking technologies such as MikroTik, Linux servers, and CasaOS and more."
+    },
+    "skills": {
+      "title": "Skills & Expertise",
+      "description": "Explore my technical skills across different domains. Click on any category to see the specific technologies and tools I work with.",
+      "categories": {
+        "web": {
+          "title": "Web Development",
+          "description": "Building modern, responsive web applications"
+        },
+        "video": {
+          "title": "Video & Photo Editing",
+          "description": "Video & photo editing and post-production"
+        },
+        "network": {
+          "title": "Networking & System Administration",
+          "description": "Configuring networks and managing systems"
+        }
+      },
+      "labels": {
+        "web": {
+          "first": "Languages & Frameworks",
+          "second": "Tools & Technologies"
+        },
+        "video": {
+          "first": "Software & Applications",
+          "second": "Techniques & Skills"
+        },
+        "network": {
+          "first": "Tools & Platforms",
+          "second": "Network & System Skills"
+        }
+      }
+    },
+    "experience": {
+      "title": "Professional Experience",
+      "start": "Start",
+      "end": "End",
+      "location": "Location",
+      "showLess": "Show Less",
+      "viewMore": "View More Experience",
+      "experiences": [
+        {
+          "startDate": "Nov 2024",
+          "endDate": "Jun 2025",
+          "company": "Universitas Dian Nuswantoro",
+          "position": "Full Stack Developer",
+          "type": "Final Projects",
+          "location": "Semarang, Indonesia",
+          "description": "Developed the Zeea Laundry web application as a Final Project using the Agile methodology to support daily laundry business operations. Analyzed client requirements, designed the system architecture (database and UI/UX), and implemented core features. Deployed the application on a self-hosted Linux server, improving record-keeping efficiency and customer communication.",
+          "skills": ["PHP", "HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind CSS", "MySQL", "Docker", "Linux", "CASA OS"]
+        },
+        {
+          "startDate": "Jun 2023",
+          "endDate": "Dec 2023",
+          "company": "PRI-NET",
+          "position": "Network Engineer",
+          "type": "Internship",
+          "location": "Rembang, Indonesia",
+          "description": "Configured Mikrotik routers (PPPoE, VLAN, NAT, firewall, DHCP Server) for over 120 active clients. Implemented bandwidth management and queue tree settings, reducing customer complaints by 40%. Installed and configured more than 20 networking devices, including access points, switches, and wireless PTP/PTMP links, maintaining a stable uptime above 99%. Assisted in documenting network topology through diagrams and configuration backups to speed up troubleshooting processes.",
+          "skills": ["Mikrotik Configuration", "Static IP", "PPPoe", "Winbox", "Teamwork"]
+        },
+        {
+          "startDate": "Jan 2024",
+          "endDate": "Mar 2024",
+          "company": "DISKOMINFO Kota Semarang",
+          "position": "Full Stack Developer",
+          "type": "Internship",
+          "location": "Semarang, Indonesia",
+          "description": "Developed a web-based internship registration application to streamline the administrative process that was previously done manually. Improved data verification speed by 2× compared to the manual system. Implemented a centralized database to store and manage participant data, reducing input errors by up to 80%. Conducted testing and deployment to ensure the application could be accessed and utilized beyond the local scope of the Department of Communication and Information.",
+          "skills": ["MySQL", "PHP", "HTML", "Bootstrap", "JavaScript", "Tailwind CSS", "Docker", "Linux", "CASA OS"]
+        },
+        {
+          "startDate": "Sep 2024",
+          "endDate": "Jan 2025",
+          "company": "CV Alba Collection",
+          "position": "Video Editor",
+          "type": "Fulltime (Remote)",
+          "location": "Semarang, Indonesia",
+          "description": "Edited and produced over 10 promotional and social media videos per month. Collaborated in developing creative ideas for children's product campaigns, resulting in a 45% increase in TikTok engagement. Directed on-set talents to ensure efficient shooting processes, reducing editing revisions by 30%. Optimized the editing workflow by implementing custom Premiere Pro templates, doubling overall production efficiency.",
+          "skills": ["Adobe Premiere Pro", "Adobe After Effect", "Adobe Photoshop", "Canva", "DOP"]
+        }
+      ]
+    },
+    "education": {
+      "title": "Education",
+      "description": "Get to know more about my educational background.",
+      "period": "2021 - 2025",
+      "university": "Universitas Dian Nuswantoro",
+      "degree": "S1 Teknik Informatika | Computer Science",
+      "universityDescription": "I'm an Informatics Engineering student at Dian Nuswantoro University, passionate about software development and system optimization. My journey in tech started from curiosity, experimenting with networks, Linux servers, and self-hosted systems, then evolved into building practical web applications that solve real problems.\n\nAs the developer behind Zeea Laundry, a web-based laundry management system built for a real business, I focus on creating efficient and user-friendly solutions while applying modern development methods like Agile. I also enjoy exploring areas like networking, Docker, and automation to make systems more reliable and scalable.\n\nDriven by curiosity and hands-on experience, I keep learning, experimenting, and expanding my skills across different areas of technology. For me, technology isn’t just about coding, it’s about creating something meaningful and impactful for others.",
+      "gpa": "GPA: 3.73 out of 4.00",
+      "achievements": {
+        "title": "Achievements",
+        "description": "Some of my achievements during my study.",
+        "showMore": "Show {count} More",
+        "showLess": "Show Less"
+      }
+    },
+    "quote": {
+      "text1": "“Dream big. Work smart. Stay humble",
+      "text2": "but never small.”",
+      "author": "Steve Jobs"
+    }
+  },
+  "id": {
+    "hero": {
+      "title": "Tentang Aku",
+      "description": "Kenalan dulu yuk, biar tahu",
+      "descriptionHighlight": "aku suka ngapain.",
+      "scrollDown": "Scroll ke Bawah"
+    },
+    "about": {
+      "title": "Aku siapa sih?",
+      "name": "Destio Wahyu Lanio",
+      "description": "Hai, aku Destio, lulusan Teknik Informatika dari Universitas Dian Nuswantoro (UDINUS) yang suka banget sama Web Development dan industri kreatif. Aku senang bikin aplikasi web yang fungsional dan mudah dipakai pakai teknologi terbaru, plus jago juga di video editing, photo editing, sama graphic design. Selain tech dan design, aku juga suka musik dan sering bikin cover sendiri, dari recording sampe mixing semua aku handle sendiri. Aku juga suka banget sama hal - hal yang berbau jaringan seperti Mikrotik, Linux Server, Casa OS, dll."
+    },
+    "skills": {
+      "title": "Skills & Expertise",
+      "description": "Jelajahi skill teknisku di berbagai domain. Klik kategori manapun untuk lihat teknologi dan tools yang biasa aku pakai.",
+      "categories": {
+        "web": {
+          "title": "Web Development",
+          "description": "Bikin aplikasi web modern dan responsive"
+        },
+        "video": {
+          "title": "Video & Photo Editing",
+          "description": "Editing video dan foto dan post-production"
+        },
+        "network": {
+          "title": "Networking & System Administration",
+          "description": "Konfigurasi jaringan dan manajemen sistem"
+        }
+      },
+      "labels": {
+        "web": {
+          "first": "Bahasa & Framework",
+          "second": "Tools & Teknologi"
+        },
+        "video": {
+          "first": "Software & Aplikasi",
+          "second": "Teknik & Skills"
+        },
+        "network": {
+          "first": "Tools & Platform",
+          "second": "Network & System Skills"
+        }
+      }
+    },
+    "experience": {
+      "title": "Pengalaman Profesional",
+      "start": "Mulai",
+      "end": "Selesai",
+      "location": "Lokasi",
+      "showLess": "Sembunyikan",
+      "viewMore": "Lihat Pengalaman Lainnya",
+      "experiences": [
+        {
+          "startDate": "Nov 2024",
+          "endDate": "Jun 2025",
+          "company": "Universitas Dian Nuswantoro",
+          "position": "Full Stack Developer",
+          "type": "Tugas Akhir",
+          "location": "Semarang, Indonesia",
+          "description": "Ngembangin aplikasi web Zeea Laundry sebagai Tugas Akhir pakai metodologi Agile buat support operasional bisnis laundry harian. Analisis kebutuhan client, design sistem arsitektur (database sama UI/UX), dan implementasi fitur-fitur utama. Deploy aplikasinya di Linux server self-hosted, yang bikin efisiensi pencatatan dan komunikasi customer jadi lebih baik.",
+          "skills": ["PHP", "HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind CSS", "MySQL", "Docker", "Linux", "CASA OS"]
+        },
+        {
+          "startDate": "Jun 2023",
+          "endDate": "Dec 2023",
+          "company": "PRI-NET",
+          "position": "Network Engineer",
+          "type": "Magang",
+          "location": "Rembang, Indonesia",
+          "description": "Konfigurasi router Mikrotik (PPPoE, VLAN, NAT, firewall, DHCP Server) untuk lebih dari 120 client aktif. Implementasi bandwidth management dan queue tree settings, yang bikin keluhan customer turun 40%. Pasang dan konfigurasi lebih dari 20 perangkat networking, termasuk access points, switches, dan wireless PTP/PTMP links, maintain uptime stabil di atas 99%. Bantu dokumentasi network topology lewat diagram dan backup konfigurasi buat percepat troubleshooting.",
+          "skills": ["Mikrotik Configuration", "Static IP", "PPPoe", "Winbox", "Teamwork"]
+        },
+        {
+          "startDate": "Jan 2024",
+          "endDate": "Mar 2024",
+          "company": "DISKOMINFO Kota Semarang",
+          "position": "Full Stack Developer",
+          "type": "Magang",
+          "location": "Semarang, Indonesia",
+          "description": "Ngembangin aplikasi pendaftaran magang berbasis web buat streamline proses administrasi yang sebelumnya manual. Tingkatkan kecepatan verifikasi data jadi 2× lebih cepat dibanding sistem manual. Implementasi database terpusat buat simpan dan kelola data peserta, yang bikin error input turun sampai 80%. Testing dan deployment buat pastiin aplikasinya bisa diakses dan dipake di luar scope lokal Dinas Komunikasi dan Informatika.",
+          "skills": ["MySQL", "PHP", "HTML", "Bootstrap", "JavaScript", "Tailwind CSS", "Docker", "Linux", "CASA OS"]
+        },
+        {
+          "startDate": "Sep 2024",
+          "endDate": "Jan 2025",
+          "company": "CV Alba Collection",
+          "position": "Video Editor",
+          "type": "Fulltime (Remote)",
+          "location": "Semarang, Indonesia",
+          "description": "Edit dan produksi lebih dari 10 video promosi dan social media per bulan. Kolaborasi dalam ngembangin ide kreatif buat campaign produk anak-anak, yang hasilnya engagement TikTok naik 45%. Direct talent di set buat pastiin proses shooting efisien, yang bikin revisi editing turun 30%. Optimasi workflow editing dengan implementasi custom Premiere Pro templates, yang double overall production efficiency.",
+          "skills": ["Adobe Premiere Pro", "Adobe After Effect", "Adobe Photoshop", "Canva", "DOP"]
+        }
+      ]
+    },
+    "education": {
+      "title": "Pendidikan",
+      "description": "Kenalan lebih lanjut dengan background pendidikanku.",
+      "period": "2021 - 2025",
+      "university": "Universitas Dian Nuswantoro",
+      "degree": "S1 Teknik Informatika | Computer Science",
+      "universityDescription": "Aku adalah mahasiswa Teknik Informatika di Universitas Dian Nuswantoro yang punya ketertarikan besar pada pengembangan perangkat lunak dan optimasi sistem. Awalnya cuma berangkat dari rasa penasaran, ngoprek jaringan, server Linux, dan sistem self-hosted. Dari situ aku mulai nemuin passion di dunia web development, terutama pas bikin aplikasi yang benar-benar kepake buat nyelesain masalah di dunia nyata. \n\nSebagai pengembang Zeea Laundry, sistem manajemen laundry berbasis web untuk bisnis keluarga, aku fokus bikin solusi yang efisien dan gampang dipakai sambil nerapin metode pengembangan modern kayak Agile. Aku juga suka ngulik hal-hal seputar jaringan, Docker, dan automasi biar sistem bisa lebih andal dan scalable.\n\nDidorong oleh rasa penasaran dan pengalaman langsung, aku terus belajar, bereksperimen, dan ngembangin kemampuan di berbagai bidang teknologi. Buat aku, teknologi bukan cuma soal coding, tapi juga soal gimana caranya nyiptain sesuatu yang beneran berguna dan berdampak nyata bagi orang lain.",
+      "gpa": "IPK: 3.73 dari 4.00",
+      "achievements": {
+        "title": "Prestasi",
+        "description": "Beberapa prestasi yang aku raih selama kuliah.",
+        "showMore": "Tampilkan {count} Lagi",
+        "showLess": "Sembunyikan"
+      }
+    },
+    "quote": {
+      "text1": "“Bermimpilah besar, bekerja dengan cerdas, tetap rendah hati",
+      "text2": "tapi jangan pernah jadi kecil.”",
+      "author": "Steve Jobs"
+    }
+  }
+}
+

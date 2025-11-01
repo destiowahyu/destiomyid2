@@ -2,95 +2,36 @@
 import Hr from "@/components/Hr";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useLanguage } from "@/components/LanguageProvider";
+import aboutTranslations from "@/json/about.json";
 
-const experiences = [
-	{
-		id: 1,
-		startDate: "Nov 2024",
-		endDate: "Jun 2025",
-		company: "Universitas Dian Nuswantoro",
-		position: "Full Stack Developer",
-		type: "Final Projects",
-		location: "Semarang, Indonesia",
-		description:
-			"Developed the Zeea Laundry web application as a Final Project using the Agile methodology to support daily laundry business operations. Analyzed client requirements, designed the system architecture (database and UI/UX), and implemented core features. Deployed the application on a self-hosted Linux server, improving record-keeping efficiency and customer communication.",
-		skills: [
-			"PHP",
-			"HTML",
-			"CSS",
-			"JavaScript",
-			"Bootstrap",
-			"Tailwind CSS",
-			"MySQL",
-			"Docker",
-			"Linux",
-			"CASA OS",
-		],
-	},
-	{
-		id: 2,
-		startDate: "Jun 2023",
-		endDate: "Dec 2023",
-		company: "PRI-NET",
-		position: "Network Engineer",
-		type: "Internship",
-		location: "Rembang, Indonesia",
-		description:
-			"Configured Mikrotik routers (PPPoE, VLAN, NAT, firewall, DHCP Server) for over 120 active clients. Implemented bandwidth management and queue tree settings, reducing customer complaints by 40%. Installed and configured more than 20 networking devices, including access points, switches, and wireless PTP/PTMP links, maintaining a stable uptime above 99%. Assisted in documenting network topology through diagrams and configuration backups to speed up troubleshooting processes.",
-		skills: ["Mikrotik Configuration", "Static IP", "PPPoe", "Winbox", "Teamwork"],
-	},
-	{
-		id: 3,
-		startDate: "Jan 2024",
-		endDate: "Mar 2024",
-		company: "DISKOMINFO Kota Semarang",
-		position: "Full Stack Developer",
-		type: "Internship",
-		location: "Semarang, Indonesia",
-		description:
-			"Developed a web-based internship registration application to streamline the administrative process that was previously done manually. Improved data verification speed by 2× compared to the manual system. Implemented a centralized database to store and manage participant data, reducing input errors by up to 80%. Conducted testing and deployment to ensure the application could be accessed and utilized beyond the local scope of the Department of Communication and Information.",
-		skills: [
-			"MySQL",
-			"PHP",
-			"HTML",
-			"Bootstrap",
-			"JavaScript",
-			"Tailwind CSS",
-			"Docker",
-			"Linux",
-			"CASA OS",
-		],
-	},
-	{
-		id: 4,
-		startDate: "Sep 2024",
-		endDate: "Jan 2025",
-		company: "CV Alba Collection",
-		position: "Video Editor",
-		type: "Fulltime (Remote)",
-		location: "Semarang, Indonesia",
-		description:
-			"Edited and produced over 10 promotional and social media videos per month. Collaborated in developing creative ideas for children’s product campaigns, resulting in a 45% increase in TikTok engagement. Directed on-set talents to ensure efficient shooting processes, reducing editing revisions by 30%. Optimized the editing workflow by implementing custom Premiere Pro templates, doubling overall production efficiency.",
-		skills: [
-			"Adobe Premiere Pro",
-			"Adobe After Effect",
-			"Adobe Photoshop",
-			"Canva",
-			"DOP",
-		],
-	},
+const getExperiences = (language) => {
+	const t = aboutTranslations[language] || aboutTranslations["en"];
+	const experiencesT = t.experience.experiences;
 	
-];
+	return experiencesT.map((exp, index) => ({
+		id: index + 1,
+		startDate: exp.startDate || "",
+		endDate: exp.endDate || "",
+		company: exp.company,
+		position: exp.position,
+		type: exp.type,
+		location: exp.location,
+		description: exp.description,
+		skills: exp.skills || []
+	}));
+};
 
-experiences.reverse();
 
-function Title() {
+function Title({ language }) {
+	const t = aboutTranslations[language] || aboutTranslations["en"];
+	
 	return (
 		<div className="mt-16 flex flex-col justify-start items-center w-full pl-10 md:pl-32">
 			<div className="flex justify-center items-center flex-col my-5 self-start">
 				<Hr variant="long"></Hr>
 				<motion.h1
-					className="text-3xl font-bold mt-3"
+					className="text-3xl font-bold mt-3 text-black dark:text-white"
 					initial={{
 						opacity: 0,
 						x: -200,
@@ -103,14 +44,14 @@ function Title() {
 						delay: 0.7,
 						type: "spring",
 					}}>
-					Profesional Experience
+					{t.experience.title}
 				</motion.h1>
 			</div>
 		</div>
 	);
 }
 
-function TimelineCard({ experience, index, isEven }) {
+function TimelineCard({ experience, index, isEven, labels }) {
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: -20 }}
@@ -126,18 +67,18 @@ function TimelineCard({ experience, index, isEven }) {
 				<div className="flex items-center justify-center gap-6">
 					<div className="text-center">
 						<div className="text-sm font-bold">{experience.startDate}</div>
-						<div className="text-xs text-gray-600 dark:text-gray-300">Start</div>
+						<div className="text-xs text-gray-600 dark:text-gray-300">{labels.start}</div>
 					</div>
 					<div className="w-px h-8 bg-gray-400 dark:bg-gray-500"></div>
 					<div className="text-center">
 						<div className="text-sm font-bold">{experience.endDate}</div>
-						<div className="text-xs text-gray-600 dark:text-gray-300">End</div>
+						<div className="text-xs text-gray-600 dark:text-gray-300">{labels.end}</div>
 					</div>					<div className="w-px h-8 bg-gray-400 dark:bg-gray-500"></div>
 					<div className="text-center">
 						<div className="text-sm font-medium text-gray-700 dark:text-gray-400">
 							{experience.location}
 						</div>
-						<div className="text-xs text-gray-600 dark:text-gray-300">Location</div>
+						<div className="text-xs text-gray-600 dark:text-gray-300">{labels.location}</div>
 					</div>
 				</div>
 			</div>
@@ -205,11 +146,15 @@ function Wrapper({ children }) {
 
 export default function Experience() {
 	const [showAll, setShowAll] = useState(false);
+	const { language } = useLanguage();
+	const t = aboutTranslations[language] || aboutTranslations["en"];
+	const experiences = getExperiences(language);
+	experiences.reverse();
 	const displayedExperiences = showAll ? experiences : experiences.slice(0, 3);
 
 	return (
 		<>
-			<Title />
+			<Title language={language} />
 			<Wrapper>
 				{" "}
 				<div className="relative w-full max-w-6xl mx-auto">
@@ -228,6 +173,7 @@ export default function Experience() {
 										experience={experience}
 										index={index}
 										isEven={index % 2 === 1}
+										labels={{ start: t.experience.start, end: t.experience.end, location: t.experience.location }}
 									/>
 
 									{/* Timeline dot */}
@@ -262,7 +208,7 @@ export default function Experience() {
 									transition-all duration-300 hover:scale-105 shadow-lg flex items-center gap-2 border border-gray-300/40 dark:border-gray-600/40">
 								{showAll ? (
 									<>
-										Show Less
+										{t.experience.showLess}
 										<svg
 											className="w-4 h-4 transform rotate-180"
 											fill="none"
@@ -278,7 +224,7 @@ export default function Experience() {
 									</>
 								) : (
 									<>
-										View More Experience
+										{t.experience.viewMore}
 										<svg
 											className="w-4 h-4"
 											fill="none"

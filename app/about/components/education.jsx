@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,6 +14,8 @@ import { useState } from "react";
 import Me4 from "@/public/image/des8.jpg";
 import Me5 from "@/public/image/des7.jpg";
 import Me6 from "@/public/image/des9.jpg";
+import { useLanguage } from "@/components/LanguageProvider";
+import aboutTranslations from "@/json/about.json";
 
 function Wrapper({ children }) {
 	return (
@@ -41,6 +44,8 @@ function Wrapper({ children }) {
 
 export default function Education() {
 	const [isExpanded, setIsExpanded] = useState(false);
+	const { language } = useLanguage();
+	const t = aboutTranslations[language] || aboutTranslations["en"];
 
 	const achievementsByYear = {
 		2025: [
@@ -103,10 +108,10 @@ export default function Education() {
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}>
 					<h1 className="text-3xl md:text-4xl font-bold tracking-tighter text-black dark:text-white">
-						Education
+						{t.education.title}
 					</h1>
 					<p className="text-muted-foreground max-w-[800px] mx-auto text-gray-600 dark:text-gray-400">
-						Get to know more about my educational background.
+						{t.education.description}
 					</p>
 				</motion.div>
 				{/* Main Content */}
@@ -117,13 +122,13 @@ export default function Education() {
 						initial={{ opacity: 0, x: -50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, delay: 0.2 }}>
-						<div className="font-medium text-lg mb-4 text-black dark:text-white">2021 - 2025</div>
+						<div className="font-medium text-lg mb-4 text-black dark:text-white">{t.education.period}</div>
 						<div>
 							<h2 className="font-semibold text-xl text-black dark:text-white">
-								Universitas Dian Nuswantoro
+								{t.education.university}
 							</h2>
 							<h3 className="text-md font-normal mb-3 text-gray-700 dark:text-gray-300">
-								S1 Teknik Informatika | Computer Science
+								{t.education.degree}
 							</h3>
 							<div className="gap-4 mb-4 flex items-stretch md:h-[300px] xl:h-[400px]">
 								<div className="flex-[1] transition-all duration-300 ease-in-out hover:flex-[3] group">
@@ -155,30 +160,13 @@ export default function Education() {
 								</div>
 							</div>
 							<div className="flex items-center gap-2">
-								<p className="text-gray-600 dark:text-gray-300 text-justify title text-lg">
-									I&rsquo;m
-									Informatics Engineering student at Dian Nuswantoro University, 
-									passionate about software development and system optimization. 
-									My journey in tech started from curiosity. experimenting with networks, Linux servers, and self-hosted systems,
-									then evolved into building practical web applications that solve real problems.
-									<br />
-									<br />
-									As the developer behind Zeea Laundry, a web-based laundry management 
-									system built for a real business, I focus on creating efficient and user-friendly 
-									solutions while applying modern development methods like Agile. 
-									I also enjoy exploring areas like networking, Docker, 
-									and automation to make systems more reliable and scalable.
-									<br />
-									<br />
-									Driven by curiosity and hands-on experience, 
-									I&rsquo;m constantly learning, building, and improving. 
-									I aim to grow as a full-stack developer who bridges everyday needs with smart, 
-									well-crafted technology.
+								<p className="text-gray-600 dark:text-gray-300 text-justify title text-lg whitespace-pre-line">
+									{t.education.universityDescription}
 								</p>
 							</div>
 							<div className="flex flex-wrap gap-2 mt-4 text-sm">
 								<div className="bg-gray-300 dark:bg-gray-700 text-black dark:text-white px-2 py-1 rounded-2xl">
-									GPA: 3.73 out of 4.00
+									{t.education.gpa}
 								</div>
 							</div>
 						</div>
@@ -189,9 +177,9 @@ export default function Education() {
 						initial={{ opacity: 0, x: 50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, delay: 0.4 }}>
-						<h2 className="font-semibold text-xl mt-7 text-black dark:text-white">Achievements</h2>
+						<h2 className="font-semibold text-xl mt-7 text-black dark:text-white">{t.education.achievements.title}</h2>
 						<p className="text-md font-normal mb-3 md:mb-6 text-gray-700 dark:text-gray-300">
-							Some of my achievements during my study.
+							{t.education.achievements.description}
 						</p>
 
 						{/* Achievements Container with transparent bottom effect */}
@@ -262,8 +250,8 @@ export default function Education() {
 										className="flex items-center gap-2 px-6 py-3 bg-white/30 dark:bg-gray-700/60 backdrop-blur-md border border-white/40 dark:border-gray-600/50 rounded-full hover:bg-white/40 dark:hover:bg-gray-700/80 transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-xl text-black dark:text-white">
 										<span>
 											{isExpanded
-												? `Show Less`
-												: `Show ${allAchievements.length - 2} More`}
+												? t.education.achievements.showLess
+												: t.education.achievements.showMore.replace("{count}", allAchievements.length - 2)}
 										</span>
 										<FontAwesomeIcon
 											icon={isExpanded ? faChevronUp : faChevronDown}

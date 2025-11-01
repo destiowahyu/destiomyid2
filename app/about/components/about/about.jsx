@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import MusicPlayer from "./MusicPlayer";
 import { motion } from "framer-motion";
@@ -6,13 +7,18 @@ import Me2 from "@/public/image/des6.jpg";
 import Me3 from "@/public/image/des5.webp";
 import Hr from "@/components/Hr";
 import { useState } from "react";
+import { useLanguage } from "@/components/LanguageProvider";
+import aboutTranslations from "@/json/about.json";
 
 function Title() {
+	const { language } = useLanguage();
+	const t = aboutTranslations[language] || aboutTranslations["en"];
+	
 	return (
 		<div className="mt-10 flex flex-col justify-start items-center w-full pl-10 md:pl-32">
 			<div className="flex justify-center items-center flex-col my-5 self-start ">
 				<Hr variant="long"></Hr>
-				<h1 className="text-3xl font-bold mt-3">Who Am I?</h1>
+				<h1 className="text-3xl font-bold mt-3 text-black dark:text-white">{t.about.title}</h1>
 			</div>
 		</div>
 	);
@@ -60,6 +66,9 @@ function AnimatedImage({ src, alt }) {
 }
 
 export default function About() {
+	const { language } = useLanguage();
+	const t = aboutTranslations[language] || aboutTranslations["en"];
+	
 	return (
 		<>
 			<Title />
@@ -92,21 +101,11 @@ export default function About() {
 
 						type: "spring",
 					}}>
-					<h2 className="text-2xl font-bold tracking-wider mb-3">
-						Destio Wahyu Lanio
+					<h2 className="text-2xl font-bold tracking-wider mb-3 text-black dark:text-white">
+						{t.about.name}
 					</h2>
-					<p className="text-gray-600 text-justify title text-lg">
-						Hey there, I&rsquo;m Destio, 
-						a fresh graduate in Software Engineering from Universitas 
-						Dian Nuswantoro (UDINUS) with a strong passion for Web Development 
-						and the creative industry. I enjoy building functional and 
-						user-friendly web applications using modern technologies, 
-						while also excelling in video editing, photo editing, 
-						and graphic design. Beyond tech and design, I love music and 
-						often create my own covers, handling everything from recording 
-						to mixing. With this mix of technical and creative skills, 
-						I strive to keep learning, adapting, and creating impactful digital 
-						experiences.
+					<p className="text-gray-600 dark:text-gray-300 text-justify title text-lg">
+						{t.about.description}
 					</p>
 					<MusicPlayer />
 				</motion.div>

@@ -2,13 +2,19 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { CodepenIcon, VideoIcon, ActivityIcon, MobileIcon } from "./icons"
+import { useLanguage } from "@/components/LanguageProvider";
+import aboutTranslations from "@/json/about.json";
 
-const skillCategories = {
-	web: {
-		category: "web",
-		title: "Web Development",
-		icon: CodepenIcon,
-		description: "Building modern, responsive web applications",
+const getSkillCategories = (language) => {
+	const t = aboutTranslations[language] || aboutTranslations["en"];
+	const skillsT = t.skills;
+	
+	return {
+		web: {
+			category: "web",
+			title: skillsT.categories.web.title,
+			icon: CodepenIcon,
+			description: skillsT.categories.web.description,
 		languages: [
 			"HTML",
 			"CSS",
@@ -23,11 +29,11 @@ const skillCategories = {
 		],
 		tools: ["Visual Studio Code", "Mariadb", "MySQL", "PHPMyAdmin", "Adminer", "Git", "Github", "Figma", "Casa OS", "Docker", "Docker Compose", "Linux", "Armbian", "Mikrotik", "OpenWRT",],
 	},
-	video: {
-		category: "video",
-		title: "Video & Photo Editing",
-		icon: VideoIcon,
-		description: "Professional video & photo editing and post-production",
+		video: {
+			category: "video",
+			title: skillsT.categories.video.title,
+			icon: VideoIcon,
+			description: skillsT.categories.video.description,
 		languages: [
 			"Adobe Premiere Pro",
 			"Adobe After Effects",
@@ -37,11 +43,11 @@ const skillCategories = {
 		],
 		tools: ["Masking Techniques", "Roto Brush", "Pen Tool", "Graphic Design", "Color Grading", "Keyframe Animation", "Video Effects", "Audio Editing", "3D Camera Tracking", "Motion Tracking", "Green Screen", "Video Compression", "Export Optimization"],
 	},
-	network: {
-		category: "network",
-		title: "Networking & System Administration",
-		icon: ActivityIcon,
-		description: "Music production and audio engineering",
+		network: {
+			category: "network",
+			title: skillsT.categories.network.title,
+			icon: ActivityIcon,
+			description: skillsT.categories.network.description,
 		languages: [
 			"Mikrotik Winbox",
 			"Linux",
@@ -66,8 +72,9 @@ const skillCategories = {
 			"Docker Container Management",
 			"Network Troubleshooting",
 			"File Sharing",
-		],
-	},
+			],
+		},
+	};
 };
 
 function SkillCard({ skill, isSelected, onClick }) {
@@ -136,24 +143,10 @@ function SkillCard({ skill, isSelected, onClick }) {
 	);
 }
 
-function SkillDetails({ selectedSkill }) {
+function SkillDetails({ selectedSkill, language }) {
 	if (!selectedSkill) return null;
-
-	// Function to get appropriate labels based on category
-	const getLabels = (category) => {
-		switch (category) {
-			case 'web':
-				return { first: "Languages & Frameworks", second: "Tools & Technologies" };
-			case 'video':
-				return { first: "Software & Applications", second: "Techniques & Skills" };
-			case 'network':
-				return { first: "Tools & Platforms", second: "Network & System Skills" };
-			default:
-				return { first: "Languages & Frameworks", second: "Tools & Technologies" };
-		}
-	};
-
-	const labels = getLabels(selectedSkill.category || 'web');
+	const t = aboutTranslations[language] || aboutTranslations["en"];
+	const labels = t.skills.labels[selectedSkill.category] || t.skills.labels.web;
 
 	return (
 		<motion.div
@@ -219,6 +212,10 @@ function SkillDetails({ selectedSkill }) {
 
 export default function Skills() {
 	const [selectedCategory, setSelectedCategory] = useState("web");
+	const { language } = useLanguage();
+	const t = aboutTranslations[language] || aboutTranslations["en"];
+	const skillCategories = getSkillCategories(language);
+	
 	return (
 		<div className="relative">
 			<div className="mx-auto container px-6 py-20">
@@ -227,12 +224,11 @@ export default function Skills() {
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}
 					className="text-center space-y-4 mb-16">
-					<h2 className="text-5xl font-bold bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">
-						Skills & Expertise
+					<h2 className="text-5xl font-bold bg-gradient-to-r from-black to-gray-600 dark:from-white dark:to-gray-400 bg-clip-text text-transparent">
+						{t.skills.title}
 					</h2>
-					<p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-						Explore my technical skills across different domains. Click on any
-						category to see the specific technologies and tools I work with.
+					<p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+						{t.skills.description}
 					</p>
 				</motion.div>
 
@@ -255,7 +251,7 @@ export default function Skills() {
 
 				{/* Skill Details */}
 				<AnimatePresence mode="wait">
-					<SkillDetails selectedSkill={skillCategories[selectedCategory]} />
+					<SkillDetails selectedSkill={skillCategories[selectedCategory]} language={language} />
 				</AnimatePresence>
 			</div>
 		</div>

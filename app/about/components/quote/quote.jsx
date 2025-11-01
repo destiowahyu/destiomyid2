@@ -1,7 +1,10 @@
+"use client";
 // Quote.js
 import "./style.css";
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "./useIntersectionObserver";
+import { useLanguage } from "@/components/LanguageProvider";
+import aboutTranslations from "@/json/about.json";
 
 function Wrapper({ children }) {
 	return (
@@ -28,10 +31,10 @@ function Wrapper({ children }) {
 }
 
 export default function Quote() {
-	const text1 = '"They’ll understand eventually'.split(" ");
-	const text2 = 'I was never behind, just on a different timeline."'.split(
-		" "
-	);
+	const { language } = useLanguage();
+	const t = aboutTranslations[language] || aboutTranslations["en"];
+	const text1 = t.quote.text1.split(" ");
+	const text2 = t.quote.text2.split(" ");
 	const [ref, isIntersecting] = useIntersectionObserver();
 
 	return (
