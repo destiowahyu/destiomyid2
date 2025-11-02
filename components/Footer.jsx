@@ -4,8 +4,13 @@ import Link from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
+import { useLanguage } from "@/components/LanguageProvider";
+import translations from "@/json/translations.json";
 
 export default function Footer() {
+	const { language } = useLanguage();
+	const t = translations[language] || translations["en"];
+	
 	return (
 		<div className="flex justify-center items-center flex-col mt-5 overflow-hidden">
 			<div className="flex justify-center items-center flex-col mt-5 self-center min-h-[50vh] border-b-2 min-w-[80vw] ">
@@ -23,7 +28,7 @@ export default function Footer() {
 						transition={{
 							delay: 0.2,
 						}}>
-						Want something like this?
+						{t.footer.wantSomething}
 					</motion.h2>
 					<motion.h1
 						className="text-5xl md:text-7xl font-medium mt-3  hover:underline whitespace-nowrap leading-none"
@@ -38,7 +43,7 @@ export default function Footer() {
 						transition={{
 							delay: 0.5,
 						}}>
-						Get In Touch{" "}
+						{t.footer.getInTouch}{" "}
 						<FontAwesomeIcon
 							icon={faArrowAltCircleRight}
 							className="text-5xl ml-2 "

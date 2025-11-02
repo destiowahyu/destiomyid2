@@ -3,7 +3,7 @@
     "home": {
       "name": "Destio Wahyu Lanio",
       "title": "Web Developer, Network Enthusiast, Video Editor",
-      "description": "Hi! I’m Destio, an Informatics Engineering graduate passionate about Web Development, Computer Networking, and video editing. I enjoy creating efficient digital systems, managing servers, and building user-friendly web applications. Outside tech, I love video editing and music, where I combine creativity and technical skills to produce engaging digital works.",
+      "description": "Hey! I’m Destio, an Informatics Engineering graduate who’s really into web development, video editing, and computer networking. During college, I worked on a lot of web apps since my major focused on Software Engineering. I also enjoy tinkering with servers and exploring new things around networking. Outside of tech stuff, I love editing videos and making music just for fun or to explore new creative ideas.",
       "downloadCV": "Download CV",
       "contactMe": "Contact Me"
     },
@@ -38,47 +38,55 @@
       "description": "Feel free to contact me if you have any",
       "contactText": "questions or just want to say hi.",
       "email": "destiowahyu@gmail.com"
+    },
+    "footer": {
+      "wantSomething": "Interested?",
+      "getInTouch": "Let’s connect!"
     }
   },
   "id": {
     "home": {
       "name": "Destio Wahyu Lanio",
       "title": "Web Developer, Network Enthusiast, Video Editor",
-      "description": "Hai! Aku Destio, lulusan Teknik Informatika yang suka banget sama dunia web development, video editing, dan jaringan komputer. Aku senang ngulik cara bikin sistem digital yang efisien, ngatur server, dan ngebangun aplikasi web yang simpel tapi berguna. Di luar dunia teknologi, aku juga suka ngedit video dan main musik buat nyalurin sisi kreatifku lewat karya digital yang seru.",
+      "description": "Hai! Aku Destio, lulusan Teknik Informatika yang suka banget sama web development, video editing, dan jaringan komputer. Selama kuliah, aku sering bikin aplikasi web karena fokus jurusanku di Rekayasa Perangkat Lunak. Kadang aku juga ngulik server dan nyobain hal-hal baru seputar networking. Di luar tech stuff, aku sering ngedit video dan main musik buat hobi dan fun, atau sekadar explore ide baru.",
       "downloadCV": "Unduh CV",
       "contactMe": "Ngobrol Yuk!"
     },
     "about": {
-      "title": "Tentang Aku",
-      "description": "Kenalan dulu yuk, biar tahu aku suka ngapain.",
+      "title": "Tentangku",
+      "description": "Tak kenal maka sayang, yaudah kenalan yuk!",
       "learnMore": "Gas ke sini"
     },
     "projects": {
-      "title": "Proyekku",
-      "description": "Ini nih beberapa proyek yang pernah ku kerjain",
+      "title": "Projectku",
+      "description": "Ini nih beberapa project yang pernah ku kerjain",
       "currentlyWorking": "dan yang sedang ku kerjain.",
-      "learnMore": "Mau liat dong"
+      "learnMore": "Liat Project"
     },
     "education": {
       "title": "Pendidikan",
-      "description": "Perjalanan pendidikanku dan",
-      "academicAchievements": "prestasi akademik.",
+      "description": "Tempat Destio menuntut ilmu dan",
+      "academicAchievements": "kembangin prestasi akademik.",
       "university": "Universitas Dian Nuswantoro",
       "universityPeriod": "2021 - 2025",
       "degree": "Sarjana Ilmu Komputer",
       "gpa": "IPK: 3.73/4.00",
-      "universityDescription": "Lulusan Teknik Informatika dengan IPK 3.73/4.00! Aku suka ngulik hal-hal seputar Software Engineering dan web development, terutama bikin aplikasi yang simpel tapi bermanfaat.",
+      "universityDescription": "Lulusan Teknik Informatika dengan IPK 3.73/4.00! Aku suka ngulik hal-hal seputar Software Engineering dan web development.",
       "highSchool": "SMAN 1 Rembang",
       "highSchoolPeriod": "2018 - 2021",
       "major": "MIPA",
-      "highSchoolDescription": "Lulus dengan prestasi akademik yang sangat baik dan aktif dalam berbagai kegiatan sekolah.",
-      "learnMore": "Kepoin ah.."
+      "highSchoolDescription": "Lulus dengan prestasi akademik yang baik dan aktif dalam berbagai kegiatan sekolah.",
+      "learnMore": "Liat Detailnya"
     },
     "contact": {
       "title": "Ngobrol Yuk!",
       "description": "Ngga usah ragu kalau punya pertanyaan atau ",
       "contactText": "cuma pengen ngobrol.",
       "email": "destiowahyu@gmail.com"
+    },
+    "footer": {
+      "wantSomething": "Tertarik?",
+      "getInTouch": "Ngobrol Yuk!"
     }
   }
 }

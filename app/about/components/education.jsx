@@ -14,6 +14,9 @@ import { useState } from "react";
 import Me4 from "@/public/image/des8.jpg";
 import Me5 from "@/public/image/des7.jpg";
 import Me6 from "@/public/image/des9.jpg";
+import Sma1 from "@/public/image/sma1.jpg";
+import Sma2 from "@/public/image/sma2.jpg";
+import Sma3 from "@/public/image/sma3.jpg";
 import { useLanguage } from "@/components/LanguageProvider";
 import aboutTranslations from "@/json/about.json";
 
@@ -167,6 +170,57 @@ export default function Education() {
 							<div className="flex flex-wrap gap-2 mt-4 text-sm">
 								<div className="bg-gray-300 dark:bg-gray-700 text-black dark:text-white px-2 py-1 rounded-2xl">
 									{t.education.gpa}
+								</div>
+							</div>
+						</div>
+						{/* High School Section */}
+						<div className="mt-12">
+							<div className="font-medium text-lg mb-4 text-black dark:text-white">{t.education.highSchoolPeriod}</div>
+							<div>
+								<h2 className="font-semibold text-xl text-black dark:text-white">
+									{t.education.highSchool}
+								</h2>
+								<h3 className="text-md font-normal mb-3 text-gray-700 dark:text-gray-300">
+									{t.education.highSchoolMajor}
+								</h3>
+								<div className="gap-4 mb-4 flex items-stretch">
+									<div className="flex-[1] transition-all duration-300 ease-in-out hover:flex-[3] group bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden aspect-video">
+										<Image
+											src={Sma3}
+											width={400}
+											height={225}
+											alt="High School"
+											className="rounded-lg w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+										/>
+									</div>
+									<div className="flex-[1] transition-all duration-300 ease-in-out hover:flex-[3] group bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden aspect-video">
+										<Image
+											src={Sma1}
+											width={400}
+											height={225}
+											alt="High School"
+											className="rounded-lg w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+										/>
+									</div>
+									<div className="flex-[1] transition-all duration-300 ease-in-out hover:flex-[3] group bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden aspect-video">
+										<Image
+											src={Sma2}
+											width={400}
+											height={225}
+											alt="High School"
+											className="rounded-lg w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+										/>
+									</div>
+								</div>
+								<div className="flex items-center gap-2">
+									<p className="text-gray-600 dark:text-gray-300 text-justify title text-lg whitespace-pre-line">
+										{t.education.highSchoolDescription}
+									</p>
+								</div>
+								<div className="flex flex-wrap gap-2 mt-4 text-sm">
+									<div className="bg-gray-300 dark:bg-gray-700 text-black dark:text-white px-2 py-1 rounded-2xl">
+										{t.education.highSchoolAverage}
+									</div>
 								</div>
 							</div>
 						</div>

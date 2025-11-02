@@ -75,15 +75,41 @@ export default function About() {
 			<div className="relative mx-auto container gap-4 px-10 grid grid-cols-1 md:grid-cols-2 mb-10">
 				<div className="flex justify-center items-start flex-col mb-5 ">
 					<div className="images relative w-full  aspect-square">
-						<div className="absolute top-28 left-10 w-[50%]  aspect-square transition-all ease duration-300">
+						<motion.div
+							className="absolute top-28 left-10 w-[50%] aspect-square transition-all ease duration-300 overflow-hidden rounded-sm"
+							initial={{ scale: 0, opacity: 0, rotate: -10 }}
+							whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+							viewport={{ once: false, margin: "-50px" }}
+							transition={{
+								duration: 0.3,
+								ease: [0.6, 0.04, 0.98, 0.335]
+							}}>
 							<AnimatedImage src={Me1} alt="Destio" />
-						</div>
-						<div className="absolute top-16 right-28 w-[30%]  aspect-square transition-all ease duration-300">
+						</motion.div>
+						<motion.div
+							className="absolute top-16 right-28 w-[30%] aspect-square transition-all ease duration-300 overflow-hidden rounded-sm"
+							initial={{ scale: 0, opacity: 0, rotate: 10 }}
+							whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+							viewport={{ once: false, margin: "-50px" }}
+							transition={{
+								duration: 0.3,
+								ease: [0.6, 0.04, 0.98, 0.335],
+								delay: 0.08
+							}}>
 							<AnimatedImage src={Me2} alt="Destio" />
-						</div>
-						<div className="absolute bottom-16 right-20 w-[40%]  aspect-square transition-all ease duration-300">
+						</motion.div>
+						<motion.div
+							className="absolute bottom-16 right-20 w-[40%] aspect-square transition-all ease duration-300 overflow-hidden rounded-sm"
+							initial={{ scale: 0, opacity: 0, rotate: -5 }}
+							whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+							viewport={{ once: false, margin: "-50px" }}
+							transition={{
+								duration: 0.3,
+								ease: [0.6, 0.04, 0.98, 0.335],
+								delay: 0.15
+							}}>
 							<AnimatedImage src={Me3} alt="Destio" />
-						</div>
+						</motion.div>
 					</div>
 				</div>
 				<motion.div

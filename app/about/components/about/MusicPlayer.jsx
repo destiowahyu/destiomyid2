@@ -16,45 +16,45 @@ import {
 const playlist = [
   {
     id: 1,
-    title: "Everything you are",
-    artist: "Hindia", 
-    src: "/music/everything.mp3"
+    title: "Lesung Pipi",
+    artist: "Raim Laode",
+    src: "/music/lesungpipi.mp3"
   },
   {
     id: 2,
-    title: "Kita ke Sana",
-    artist: "Hindia",
-    src: "/music/kitakesana.mp3"
+    title: "Semata Karenamu",
+    artist: "Mario G Klau", 
+    src: "/music/sematakarenamu.mp3"
   },
   {
     id: 3,
-    title: "Nina", 
-    artist: ".Feast",
-    src: "/music/nina.mp3"
+    title: "Anugrah Terindah", 
+    artist: "Andmesh Kamaleng",
+    src: "/music/anugrah.mp3"
   },
   {
     id: 4,
-    title: "Duka",
-    artist: "Last Child", 
-    src: "/music/duka.mp3"
+    title: "Mesra-mesraannya kecil-kecilan dulu",
+    artist: "Sal Priadi", 
+    src: "/music/kecilkecilan.mp3"
   },
   {
     id: 5,
-    title: "Tak Ada Ujungnya",
-    artist: "Rony Parulian", 
-    src: "/music/takadaujungnya.mp3"
+    title: "April",
+    artist: "Fiersa Besari", 
+    src: "/music/april.mp3"
   },
   {
     id: 6,
-    title: "Cincin",
-    artist: "Hindia", 
-    src: "/music/cincin.mp3"
+    title: "Berharap Kau Kembali",
+    artist: "Fabio Asher", 
+    src: "/music/berharapkaukembali.mp3"
   },
   {
     id: 7,
-    title: "Serana",
-    artist: "For Revenge", 
-    src: "/music/serana.mp3"
+    title: "Tak Dianggap",
+    artist: "Lyodra", 
+    src: "/music/takdianggap.mp3"
   }
 
 ];
