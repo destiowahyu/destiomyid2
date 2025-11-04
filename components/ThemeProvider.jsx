@@ -165,6 +165,118 @@ export const ThemeProvider = ({ children }) => {
     }
   }
 
+  // Inject transition keyframes once and expose a global helper to play transitions
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    if (!document.getElementById("theme-transition-styles")) {
+      const style = document.createElement("style")
+      style.id = "theme-transition-styles"
+      style.innerHTML = `
+        @keyframes themeRadialReveal {
+          0% { transform: translate(var(--tx, -50%), var(--ty, -50%)) scale(0); opacity: 1; }
+          70% { opacity: 1; }
+          100% { transform: translate(var(--tx, -50%), var(--ty, -50%)) scale(50); opacity: 0; }
+        }
+
+        @keyframes starTwinkle {
+          0% { transform: scale(0.6); opacity: 0; }
+          30% { transform: scale(1); opacity: 1; }
+          100% { transform: scale(0.6); opacity: 0; }
+        }
+
+        @keyframes sunRayPulse {
+          0% { opacity: 0; transform: scale(0.8) rotate(0deg); }
+          50% { opacity: 1; }
+          100% { opacity: 0; transform: scale(1) rotate(180deg); }
+        }
+      `
+      document.head.appendChild(style)
+    }
+
+    // Expose a global to play transition centered at last click
+    window.__playThemeTransition = (target) => {
+      const overlay = document.createElement("div")
+      overlay.id = `theme-transition-overlay-${Date.now()}`
+      overlay.style.position = "fixed"
+      overlay.style.inset = "0"
+      overlay.style.pointerEvents = "none"
+      overlay.style.zIndex = "9999"
+      overlay.style.overflow = "hidden"
+
+      // Container to hold the radial circle at click position
+      const cx = getComputedStyle(document.documentElement).getPropertyValue("--click-x") || "50vw"
+      const cy = getComputedStyle(document.documentElement).getPropertyValue("--click-y") || "50vh"
+
+      const circle = document.createElement("div")
+      circle.style.position = "absolute"
+      circle.style.left = cx
+      circle.style.top = cy
+      circle.style.width = "2px"
+      circle.style.height = "2px"
+      circle.style.borderRadius = "9999px"
+      circle.style.transformOrigin = "center"
+      circle.style.willChange = "transform, opacity"
+      circle.style.setProperty("--tx", "-50%")
+      circle.style.setProperty("--ty", "-50%")
+      circle.style.transform = "translate(-50%, -50%) scale(0)"
+      circle.style.animation = "themeRadialReveal 900ms ease-in-out forwards"
+
+      if (target === "dark") {
+        // Night: warm-to-deep gradient and twinkling stars
+        circle.style.background = "radial-gradient(circle, rgba(17,24,39,0) 0%, rgba(17,24,39,0.8) 30%, rgba(17,24,39,1) 60%, rgba(0,0,0,1) 100%)"
+
+        // Add twinkling stars
+        for (let i = 0; i < 18; i++) {
+          const star = document.createElement("span")
+          star.style.position = "absolute"
+          star.style.left = `${Math.random() * 100}%`
+          star.style.top = `${Math.random() * 100}%`
+          star.style.width = `${2 + Math.random() * 2}px`
+          star.style.height = star.style.width
+          star.style.borderRadius = "9999px"
+          star.style.background = ["#fde68a", "#fef3c7", "#f59e0b"][i % 3]
+          star.style.boxShadow = "0 0 6px rgba(250, 204, 21, 0.8)"
+          star.style.animation = `starTwinkle ${600 + Math.random() * 500}ms ease-in-out ${Math.random() * 200}ms forwards`
+          overlay.appendChild(star)
+        }
+      } else {
+        // Day: bright flare with soft yellow/orange
+        circle.style.background = "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(253, 230, 138, 0.9) 20%, rgba(245, 158, 11, 0.8) 40%, rgba(255,255,255,0) 80%)"
+
+        // Sun rays pulse
+        const rays = document.createElement("div")
+        rays.style.position = "absolute"
+        rays.style.left = cx
+        rays.style.top = cy
+        rays.style.width = "48px"
+        rays.style.height = "48px"
+        rays.style.transform = "translate(-50%, -50%)"
+        for (let i = 0; i < 12; i++) {
+          const ray = document.createElement("span")
+          ray.style.position = "absolute"
+          ray.style.left = "50%"
+          ray.style.top = "50%"
+          ray.style.width = "18px"
+          ray.style.height = "3px"
+          ray.style.borderRadius = "9999px"
+          ray.style.background = i % 2 === 0 ? "#fde68a" : "#f59e0b"
+          ray.style.opacity = "0.95"
+          ray.style.transform = `translate(-50%, -50%) rotate(${(i / 12) * 360}deg) translateX(16px)`
+          ray.style.animation = "sunRayPulse 900ms ease-out forwards"
+          rays.appendChild(ray)
+        }
+        overlay.appendChild(rays)
+      }
+
+      overlay.appendChild(circle)
+      document.body.appendChild(overlay)
+
+      setTimeout(() => {
+        overlay.remove()
+      }, 950)
+    }
+  }, [])
+
   useEffect(() => {
     setMounted(true)
 

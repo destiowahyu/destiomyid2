@@ -1,16 +1,61 @@
 "use client"
 import { useRef, useState, useEffect } from "react"
-import { motion } from "framer-motion"
+ import { motion } from "framer-motion"
 import Image from "next/image"
 import Logotype from "@/public/image/logotype.png"
 import { useRouter } from "next/navigation"
 import { useTheme } from "@/components/ThemeProvider"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons"
+ 
 import LanguageToggle from "./LanguageToggle"
 
-const ThemeToggle = ({ isNavOpen }) => {
+ // Colored, non-monotone SVGs for nicer look
+ const ColoredSunIcon = ({ size = 16 }) => (
+   <svg width={size} height={size} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+       <radialGradient id="sunCore" cx="50%" cy="50%" r="50%">
+         <stop offset="0%" stopColor="#FFE08A" />
+         <stop offset="60%" stopColor="#FDBA74" />
+         <stop offset="100%" stopColor="#F59E0B" />
+       </radialGradient>
+       <linearGradient id="sunRay" x1="0" y1="0" x2="1" y2="0">
+         <stop offset="0%" stopColor="#FDE68A" />
+         <stop offset="100%" stopColor="#F59E0B" />
+       </linearGradient>
+     </defs>
+     <circle cx="32" cy="32" r="12" fill="url(#sunCore)" />
+     {Array.from({ length: 12 }).map((_, i) => {
+       const angle = (i / 12) * Math.PI * 2
+       const x1 = 32 + Math.cos(angle) * 18
+       const y1 = 32 + Math.sin(angle) * 18
+       const x2 = 32 + Math.cos(angle) * 26
+       const y2 = 32 + Math.sin(angle) * 26
+       return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="url(#sunRay)" strokeWidth="3" strokeLinecap="round" />
+     })}
+   </svg>
+ )
+ 
+ const ColoredMoonIcon = ({ size = 16 }) => (
+   <svg width={size} height={size} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+       <radialGradient id="moonSkin" cx="50%" cy="50%" r="50%">
+         <stop offset="0%" stopColor="#FFB26B" />
+         <stop offset="70%" stopColor="#FB923C" />
+         <stop offset="100%" stopColor="#EA580C" />
+       </radialGradient>
+       <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+         <stop offset="0%" stopColor="rgba(0,0,0,0.15)" />
+         <stop offset="100%" stopColor="rgba(0,0,0,0)" />
+       </radialGradient>
+     </defs>
+     <path d="M44 12c-3.5 2.5-6 6.7-6 11.5C38 32.5 47.5 42 59 42c1.7 0 3.3-.2 4.8-.6C60.2 50.7 51 56 40.8 56 25.9 56 14 44.1 14 29.2 14 19 19.3 9.8 27.6 4.2 27.2 5.7 27 7.3 27 9c0 11 9.5 20 21 20 4.8 0 9-2.5 11.5-6z" transform="translate(-8,0)" fill="url(#moonSkin)" />
+     <circle cx="34" cy="26" r="8" fill="url(#shadow)" />
+     <circle cx="28" cy="38" r="4" fill="url(#shadow)" />
+   </svg>
+ )
+ 
+ const ThemeToggle = ({ isNavOpen }) => {
   const { theme, setTheme, resolvedTheme, mounted } = useTheme()
+  const [animatingTo, setAnimatingTo] = useState(null) // "dark" | "light" | null
 
   // Don't render until mounted to avoid hydration mismatch
   if (!mounted) {
@@ -21,23 +66,198 @@ const ThemeToggle = ({ isNavOpen }) => {
     )
   }
 
-  // Instant toggle - no dropdown
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light"
-    setTheme(newTheme)
+  const triggerAnimationThenToggle = () => {
+    const target = theme === "light" ? "dark" : "light"
+    // capture click center as CSS vars for overlay
+    const handle = (e) => {
+      const x = e.clientX || window.innerWidth / 2
+      const y = e.clientY || window.innerHeight / 2
+      const root = document.documentElement
+      root.style.setProperty("--click-x", `${x}px`)
+      root.style.setProperty("--click-y", `${y}px`)
+      window.removeEventListener("mousemove", handle)
+    }
+    window.addEventListener("mousemove", handle, { once: true })
+
+    // play page transition overlay if available
+    if (typeof window !== "undefined" && typeof window.__playThemeTransition === "function") {
+      window.__playThemeTransition(target)
+    }
+    setAnimatingTo(target)
+
+    // Allow the animation to play, then set the theme near the end for a seamless feel
+    // Animation total ~700ms; switch at 450ms
+    setTimeout(() => {
+      setTheme(target)
+    }, 450)
+
+    // Clear animation state
+    setTimeout(() => {
+      setAnimatingTo(null)
+    }, 800)
   }
 
-  const currentIcon = theme === "light" ? faSun : faMoon
+  const isGoingDark = animatingTo === "dark"
+  const isGoingLight = animatingTo === "light"
+
+  const baseColor = isNavOpen ? "#ffffff" : resolvedTheme === "light" ? "#000000" : "#ffffff"
 
   return (
     <button
-      className={`theme-toggle-btn flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200 
-        ${isNavOpen ? "text-white" : resolvedTheme === "light" ? "text-black" : "text-white"}`}
-      style={{ color: isNavOpen ? "#ffffff" : resolvedTheme === "light" ? "#000000" : "#ffffff" }}
-      onClick={toggleTheme}
+      className={`theme-toggle-btn relative overflow-visible flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200 ${
+        isNavOpen ? "text-white" : resolvedTheme === "light" ? "text-black" : "text-white"
+      }`}
+      style={{ color: baseColor }}
+      onClick={triggerAnimationThenToggle}
       aria-label="Toggle theme"
     >
-      <FontAwesomeIcon icon={currentIcon} className="w-4 h-4" />
+       {/* Base icon with enhanced effects: glow + orbiters */
+       }
+      <motion.div
+        key={`icon-${resolvedTheme}-${animatingTo ?? "idle"}`}
+        initial={{ scale: 1, rotate: 0 }}
+        animate={{
+          scale: isGoingDark || isGoingLight ? 1.15 : 1,
+          rotate: isGoingLight ? 180 : isGoingDark ? -90 : 0,
+          filter:
+            isGoingDark || isGoingLight
+              ? "drop-shadow(0 0 6px rgba(245,158,11,0.8))"
+              : "none",
+        }}
+        transition={{ type: "spring", stiffness: 500, damping: 30, duration: 0.35 }}
+        className="theme-toggle-icon"
+      >
+        {resolvedTheme === "light" || isGoingDark ? (
+          <ColoredSunIcon size={16} />
+        ) : (
+          <ColoredMoonIcon size={16} />
+        )}
+      </motion.div>
+
+      {/* Orbiting dots around moon while going dark */}
+      {isGoingDark && (
+        <motion.div
+          className="pointer-events-none absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 0.9, ease: "easeInOut" }}
+        >
+          {[...Array(3)].map((_, i) => (
+            <motion.span
+              key={`orbit-${i}`}
+              className="absolute left-1/2 top-1/2"
+              style={{ width: 2, height: 2, borderRadius: 9999, background: "#fcd34d" }}
+              initial={{ rotate: 0 }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 0.9 + i * 0.1, ease: "linear" }}
+            >
+              <span
+                className="absolute"
+                style={{
+                  left: "-2px",
+                  top: "-2px",
+                  width: 4,
+                  height: 4,
+                  borderRadius: 9999,
+                  background: ["#fef3c7", "#fde68a", "#f59e0b"][i],
+                  transform: `translate(${8 + i * 3}px, 0)`,
+                }}
+              />
+            </motion.span>
+          ))}
+        </motion.div>
+      )}
+
+      {/* Stars burst when going to dark */}
+      {isGoingDark && (
+        <motion.div
+          className="pointer-events-none absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 0.75, ease: "easeInOut" }}
+        >
+          {[...Array(8)].map((_, i) => {
+            const angle = (i / 8) * Math.PI * 2
+            const distance = 18
+            const x = Math.cos(angle) * distance
+            const y = Math.sin(angle) * distance
+            return (
+              <motion.span
+                key={`star-${i}`}
+                className="absolute block"
+                style={{ left: "50%", top: "50%" }}
+                initial={{ x: 0, y: 0, scale: 0.4, rotate: 0, opacity: 0 }}
+                animate={{ x, y, scale: [0.4, 1, 0.4], rotate: 180, opacity: [0, 1, 0] }}
+                transition={{ duration: 0.75, ease: "easeOut" }}
+              >
+                <span
+                  className="block"
+                  style={{
+                    width: 4,
+                    height: 4,
+                    borderRadius: 2,
+                    background: i % 3 === 0 ? "#fde68a" : i % 3 === 1 ? "#fef3c7" : "#f59e0b",
+                    boxShadow: "0 0 6px rgba(250, 204, 21, 0.8)",
+                  }}
+                />
+              </motion.span>
+            )
+          })}
+        </motion.div>
+      )}
+
+      {/* Spinning sun rays when going to light */}
+      {isGoingLight && (
+        <motion.div
+          className="pointer-events-none absolute inset-0 flex items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 0.75, ease: "easeInOut" }}
+        >
+          <motion.div
+            initial={{ rotate: 0, scale: 0.8 }}
+            animate={{ rotate: 180, scale: 1 }}
+            transition={{ duration: 0.75, ease: "easeOut" }}
+            className="relative"
+            style={{ width: 24, height: 24 }}
+          >
+            {/* Core */}
+            <span
+              className="absolute left-1/2 top-1/2"
+              style={{
+                transform: "translate(-50%, -50%)",
+                width: 8,
+                height: 8,
+                borderRadius: 9999,
+                background: "#f59e0b",
+                boxShadow: "0 0 8px rgba(245, 158, 11, 0.8)",
+              }}
+            />
+            {/* Rays */}
+            {[...Array(8)].map((_, i) => {
+              const angle = (i / 8) * Math.PI * 2
+              const radius = 10
+              const x = Math.cos(angle) * radius
+              const y = Math.sin(angle) * radius
+              return (
+                <span
+                  key={`ray-${i}`}
+                  className="absolute left-1/2 top-1/2"
+                  style={{
+                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${(angle * 180) / Math.PI}deg)`,
+                    width: 8,
+                    height: 2,
+                    borderRadius: 9999,
+                    background: i % 2 === 0 ? "#fde68a" : "#f59e0b",
+                    opacity: 0.95,
+                    boxShadow: "0 0 4px rgba(245,158,11,0.6)",
+                  }}
+                />
+              )
+            })}
+          </motion.div>
+        </motion.div>
+      )}
     </button>
   )
 }
@@ -275,17 +495,17 @@ const Navbar = () => {
     <>
       <nav
         ref={navRef}
-        className="navbar px-5 md:px-24 w-screen fixed backdrop-filter backdrop-blur-md inset-0 flex flex-row justify-between items-center h-16 z-50"
-        style={{
-          backgroundColor: isNavOpen
-            ? resolvedTheme === "light"
-              ? "rgb(230, 230, 230)"
-              : "rgba(17, 24, 39, 0.5)" 
-            : resolvedTheme === "light"
-              ? "rgb(230, 230, 230)"
-              : "rgba(17, 24, 39, 0.8)",
-          transition: "background-color 0.1s ease",
-        }}
+         className="navbar px-5 md:px-24 w-screen fixed backdrop-filter backdrop-blur-md inset-0 flex flex-row justify-between items-center h-16 z-50"
+         style={{
+           backgroundColor: isNavOpen
+             ? resolvedTheme === "light"
+               ? "rgb(230, 230, 230)"
+               : "rgba(31, 41, 55, 0.85)" // darker than body for contrast in dark mode
+             : resolvedTheme === "light"
+               ? "rgb(230, 230, 230)"
+               : "rgba(17, 24, 39, 0.8)",
+           transition: "background-color 0.1s ease",
+         }}
       >
         <div>
           <div
