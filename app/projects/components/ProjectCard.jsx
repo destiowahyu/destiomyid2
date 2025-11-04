@@ -10,7 +10,7 @@ export default function ProjectCard({ project, index, activeCategory }) {
 			{project.category.includes(parseInt(activeCategory)) && (
 				<Link href={"projects/" + project.slug} key={index}>
 					<motion.div
-						className="z-10 relative flex justify-center items-start flex-col mb-5 md:px-10 w-full h-auto bg-gray-400 group/tes py-20 px-5 md:py-2 aspect-video "
+						className="z-10 relative flex justify-center items-start flex-col mb-5 md:px-10 w-full h-auto group/tes py-20 px-5 md:py-2 aspect-video rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow bg-white border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
 						initial={{
 							opacity: 0,
 							x: -200,
@@ -21,7 +21,10 @@ export default function ProjectCard({ project, index, activeCategory }) {
 						}}
 						transition={{
 							type: "spring",
-						}}>
+						}}
+						whileHover={{ y: -4, scale: 1.01 }}
+						whileTap={{ scale: 0.985 }}
+					>
 						<Image
 							src={project.thumbnail}
 							alt="Destio"
@@ -31,12 +34,12 @@ export default function ProjectCard({ project, index, activeCategory }) {
 							className="bg-slate-950 opacity-10  group-hover/tes:opacity-100 transition-all ease duration-500"
 							blurDataURL={BlurImage.src}
 						/>
-						<div className="absolute top-0 left-0 bg-gray-600 px-4 py-2">
-							<h4 className="text-white">{project.year}</h4>
+						<div className="absolute top-0 left-0 px-4 py-2 bg-gray-400/60 dark:bg-gray-900/50">
+							<h4 className="text-white font-medium">{project.year}</h4>
 						</div>
 						<div className="transition-all ease duration-500 opacity-100 content text-center group-hover/tes:opacity-0 z-10">
-							<h1 className="text-3xl font-bold mb-3">{project.title}</h1>
-							<p>
+							<h1 className="text-3xl font-bold mb-3 text-gray-900 dark:text-white">{project.title}</h1>
+							<p className="text-gray-700 dark:text-gray-200">
 								{project.desc[0].length > 125
 									? `${project.desc[0].slice(0, 125)}...`
 									: project.desc[0]}
@@ -45,7 +48,7 @@ export default function ProjectCard({ project, index, activeCategory }) {
 								{project.tech.map((t, index) => (
 									<span
 										key={index}
-										className="m-1 px-4 py-2 bg-gray-600 text-white ">
+										className="m-1 px-4 py-2 rounded-full bg-gray-400/50 text-gray-800 dark:bg-gray-900/50 dark:text-gray-200 ">
 										{t}
 									</span>
 								))}
