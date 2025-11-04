@@ -283,7 +283,7 @@ export default function Page() {
           transition={{
             type: "spring",
           }}
-          className="flex flex-row justify-center items-start flex-wrap gap-3 md:gap-5 my-5 "
+          className="flex flex-row justify-center items-start flex-wrap gap-3 md:gap-5 mt-5 mb-10 md:mb-14 "
         >
           {categories.map((cat) => (
             <motion.button
@@ -299,12 +299,22 @@ export default function Page() {
                   : "bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 hover:dark:bg-gray-600"
               }`}
             >
-              <FontAwesomeIcon icon={cat.icon} className="text-lg md:text-xl text-gray-700 dark:text-gray-200" />
+              <motion.span
+                className="inline-flex"
+                animate={
+                  activeCategory === cat.id
+                    ? { y: [0, -6, 0, -3, 0], rotate: [0, -10, 10, -5, 0], scale: [1, 1.08, 1] }
+                    : { y: 0, rotate: 0, scale: 1 }
+                }
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
+                <FontAwesomeIcon icon={cat.icon} className="text-lg md:text-xl text-gray-700 dark:text-gray-200" />
+              </motion.span>
               <span className="font-semibold tracking-wide text-base md:text-lg">{cat.label}</span>
               {activeCategory === cat.id && (
                 <motion.span
                   layoutId="cat-underline"
-                  className="absolute -bottom-1 left-4 right-4 h-1 rounded-full bg-gradient-to-r from-slate-500 to-slate-300 dark:from-slate-300 dark:to-slate-500"
+                  className="absolute -bottom-4 left-4 right-4 h-2 rounded-full bg-gradient-to-r from-slate-500 to-slate-300 dark:from-slate-300 dark:to-slate-500"
                 />
               )}
             </motion.button>
