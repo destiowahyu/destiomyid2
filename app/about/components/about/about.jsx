@@ -18,7 +18,7 @@ function Title() {
 		<div className="mt-10 flex flex-col justify-start items-center w-full pl-10 md:pl-32">
 			<div className="flex justify-center items-center flex-col my-5 self-start ">
 				<Hr variant="long"></Hr>
-				<h1 className="text-3xl font-bold mt-3 text-black dark:text-white">{t.about.title}</h1>
+                <h1 className="text-3xl font-bold mt-3 text-black dark:text-white wipe-text" data-wipe-on-lang data-i18n-en={aboutTranslations.en.about.title} data-i18n-id={aboutTranslations.id.about.title}>{t.about.title}</h1>
 			</div>
 		</div>
 	);
@@ -130,7 +130,7 @@ export default function About() {
 					<h2 className="text-2xl font-bold tracking-wider mb-3 text-black dark:text-white">
 						{t.about.name}
 					</h2>
-					<p className="text-gray-600 dark:text-gray-300 text-justify title text-lg">
+					<p className="text-gray-600 dark:text-gray-300 text-justify title text-lg" data-fade-on-lang>
 						{t.about.description}
 					</p>
 					<MusicPlayer />

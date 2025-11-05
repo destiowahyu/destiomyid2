@@ -314,7 +314,7 @@ export default function Page() {
               {activeCategory === cat.id && (
                 <motion.span
                   layoutId="cat-underline"
-                  className="absolute -bottom-4 left-4 right-4 h-2 rounded-full bg-gradient-to-r from-slate-500 to-slate-300 dark:from-slate-300 dark:to-slate-500"
+                  className="absolute -bottom-4 left-4 right-4 h-1 rounded-full bg-gradient-to-r from-slate-500 to-slate-300 dark:from-slate-300 dark:to-slate-500"
                 />
               )}
             </motion.button>

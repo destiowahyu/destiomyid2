@@ -84,11 +84,11 @@ export default function Page() {
 						</motion.div>
 					</div>
 					<div className="z-10 w-full absolute md:w-auto md:left-[10%] top-[65%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 pt-4 md:pt-0">
-						<h1 className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold">
+                    <h1 className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold wipe-text" data-wipe-on-lang data-i18n-en={aboutTranslations.en.hero.title} data-i18n-id={aboutTranslations.id.hero.title}>
 							{t.hero.title}
 						</h1>
 						<Hr />
-						<p className="title text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-5 ">
+					<p className="title text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-5 " data-fade-on-lang>
 							{t.hero.description}{" "}
 							<span className="bg-gray-300 dark:bg-gray-700 bg-opacity-90 dark:bg-opacity-50 px-2 py-1 rounded text-black dark:text-white">
 								{" "}

@@ -340,7 +340,8 @@ const MyPage = () => {
                   </motion.h3>
 
                   <motion.p
-                    className="title text-md  2xl:text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem]"
+                    className="title text-md  2xl:text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] wipe-text"
+                    data-wipe-on-lang
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -432,7 +433,8 @@ const MyPage = () => {
                 </div>
                 <div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 py-5">
                     <motion.h1
-                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold"
+                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold wipe-text"
+                    data-wipe-on-lang
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -446,6 +448,7 @@ const MyPage = () => {
                   <Hr />
                   <motion.p
                     className="title  text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-5"
+                    data-fade-on-lang
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -507,7 +510,10 @@ const MyPage = () => {
                 </div>
                 <div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[60%] md:top-1/3 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 py-5">
                   <motion.h1
-                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold"
+                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-5xl md:text-8xl font-bold wipe-text"
+                    data-wipe-on-lang
+                    data-i18n-en={translations.en.projects.title}
+                    data-i18n-id={translations.id.projects.title}
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -520,6 +526,7 @@ const MyPage = () => {
                   <Hr />
                   <motion.p
                     className="title  text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-5"
+                    data-fade-on-lang
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -576,7 +583,10 @@ const MyPage = () => {
                 </div>
                 <div className="z-10 w-full md:w-auto md:left-[10%] md:top-1/3 col-span-2 flex flex-col justify-center items-center md:items-start text-center md:text-start px-10 py-5">
                   <motion.h1
-                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-4xl md:text-8xl font-bold"
+                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 md:px-0 text-black dark:text-white text-4xl md:text-8xl font-bold wipe-text"
+                    data-wipe-on-lang
+                    data-i18n-en={translations.en.education.title}
+                    data-i18n-id={translations.id.education.title}
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -589,6 +599,7 @@ const MyPage = () => {
                   <Hr />
                   <motion.p
                     className="title text-base md:text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-6 md:mb-8"
+                    data-fade-on-lang
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -697,7 +708,10 @@ const MyPage = () => {
                 </div>
                 <div className="z-10 w-full absolute md:w-auto  md:left-[10%] top-[48%] md:top-1/4 col-span-2 flex flex-col justify-center items-start md:items-start text-start px-10 py-5 md:pb-48">
                   <motion.h1
-                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 py-2 md:px-0 md:py-0 text-black dark:text-white text-5xl md:text-8xl font-bold mb-2"
+                    className="bg-[rgb(230,230,230)] dark:bg-[rgb(17,24,39)] px-3 py-2 md:px-0 md:py-0 text-black dark:text-white text-5xl md:text-8xl font-bold mb-2 wipe-text"
+                    data-wipe-on-lang
+                    data-i18n-en={translations.en.contact.title}
+                    data-i18n-id={translations.id.contact.title}
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
@@ -710,6 +724,7 @@ const MyPage = () => {
                   <Hr />
                   <motion.p
                     className="title text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] md:mb-5"
+                    data-fade-on-lang
                     initial={{ x: -100, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{

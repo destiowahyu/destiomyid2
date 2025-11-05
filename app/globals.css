@@ -182,6 +182,110 @@
   }
 }
 
+/* LANGUAGE WIPE EFFECT */
+.wipe-text {
+  position: relative;
+  display: inline-block;
+}
+
+.wipe-text.wipe-run::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -0.2em; /* extend above to cover ascenders */
+  height: calc(100% + 0.4em); /* extend below to cover descenders */
+  width: 0%;
+  z-index: 1;
+  background: var(--wipe-color);
+  animation: wipe-left-right 0.75s ease forwards;
+  border-radius: 3px;
+}
+
+
+.dark {
+  --wipe-color: #ffffff;
+}
+.light {
+  --wipe-color: #9ca3af; 
+}
+
+@keyframes wipe-left-right {
+  0% {
+    width: 0%;
+    transform: translateX(0);
+  }
+  50% {
+    width: 100%;
+    transform: translateX(0);
+  }
+  100% {
+    width: 0%;
+    transform: translateX(100%);
+  }
+}
+
+/* New two-step wipe for natural language change */
+.wipe-text.wipe-cover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -0.2em;
+  height: calc(100% + 0.4em);
+  width: 0%;
+  z-index: 1;
+  background: var(--wipe-color);
+  border-radius: 3px;
+  animation: wipe-cover 0.4s ease forwards;
+}
+
+.wipe-text.wipe-reveal::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -0.2em;
+  height: calc(100% + 0.4em);
+  width: 100%;
+  z-index: 1;
+  background: var(--wipe-color);
+  border-radius: 3px;
+  animation: wipe-reveal 0.45s ease forwards;
+}
+
+@keyframes wipe-cover {
+  0% { width: 0px; transform: translateX(0); }
+  100% { width: var(--wipe-target-px, 100%); transform: translateX(0); }
+}
+
+@keyframes wipe-reveal {
+  0% { width: var(--wipe-target-px, 100%); transform: translateX(0); }
+  100% { width: 0px; transform: translateX(100%); }
+}
+
+/* Fade/blur for smaller texts on language change */
+.lang-fade-out {
+  animation: text-fade-out 0.28s ease forwards;
+  will-change: opacity, filter;
+}
+.lang-fade-in {
+  animation: text-fade-in 0.32s ease forwards;
+  will-change: opacity, filter;
+}
+
+/* Persistent dim state to avoid flicker between phases */
+.lang-dim {
+  opacity: 0.15;
+  filter: blur(4px);
+}
+
+@keyframes text-fade-out {
+  0% { opacity: 1; filter: blur(0px); }
+  100% { opacity: 0.15; filter: blur(4px); }
+}
+@keyframes text-fade-in {
+  0% { opacity: 0.15; filter: blur(4px); }
+  100% { opacity: 1; filter: blur(0px); }
+}
+
 /* THEME TOGGLE SPECIFIC STYLES */
 /* Saat nav tertutup, ikuti tema normal */
 .light .theme-toggle-btn:not(.nav-open) .theme-toggle-icon {
