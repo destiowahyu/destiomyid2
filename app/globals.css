@@ -441,3 +441,114 @@ a[title]:hover:after {
   background: #333333;
   color: #fff;
 }
+
+/* Project Card Button Styles - Completely isolated from theme provider */
+/* Using data attribute and CSS variable to prevent theme override */
+/* Warna abu-abu: #e5e5e5 (tidak putih banget) */
+
+/* CSS Variable untuk warna button text - tidak akan diubah theme provider */
+:root {
+  --project-card-btn-text: #e5e5e5;
+}
+
+/* Override untuk semua elemen di dalam project card buttons */
+/* Menggunakan selector dengan data attribute untuk isolasi maksimal */
+[data-btn-text-color] {
+  color: #e5e5e5 !important;
+}
+
+[data-btn-text-color] *,
+[data-btn-text-color] span,
+[data-btn-text-color] .project-card-btn-text,
+[data-btn-text-color] .project-card-btn-label,
+[data-btn-text-color] .project-card-btn-icon,
+[data-btn-text-color] .project-card-btn-icon svg,
+[data-btn-text-color] .project-card-btn-icon path {
+  color: #e5e5e5 !important;
+  fill: #e5e5e5 !important;
+}
+
+/* Override untuk semua kemungkinan selector dari theme provider */
+.light [data-btn-text-color],
+.dark [data-btn-text-color],
+body.light [data-btn-text-color],
+body.dark [data-btn-text-color],
+html.light [data-btn-text-color],
+html.dark [data-btn-text-color] {
+  color: #e5e5e5 !important;
+}
+
+.light [data-btn-text-color] *,
+.light [data-btn-text-color] span,
+.light [data-btn-text-color] .project-card-btn-text,
+.light [data-btn-text-color] .project-card-btn-label,
+.light [data-btn-text-color] .project-card-btn-icon,
+.dark [data-btn-text-color] *,
+.dark [data-btn-text-color] span,
+.dark [data-btn-text-color] .project-card-btn-text,
+.dark [data-btn-text-color] .project-card-btn-label,
+.dark [data-btn-text-color] .project-card-btn-icon,
+body.light [data-btn-text-color] *,
+body.light [data-btn-text-color] span,
+body.dark [data-btn-text-color] *,
+body.dark [data-btn-text-color] span {
+  color: #e5e5e5 !important;
+  fill: #e5e5e5 !important;
+}
+
+/* Icon khusus */
+[data-btn-text-color] .project-card-btn-icon svg,
+[data-btn-text-color] .project-card-btn-icon path,
+.light [data-btn-text-color] .project-card-btn-icon svg,
+.light [data-btn-text-color] .project-card-btn-icon path,
+.dark [data-btn-text-color] .project-card-btn-icon svg,
+.dark [data-btn-text-color] .project-card-btn-icon path {
+  color: #e5e5e5 !important;
+  fill: #e5e5e5 !important;
+}
+
+/* Hover states - tetap abu-abu */
+[data-btn-text-color]:hover,
+[data-btn-text-color]:hover *,
+[data-btn-text-color]:hover span,
+[data-btn-text-color]:hover .project-card-btn-text,
+[data-btn-text-color]:hover .project-card-btn-label,
+[data-btn-text-color]:hover .project-card-btn-icon,
+[data-btn-text-color]:hover .project-card-btn-icon svg,
+[data-btn-text-color]:hover .project-card-btn-icon path {
+  color: #e5e5e5 !important;
+  fill: #e5e5e5 !important;
+}
+
+/* Fallback dengan class selector juga */
+.project-card-btn-detail,
+.project-card-btn-preview,
+.project-card-btn-detail *,
+.project-card-btn-preview *,
+.project-card-btn-text,
+.project-card-btn-label,
+.project-card-btn-icon,
+.project-card-btn-icon svg,
+.project-card-btn-icon path {
+  color: #e5e5e5 !important;
+  fill: #e5e5e5 !important;
+}
+
+/* Override untuk light dan dark mode */
+.light .project-card-btn-detail,
+.light .project-card-btn-preview,
+.light .project-card-btn-detail *,
+.light .project-card-btn-preview *,
+.light .project-card-btn-text,
+.light .project-card-btn-label,
+.light .project-card-btn-icon,
+.dark .project-card-btn-detail,
+.dark .project-card-btn-preview,
+.dark .project-card-btn-detail *,
+.dark .project-card-btn-preview *,
+.dark .project-card-btn-text,
+.dark .project-card-btn-label,
+.dark .project-card-btn-icon {
+  color: #e5e5e5 !important;
+  fill: #e5e5e5 !important;
+}

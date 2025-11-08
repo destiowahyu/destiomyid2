@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
+import { useEffect, useRef } from "react";
 import BlurImage from "@/public/image/placeholder/blur.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faEye } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +11,112 @@ export default function ProjectCard({ project, index, activeCategory }) {
 	const handleButtonClick = (e) => {
 		e.stopPropagation();
 	};
+
+	// Ref untuk memastikan warna tetap abu-abu meskipun theme provider mengubah
+	const detailBtnRef = useRef(null);
+	const previewBtnRef = useRef(null);
+
+	// Fungsi untuk memaksa warna tetap abu-abu
+	const forceButtonColor = () => {
+		const buttonColor = '#e5e5e5';
+		if (detailBtnRef.current) {
+			detailBtnRef.current.style.color = buttonColor;
+			const allSpans = detailBtnRef.current.querySelectorAll('span');
+			const allIcons = detailBtnRef.current.querySelectorAll('svg');
+			allSpans.forEach(span => {
+				span.style.color = buttonColor;
+			});
+			allIcons.forEach(icon => {
+				icon.style.color = buttonColor;
+				icon.style.fill = buttonColor;
+			});
+		}
+		if (previewBtnRef.current) {
+			previewBtnRef.current.style.color = buttonColor;
+			const allSpans = previewBtnRef.current.querySelectorAll('span');
+			const allIcons = previewBtnRef.current.querySelectorAll('svg');
+			allSpans.forEach(span => {
+				span.style.color = buttonColor;
+			});
+			allIcons.forEach(icon => {
+				icon.style.color = buttonColor;
+				icon.style.fill = buttonColor;
+			});
+		}
+	};
+
+	useEffect(() => {
+		// Memaksa warna saat component mount (dengan delay untuk memastikan DOM sudah ready)
+		const initTimeout = setTimeout(() => {
+			forceButtonColor();
+		}, 50);
+
+		// Observer untuk memantau perubahan DOM (jika theme provider mengubah style)
+		const observer = new MutationObserver(() => {
+			forceButtonColor();
+		});
+
+		// Observe perubahan attribute style pada button dengan delay
+		const setupObserver = () => {
+			if (detailBtnRef.current) {
+				observer.observe(detailBtnRef.current, {
+					attributes: true,
+					attributeFilter: ['style', 'class'],
+					subtree: true,
+					childList: true
+				});
+			}
+			if (previewBtnRef.current) {
+				observer.observe(previewBtnRef.current, {
+					attributes: true,
+					attributeFilter: ['style', 'class'],
+					subtree: true,
+					childList: true
+				});
+			}
+		};
+
+		setTimeout(setupObserver, 100);
+
+		// Interval check sebagai backup - memaksa warna setiap 500ms
+		const colorCheckInterval = setInterval(() => {
+			forceButtonColor();
+		}, 500);
+
+		// Listen untuk perubahan theme (jika menggunakan event)
+		const handleThemeChange = () => {
+			setTimeout(forceButtonColor, 50);
+		};
+		window.addEventListener('storage', handleThemeChange);
+		document.addEventListener('themechange', handleThemeChange);
+
+		// Juga listen untuk perubahan class pada body/html (biasanya theme provider mengubah ini)
+		const bodyObserver = new MutationObserver(() => {
+			setTimeout(forceButtonColor, 50);
+		});
+		if (document.body) {
+			bodyObserver.observe(document.body, {
+				attributes: true,
+				attributeFilter: ['class']
+			});
+		}
+		if (document.documentElement) {
+			bodyObserver.observe(document.documentElement, {
+				attributes: true,
+				attributeFilter: ['class']
+			});
+		}
+
+		// Cleanup
+		return () => {
+			clearTimeout(initTimeout);
+			clearInterval(colorCheckInterval);
+			observer.disconnect();
+			bodyObserver.disconnect();
+			window.removeEventListener('storage', handleThemeChange);
+			document.removeEventListener('themechange', handleThemeChange);
+		};
+	}, [project.preview]); // Re-run jika project.preview berubah
 
 	return (
 		<>
@@ -38,11 +145,11 @@ export default function ProjectCard({ project, index, activeCategory }) {
 						layout="fill"
 						objectFit="cover"
 						placeholder="blur"
-						className="bg-slate-950 opacity-100 group-hover/tes:opacity-10 transition-all ease duration-500"
+						className="bg-slate-950 opacity-100 group-hover/tes:opacity-5 transition-all ease duration-500"
 						blurDataURL={BlurImage.src}
 					/>
 					{/* Overlay - Darkens on hover */}
-					<div className="absolute inset-0 bg-black/0 group-hover/tes:bg-black/60 transition-all ease duration-500"></div>
+					<div className="absolute inset-0 bg-black/0 group-hover/tes:bg-black/40 transition-all ease duration-500"></div>
 					
 					{/* Top Left Badge */}
 					<div className="absolute top-2 left-2 md:top-3 md:left-3 px-3 py-1.5 md:px-4 md:py-2 bg-gray-400/80 dark:bg-gray-900/80 backdrop-blur-sm opacity-100 group-hover/tes:opacity-100 transition-opacity duration-500 z-20 rounded-lg">
@@ -89,9 +196,15 @@ export default function ProjectCard({ project, index, activeCategory }) {
 								className="relative"
 							>
 								<Link 
+									ref={detailBtnRef}
 									href={"projects/" + project.slug}
 									onClick={handleButtonClick}
-									className="group/btn relative px-4 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl font-semibold flex items-center gap-1.5 md:gap-2 overflow-hidden isolate text-sm md:text-base"
+									className="group/btn project-card-btn-detail relative px-4 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl font-semibold flex items-center gap-1.5 md:gap-2 overflow-hidden isolate text-sm md:text-base"
+									data-btn-text-color="#e5e5e5"
+									style={{ 
+										'--btn-text-color': '#e5e5e5',
+										color: '#e5e5e5'
+									}}
 								>
 									{/* Glassmorphism background with gradient border */}
 									<div className="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 dark:from-indigo-400/30 dark:via-purple-400/30 dark:to-pink-400/30 backdrop-blur-md border border-white/30 dark:border-white/20"></div>
@@ -117,9 +230,30 @@ export default function ProjectCard({ project, index, activeCategory }) {
 									/>
 									
 									{/* Content */}
-									<span className="relative z-10 text-white flex items-center gap-2">
-										<FontAwesomeIcon icon={faEye} className="text-sm" />
-										<span>Detail</span>
+									<span 
+										className="relative z-10 flex items-center gap-2 project-card-btn-text" 
+										style={{ 
+											color: '#e5e5e5',
+											'--btn-text-color': '#e5e5e5'
+										}}
+									>
+										<FontAwesomeIcon 
+											icon={faEye} 
+											className="text-sm project-card-btn-icon" 
+											style={{ 
+												color: '#e5e5e5',
+												fill: '#e5e5e5'
+											}}
+										/>
+										<span 
+											className="project-card-btn-label" 
+											style={{ 
+												color: '#e5e5e5',
+												'--btn-text-color': '#e5e5e5'
+											}}
+										>
+											Detail
+										</span>
 									</span>
 								</Link>
 							</motion.div>
@@ -131,11 +265,17 @@ export default function ProjectCard({ project, index, activeCategory }) {
 									className="relative"
 								>
 									<a
+										ref={previewBtnRef}
 										href={project.preview}
 										target="_blank"
 										rel="noopener noreferrer"
 										onClick={handleButtonClick}
-										className="group/btn relative px-4 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl font-semibold flex items-center gap-1.5 md:gap-2 overflow-hidden isolate text-sm md:text-base"
+										className="group/btn project-card-btn-preview relative px-4 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl font-semibold flex items-center gap-1.5 md:gap-2 overflow-hidden isolate text-sm md:text-base"
+										data-btn-text-color="#e5e5e5"
+										style={{ 
+											'--btn-text-color': '#e5e5e5',
+											color: '#e5e5e5'
+										}}
 									>
 										{/* Glassmorphism background with gradient border */}
 										<div className="absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-indigo-500/20 dark:from-cyan-400/30 dark:via-blue-400/30 dark:to-indigo-400/30 backdrop-blur-md border border-white/30 dark:border-white/20"></div>
@@ -161,9 +301,30 @@ export default function ProjectCard({ project, index, activeCategory }) {
 										/>
 										
 										{/* Content */}
-										<span className="relative z-10 text-white flex items-center gap-2">
-											<span>Preview</span>
-											<FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-sm" />
+										<span 
+											className="relative z-10 flex items-center gap-2 project-card-btn-text" 
+										style={{ 
+											color: '#e5e5e5',
+											'--btn-text-color': '#e5e5e5'
+										}}
+									>
+											<span 
+												className="project-card-btn-label" 
+												style={{ 
+													color: '#e5e5e5',
+													'--btn-text-color': '#e5e5e5'
+												}}
+											>
+												Preview
+											</span>
+											<FontAwesomeIcon 
+												icon={faArrowUpRightFromSquare} 
+												className="text-sm project-card-btn-icon" 
+												style={{ 
+													color: '#e5e5e5',
+													fill: '#e5e5e5'
+												}}
+											/>
 										</span>
 									</a>
 								</motion.div>
