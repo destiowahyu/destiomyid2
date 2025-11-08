@@ -10,13 +10,17 @@
       "right": "Web Development",
       "preview": "https://laundry.destio.my.id",
       "code": "",
-      "thumbnail": "/image/projects/web/intervyou/intervyou-thumbnail.jpg",
+      "thumbnail": "/image/projects/web/zeea-laundry/thumbnail.jpg",
       "images": [
-        "/image/projects/web/intervyou/intervyou-1.png",
-        "/image/projects/web/intervyou/intervyou-2.png",
-        "/image/projects/web/intervyou/intervyou-3.png",
-        "/image/projects/web/intervyou/intervyou-4.png",
-        "/image/projects/web/intervyou/intervyou-5.png"
+        "/image/projects/web/zeea-laundry/1.png",
+        "/image/projects/web/zeea-laundry/2.png",
+        "/image/projects/web/zeea-laundry/3.png",
+        "/image/projects/web/zeea-laundry/4.png",
+        "/image/projects/web/zeea-laundry/5.png",
+        "/image/projects/web/zeea-laundry/6.png",
+        "/image/projects/web/zeea-laundry/7.png",
+        "/image/projects/web/zeea-laundry/8.png"
+        
       ],
       "tech": [
         "PHP",
@@ -26,7 +30,7 @@
         "MySQL",
         "JavaScript"
       ], 
-      "slug": "intervyou",
+      "slug": "zeea-laundry",
       "category": [1]
     },
     {

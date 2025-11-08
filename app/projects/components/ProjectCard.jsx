@@ -38,7 +38,7 @@ export default function ProjectCard({ project, index, activeCategory }) {
 						layout="fill"
 						objectFit="cover"
 						placeholder="blur"
-						className="bg-slate-950 opacity-100 group-hover/tes:opacity-20 transition-all ease duration-500"
+						className="bg-slate-950 opacity-100 group-hover/tes:opacity-10 transition-all ease duration-500"
 						blurDataURL={BlurImage.src}
 					/>
 					{/* Overlay - Darkens on hover */}
@@ -54,19 +54,19 @@ export default function ProjectCard({ project, index, activeCategory }) {
 					</div>
 					
 					{/* Content - Hidden by default, shown on hover */}
-					<div className="transition-all ease duration-500 opacity-0 content text-center group-hover/tes:opacity-100 z-30 relative w-full h-full flex flex-col justify-between items-center p-4 md:p-6 overflow-hidden">
-						{/* Top section - Title and Description */}
-						<div className="flex flex-col items-center justify-start w-full flex-shrink-0 pt-6 md:pt-4">
-							<h1 className="text-lg md:text-xl lg:text-2xl font-bold mb-2 text-white drop-shadow-lg line-clamp-2 px-2 max-w-full break-words">
+					<div className="transition-all ease duration-500 opacity-0 content text-center group-hover/tes:opacity-100 z-30 absolute inset-0 flex flex-col justify-center items-center p-4 md:p-6">
+						{/* Title and Description Container */}
+						<div className="flex flex-col items-center justify-center space-y-2 md:space-y-3 mb-3 md:mb-4">
+							<h1 className="text-lg md:text-xl lg:text-2xl font-bold text-white drop-shadow-lg line-clamp-2 px-2 max-w-full break-words">
 								{project.title}
 							</h1>
-							<p className="text-white/90 drop-shadow-md text-xs md:text-sm line-clamp-2 md:line-clamp-3 px-2 mb-2 md:mb-3 max-w-full break-words">
+							<p className="text-white/90 drop-shadow-md text-xs md:text-sm line-clamp-2 md:line-clamp-3 px-2 max-w-full break-words">
 								{project.desc[0]}
 							</p>
 						</div>
 						
-						{/* Middle section - Tech Tags */}
-						<div className="flex justify-center items-center flex-row flex-wrap gap-1.5 md:gap-2 max-w-full px-2 flex-shrink-0 my-1 md:my-2 max-h-16 md:max-h-20 overflow-hidden">
+						{/* Tech Tags Container */}
+						<div className="flex justify-center items-center flex-wrap gap-1.5 md:gap-2 max-w-full px-2 mb-4 md:mb-6">
 							{project.tech.slice(0, 6).map((t, techIndex) => (
 								<span
 									key={techIndex}
@@ -81,8 +81,8 @@ export default function ProjectCard({ project, index, activeCategory }) {
 							)}
 						</div>
 						
-						{/* Bottom section - Action Buttons */}
-						<div className="flex justify-center items-center gap-2 md:gap-3 mt-1 md:mt-2 flex-shrink-0 flex-wrap pb-1">
+						{/* Action Buttons Container - Centered */}
+						<div className="flex justify-center items-center gap-3 md:gap-4">
 							<motion.div
 								whileHover={{ scale: 1.05, y: -2 }}
 								whileTap={{ scale: 0.98 }}
@@ -117,7 +117,7 @@ export default function ProjectCard({ project, index, activeCategory }) {
 									/>
 									
 									{/* Content */}
-									<span className="relative z-10 text-white dark:text-gray-100 flex items-center gap-2">
+									<span className="relative z-10 text-white flex items-center gap-2">
 										<FontAwesomeIcon icon={faEye} className="text-sm" />
 										<span>Detail</span>
 									</span>
@@ -161,7 +161,7 @@ export default function ProjectCard({ project, index, activeCategory }) {
 										/>
 										
 										{/* Content */}
-										<span className="relative z-10 text-white dark:text-gray-100 flex items-center gap-2">
+										<span className="relative z-10 text-white flex items-center gap-2">
 											<span>Preview</span>
 											<FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-sm" />
 										</span>
