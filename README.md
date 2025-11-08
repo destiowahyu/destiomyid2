@@ -18,6 +18,8 @@ This is my debut project utilizing Next.js, a portfolio website featuring four p
 * **Dynamic Data:** Read the project data from JSON file instead of directly implemented the data.
 * **Intelliticks chat widget:** Chat with owner of the web realtime.
 * **Change Mode:** Darkmode or Lightmode.
+* **Multi Language:** English and Bahasa.
+* **More Animation** More animation for better experience
 
 ## Installation
 
@@ -114,18 +116,3 @@ This project is adapted and modified from:
 
 - [Alvalens's Portfolio Repository](https://github.com/Alvalens/Alvalens-porto-2-nextJs)
 
-Live Demo :
-
-- https://www.alvalens.my.id/
-
-
-## Reference (inspiration)
-
-- https://www.frans.my.id/
-- https://kuon-yagi-portfolio.netlify.app/
-
-## License
-
-This project is licensed under the GPL-3.0 License see the [LICENSE](LICENSE) file for details.
-
-Copyright (C) 2025 Alvalen Shafelbilyunazra
