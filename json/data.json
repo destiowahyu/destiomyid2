@@ -2,6 +2,35 @@
   "Projects": [
     {
       "show": true,
+      "title": "Zeea Laundry Web App",
+      "desc": [
+        "Zeea Laundry is a web-based system built with PHP and MySQL to manage orders, calculate prices automatically, track statuses, and send WhatsApp notifications when laundry is completed."
+      ],
+      "left": "2025",
+      "right": "Web Development",
+      "preview": "https://laundry.destio.my.id",
+      "code": "",
+      "thumbnail": "/image/projects/web/intervyou/intervyou-thumbnail.jpg",
+      "images": [
+        "/image/projects/web/intervyou/intervyou-1.png",
+        "/image/projects/web/intervyou/intervyou-2.png",
+        "/image/projects/web/intervyou/intervyou-3.png",
+        "/image/projects/web/intervyou/intervyou-4.png",
+        "/image/projects/web/intervyou/intervyou-5.png"
+      ],
+      "tech": [
+        "PHP",
+        "HTML",
+        "Bootstrap",
+        "TailwindCSS",
+        "MySQL",
+        "JavaScript"
+      ], 
+      "slug": "intervyou",
+      "category": [1]
+    },
+    {
+      "show": true,
       "title": "Invervyou AI",
       "desc": [
         "AI Based interview Preparation Website created to help fresh graduates and job seekers prepare for interviews and optimize their CV through AI-powered features. The website is built using Next.js, TypeScript, Tailwind CSS, Shadcn UI, Prisma, and MySQL (TiDB).",
@@ -31,7 +60,7 @@
         "GCP"
       ], 
       "slug": "intervyou",
-      "category": [1, 2]
+      "category": [1]
     },
     {
       "show": false,
@@ -88,7 +117,7 @@
         "DataTables"
       ], 
       "slug": "mind-mirror",
-      "category": [1, 2]
+      "category": [1]
     },
     {
       "show": true,
@@ -114,7 +143,7 @@
         "CSS"
       ], 
       "slug": "javanese-translation",
-      "category": [2]
+      "category": [1]
     },
     {
       "show": true,
@@ -143,7 +172,7 @@
         "CSS"
       ], 
       "slug": "heart-attack",
-      "category": [2]
+      "category": [1]
     },
     {
       "show": true,
@@ -169,7 +198,7 @@
         "Gemini API"
       ], 
       "slug": "trivia",
-      "category": [1, 2]
+      "category": [1]
     },
     {
       "show": true,

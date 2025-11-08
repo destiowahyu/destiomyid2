@@ -16,7 +16,7 @@ import ProjectCard from "./components/ProjectCard"
 import Projects from "@/json/data.json"
 import FixedButon from "@/components/FixedButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronLeft, faGlobe, faVideo, faLayerGroup } from "@fortawesome/free-solid-svg-icons"
+import { faChevronLeft, faGlobe, faVideo, faLayerGroup, faMobileAlt, faEllipsisH } from "@fortawesome/free-solid-svg-icons"
 
 // Re-defining AnimatedImage here for clarity, but ideally it would be a shared component
 function AnimatedImage({ src, alt, width, height, className }) {
@@ -74,7 +74,9 @@ function AnimatedImage({ src, alt, width, height, className }) {
 const categories = [
   { id: 1, label: "Web Development", icon: faGlobe },
   { id: 2, label: "Video Editing", icon: faVideo },
-  { id: 9, label: "Other", icon: faLayerGroup },
+  { id: 3, label: "Mobile Apps", icon: faMobileAlt },
+  { id: 9, label: "Other", icon: faEllipsisH },
+  { id: 10, label: "All", icon: faLayerGroup },
 ]
 
 export default function Page() {
@@ -274,49 +276,193 @@ export default function Page() {
         <motion.div
           initial={{
             opacity: 0,
-            x: 200,
+            y: 50,
           }}
           whileInView={{
             opacity: 1,
-            x: 0,
+            y: 0,
           }}
           transition={{
             type: "spring",
+            stiffness: 100,
+            damping: 15,
           }}
-          className="flex flex-row justify-center items-start flex-wrap gap-3 md:gap-5 mt-5 mb-10 md:mb-14 "
+          className="flex flex-row justify-center items-center flex-wrap gap-4 md:gap-6 mt-8 mb-12 md:mb-16 px-4 md:px-10"
         >
-          {categories.map((cat) => (
+          {categories.map((cat, index) => (
             <motion.button
               key={cat.id}
-              whileHover={{ y: -4, scale: 1.02 }}
-              whileTap={{ scale: 0.95 }}
-              animate={activeCategory === cat.id ? { scale: 1.03 } : { scale: 1 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20, mass: 0.7 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, type: "spring", stiffness: 150 }}
+              whileHover={{ 
+                y: -8, 
+                scale: 1.05,
+                transition: { type: "spring", stiffness: 400, damping: 17 }
+              }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setActiveCategory(cat.id)}
-              className={`relative inline-flex items-center gap-3 px-5 md:px-7 py-3 md:py-4 rounded-2xl border transition-all duration-300 cursor-pointer select-none shadow-md ${
+              className={`group relative inline-flex items-center justify-center gap-3 px-6 md:px-8 py-4 md:py-5 rounded-2xl md:rounded-3xl cursor-pointer select-none overflow-hidden transition-all duration-500 ${
                 activeCategory === cat.id
-                  ? "bg-white text-black border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-700 ring-2 ring-slate-400/50 shadow-lg"
-                  : "bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 hover:dark:bg-gray-600"
+                  ? "shadow-2xl shadow-slate-500/30 dark:shadow-slate-900/50 bg-gradient-to-br from-indigo-50/80 via-purple-50/80 to-pink-50/80 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20"
+                  : "shadow-lg shadow-gray-400/20 dark:shadow-black/30 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/80 dark:to-gray-700/80"
               }`}
             >
-              <motion.span
-                className="inline-flex"
+              {/* Animated background gradient */}
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: activeCategory === cat.id
+                    ? "linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 50%, rgba(236, 72, 153, 0.2) 100%)"
+                    : "linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(236, 72, 153, 0.1) 100%)",
+                }}
                 animate={
                   activeCategory === cat.id
-                    ? { y: [0, -6, 0, -3, 0], rotate: [0, -10, 10, -5, 0], scale: [1, 1.08, 1] }
-                    : { y: 0, rotate: 0, scale: 1 }
+                    ? {
+                        background: [
+                          "linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 50%, rgba(236, 72, 153, 0.2) 100%)",
+                          "linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.2) 50%, rgba(99, 102, 241, 0.2) 100%)",
+                          "linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 50%, rgba(236, 72, 153, 0.2) 100%)",
+                        ],
+                      }
+                    : {}
                 }
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+
+              {/* Glassmorphism border effect */}
+              <div
+                className={`absolute inset-0 rounded-2xl md:rounded-3xl transition-all duration-500 pointer-events-none ${
+                  activeCategory === cat.id
+                    ? "border-2 border-indigo-300/60 dark:border-purple-400/40 backdrop-blur-md bg-white/20 dark:bg-white/5 ring-2 ring-purple-200/50 dark:ring-purple-500/20"
+                    : "border-2 border-gray-300/60 dark:border-gray-600/60 backdrop-blur-sm bg-white/10 dark:bg-gray-800/20"
+                }`}
+              />
+
+              {/* Shine effect on hover */}
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                style={{
+                  background: "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%)",
+                  transform: "translateX(-100%)",
+                }}
+                animate={{
+                  transform: activeCategory === cat.id 
+                    ? ["translateX(-100%)", "translateX(200%)"]
+                    : "translateX(-100%)",
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatDelay: 2,
+                  ease: "easeInOut",
+                }}
+              />
+
+              {/* Icon container with glow effect */}
+              <motion.div
+                className={`relative z-10 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl transition-all duration-300 ${
+                  activeCategory === cat.id
+                    ? "bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-purple-500/50 dark:shadow-purple-400/60"
+                    : "bg-gradient-to-br from-gray-400 to-gray-600 dark:from-gray-600 dark:to-gray-800 group-hover:from-indigo-400 group-hover:to-purple-400 dark:group-hover:from-indigo-500 dark:group-hover:to-purple-500 group-hover:shadow-lg group-hover:shadow-indigo-500/30 dark:group-hover:shadow-purple-500/40"
+                }`}
+                animate={
+                  activeCategory === cat.id
+                    ? {
+                        rotate: [0, 5, -5, 5, 0],
+                        scale: [1, 1.1, 1],
+                      }
+                    : {}
+                }
+                transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <FontAwesomeIcon icon={cat.icon} className="text-lg md:text-xl text-gray-700 dark:text-gray-200" />
-              </motion.span>
-              <span className="font-semibold tracking-wide text-base md:text-lg">{cat.label}</span>
-              {activeCategory === cat.id && (
                 <motion.span
-                  layoutId="cat-underline"
-                  className="absolute -bottom-4 left-4 right-4 h-1 rounded-full bg-gradient-to-r from-slate-500 to-slate-300 dark:from-slate-300 dark:to-slate-500"
-                />
+                  animate={
+                    activeCategory === cat.id
+                      ? {
+                          y: [0, -4, 0],
+                          rotate: [0, 10, -10, 0],
+                        }
+                      : {}
+                  }
+                  transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 1 }}
+                >
+                  <FontAwesomeIcon 
+                    icon={cat.icon} 
+                    className={`text-lg md:text-xl transition-colors duration-300 ${
+                      activeCategory === cat.id
+                        ? "text-white"
+                        : "text-gray-700 dark:text-gray-200 group-hover:text-white"
+                    }`} 
+                  />
+                </motion.span>
+
+                {/* Pulse effect for active category */}
+                {activeCategory === cat.id && (
+                  <motion.div
+                    className="absolute inset-0 rounded-xl bg-white/30"
+                    animate={{
+                      scale: [1, 1.5, 1.5],
+                      opacity: [0.5, 0, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeOut",
+                    }}
+                  />
+                )}
+              </motion.div>
+
+              {/* Label with gradient text for active state */}
+              <span
+                className={`relative z-10 font-bold tracking-wide text-base md:text-lg transition-all duration-300 ${
+                  activeCategory === cat.id
+                    ? "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
+                    : "text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white"
+                }`}
+              >
+                {cat.label}
+              </span>
+
+              {/* Active indicator - animated dot */}
+              {activeCategory === cat.id && (
+                <>
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="absolute -top-1 -right-1 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 rounded-full bg-white/50"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [1, 0, 1],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </motion.div>
+
+                  {/* Bottom glow line */}
+                  <motion.div
+                    layoutId="bottomGlow"
+                    className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-1 rounded-full bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm"
+                    initial={{ opacity: 0, scaleX: 0 }}
+                    animate={{ opacity: 1, scaleX: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  />
+                </>
               )}
+
+              {/* Decorative corner accents */}
+              <div className="absolute top-2 left-2 w-2 h-2 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
           ))}
         </motion.div>
