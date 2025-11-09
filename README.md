@@ -1,7 +1,8 @@
 # Screenshoot
 
-<img src="./public/web.png" alt="Website Screenshot 1" width="800">
-<img src="./public/web2.png" alt="Website Screenshot 2" width="800">
+<img src="./public/image/thumbnail/web1.png" alt="Website Screenshot 1" width="800">
+<img src="./public/image/thumbnail/web2.png" alt="Website Screenshot 2" width="800">
+<img src="./public/image/thumbnail/web3.png" alt="Website Screenshot 3" width="800">
 
 
 # Destio Portfolio
