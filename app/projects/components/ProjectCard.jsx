@@ -152,11 +152,11 @@ export default function ProjectCard({ project, index, activeCategory }) {
 					<div className="absolute inset-0 bg-black/0 group-hover/tes:bg-black/40 transition-all ease duration-500"></div>
 					
 					{/* Top Left Badge */}
-					<div className="absolute top-2 left-2 md:top-3 md:left-3 px-3 py-1.5 md:px-4 md:py-2 bg-gray-400/80 dark:bg-gray-900/80 backdrop-blur-sm opacity-100 group-hover/tes:opacity-100 transition-opacity duration-500 z-20 rounded-lg">
+					<div className="absolute top-2 left-2 md:top-3 md:left-3 px-3 py-1.5 md:px-4 md:py-2 bg-gray-300/90 dark:bg-gray-900/80 backdrop-blur-sm opacity-100 group-hover/tes:opacity-100 transition-opacity duration-500 z-20 rounded-lg">
 						<h4 className="text-white text-xs md:text-sm font-medium whitespace-nowrap">{project.left || project.year}</h4>
 					</div>
 					{/* Top Right Badge */}
-					<div className="absolute top-2 right-2 md:top-3 md:right-3 px-3 py-1.5 md:px-4 md:py-2 bg-gray-400/80 dark:bg-gray-900/80 backdrop-blur-sm opacity-100 group-hover/tes:opacity-100 transition-opacity duration-500 z-20 rounded-lg">
+					<div className="absolute top-2 right-2 md:top-3 md:right-3 px-3 py-1.5 md:px-4 md:py-2 bg-gray-300/90 dark:bg-gray-900/80 backdrop-blur-sm opacity-100 group-hover/tes:opacity-100 transition-opacity duration-500 z-20 rounded-lg">
 						<h4 className="text-white text-xs md:text-sm font-medium whitespace-nowrap">{project.right}</h4>
 					</div>
 					

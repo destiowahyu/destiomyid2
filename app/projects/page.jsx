@@ -5,10 +5,10 @@ import { motion } from "framer-motion"
 import Button from "@/components/Button"
 import Image from "next/legacy/image" // Changed to next/legacy/image
 
-// images
-import Intervyou1 from "@/public/image/projects/web/intervyou/intervyou-1.png"
-import Intervyou2 from "@/public/image/projects/web/intervyou/intervyou-2.png"
-import Intervyou3 from "@/public/image/projects/web/intervyou/intervyou-3.png"
+
+import Zeea1 from "@/public/image/projects/web/zeea-laundry/6.png"
+import Zeea2 from "@/public/image/projects/web/zeea-laundry/2.png"
+import Zeea3 from "@/public/image/projects/web/zeea-laundry/8.png"
 import ProjectAll from "@/public/image/projects.jpg"
 
 import Hr from "@/components/Hr"
@@ -152,8 +152,8 @@ export default function Page() {
                   className="w-full h-full shadow-lg"
                 >
                   <AnimatedImage
-                    src={Intervyou1}
-                    alt="Intervyou AI Screenshot 1"
+                    src={Zeea1}
+                    alt="Zeea Laundry Screenshot 1"
                     layout="fill"
                     objectFit="cover"
                     placeholder="blur"
@@ -177,8 +177,8 @@ export default function Page() {
                   className="w-full h-full shadow-lg "
                 >
                   <AnimatedImage
-                    src={Intervyou3}
-                    alt="Intervyou AI Screenshot 3"
+                    src={Zeea3}
+                    alt="Zeea Laundry Screenshot 3"
                     layout="fill"
                     objectFit="cover"
                     placeholder="blur"
@@ -204,8 +204,8 @@ export default function Page() {
                   className="w-full h-full shadow-lg"
                 >
                   <AnimatedImage
-                    src={Intervyou2}
-                    alt="Intervyou AI Screenshot 2"
+                    src={Zeea2}
+                    alt="Zeea Laundry Screenshot 2"
                     layout="fill"
                     objectFit="cover"
                     placeholder="blur"
@@ -229,7 +229,7 @@ export default function Page() {
               type: "spring",
             }}
           >
-            <h2 className="text-2xl font-bold tracking-wider mb-3">Intervyou AI</h2>
+            <h2 className="text-2xl font-bold tracking-wider mb-3">Zeea Laundry Web Apps</h2>
             <p className="text-gray-600 text-justify title text-lg">
               AI Based interview Preparation Website created to help fresh graduates and job seekers prepare for
               interviews and optimize their CV through AI-powered features. The website is built using Next.js,
