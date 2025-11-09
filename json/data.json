@@ -545,6 +545,28 @@
       ],
       "slug": "nu-ino-website",
       "category": [1]
+    },
+    {
+      "show": true,
+      "title": "Video Editing Project",
+      "desc": [
+        "A professional video editing project showcasing creative storytelling and advanced editing techniques."
+      ],
+      "left": "2025",
+      "right": "Video Editing",
+      "preview": "",
+      "code": "",
+      "video": "https://www.youtube.com/embed/RIfswNkYbRM",
+      "thumbnail": "/image/placeholder/blur.jpg",
+      "images": [],
+      "tech": [
+        "Adobe Premiere Pro",
+        "After Effects",
+        "Color Grading",
+        "Motion Graphics"
+      ],
+      "slug": "video-editing-project",
+      "category": [2]
     }
   ]
 }

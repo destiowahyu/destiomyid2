@@ -231,18 +231,19 @@ export default function Page() {
           >
             <h2 className="text-2xl font-bold tracking-wider mb-3">Zeea Laundry Web Apps</h2>
             <p className="text-gray-600 text-justify title text-lg">
-              AI Based interview Preparation Website created to help fresh graduates and job seekers prepare for
-              interviews and optimize their CV through AI-powered features. The website is built using Next.js,
-              TypeScript, Tailwind CSS, Shadcn UI, Prisma, and MySQL (TiDB). This website can comprehensively analyze
-              the user&apos;s interview performance by providing a analysis of the user&apos;s answer, gesture, and
-              material recommendation to improve the user&apos;s interview skills.
+            Zeea Laundry is a web-based laundry management application designed to simplify 
+            order processing and business operations for laundry owners. Built using PHP Native, MySQL, 
+            HTML, CSS, and JavaScript, this system helps manage customer data, track order status, 
+            calculate pricing automatically, and monitor income reports efficiently. The application also 
+            supports automatic WhatsApp notifications to inform customers when their laundry orders are 
+            completed, making business management faster and more effective.
             </p>{" "}
             <div className="mt-3">
               <Button variation="primary">
-                <Link href="projects/intervyou">More</Link>
+                <Link href="projects/zeea-laundry">More</Link>
               </Button>
               <Button variation="secondary">
-                <a href="https://www.intervyou.me" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.laundry.destio.my.id" target="_blank" rel="noopener noreferrer">
                   Preview
                 </a>
               </Button>
