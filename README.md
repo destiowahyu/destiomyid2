@@ -19,7 +19,7 @@ This is my debut project utilizing Next.js, a portfolio website featuring four p
 * **Dynamic Data:** Read the project data from JSON file instead of directly implemented the data.
 * **Intelliticks chat widget:** Chat with owner of the web realtime.
 * **Change Mode:** Darkmode or Lightmode.
-* **Multi Language:** English and Bahasa.
+* **Multi Language:** English and Bahasa Indonesia.
 * **More Animation** More animation for better experience
 
 ## Installation
