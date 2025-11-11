@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, use } from "react";
 import { motion } from "framer-motion";
-import jsonData from "@/json/data.json";
+import jsonData from "@/json/projects-data.json";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -128,14 +128,26 @@ function Page(props) {
 								{data.tech.join(", ")}
 							</p>
 						</div>
-						<div>
-							<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">
-								Year
-							</h2>
-							<p className="text-2xl font-normal text-neutral-900">
-								{data.year}
-							</p>
-						</div>
+									{data.right && (
+										<div>
+											<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">
+												Category
+											</h2>
+											<p className="text-2xl font-normal text-neutral-900">
+												{data.right}
+											</p>
+										</div>
+									)}
+									{data.left && (
+										<div>
+											<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">
+												Year
+											</h2>
+											<p className="text-2xl font-normal text-neutral-900">
+												{data.left}
+											</p>
+										</div>
+									)}
 						{data.preview && (
 							<div>
 								<h2 className="uppercase font-normal text-lg tracking-[8px] text-neutral-400">

@@ -1,16 +1,142 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import Image from "next/image";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare, faPlay, faGlobe, faMobileAlt, faVideo, faPalette } from "@fortawesome/free-solid-svg-icons";
 import FixedButon from "@/components/FixedButton";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import Projects from "@/json/data.json";
+import Projects from "@/json/projects-data.json";
 import Link from "next/link";
 
 export default function Page() {
 	const projects = Projects.Projects;
+	const [hoveredProjectIndex, setHoveredProjectIndex] = useState(null);
+	const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+	const [selectedVideo, setSelectedVideo] = useState(null);
+
+	// Mapping untuk kategori ID ke nama
+	const categoryMap = {
+		1: "Web Development",
+		2: "Video Editing",
+		3: "Mobile",
+		9: "Other",
+		// note: Featured (10) intentionally omitted / removed
+	};
+
+	// Filter hanya project yang memiliki left atau year (tahun) dan show = true
+	// ATAU project yang memiliki video
+	const filteredProjects = projects.filter((project) => ((project.left || project.year) && project.show !== false) || (project.video && project.show !== false));
+
+	const getCategoryName = (categoryArray) => {
+		if (!categoryArray || categoryArray.length === 0) return "-";
+		// Ambil kategori utama (yang pertama)
+		return categoryMap[categoryArray[0]] || "-";
+	};
+
+	// Map category id to a primary color class used for the left accent
+	const getCategoryColor = (catId) => {
+		const id = Number(catId);
+		switch (id) {
+			case 1:
+				return "bg-blue-500";
+			case 2:
+				return "bg-red-500";
+			case 3:
+				return "bg-green-500";
+			case 9:
+				return "bg-gray-500";
+			default:
+				return "bg-gray-400";
+		}
+	};
+
+	const categoryStyleMap = {
+		1: { border: 'border-blue-200', text: 'text-blue-600', icon: faGlobe },
+		2: { border: 'border-red-200', text: 'text-red-600', icon: faVideo },
+		3: { border: 'border-green-200', text: 'text-green-700', icon: faMobileAlt },
+		9: { border: 'border-gray-200', text: 'text-gray-700', icon: faGlobe },
+	};
+
+	// Render badge that displays the project's `right` text but styles according to primary category
+	const renderRightBadge = (project) => {
+		const primary = project?.category && project.category.length ? Number(project.category[0]) : null;
+		const style = categoryStyleMap[primary] || { border: 'border-gray-200', text: 'text-gray-700', icon: faGlobe };
+		// Use right field but remove 'Featured' if present
+		let label = project?.right || '-';
+		label = label.split(',').map(s => s.trim()).filter(s => s && s.toLowerCase() !== 'featured').join(', ');
+		if (!label) label = '-';
+
+		return (
+			<span className={`inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-white/3 border ${style.border} ${style.text} mr-1`}>
+				<FontAwesomeIcon icon={style.icon} className={`${style.text} mr-1 text-[11px]`} />
+				<span className="truncate max-w-[10rem]">{label}</span>
+			</span>
+		);
+	};
+
+	// Render category as attractive badges (gradient, icon, subtle blur)
+	const renderCategoryBadges = (categoryArray) => {
+		// Minimal, modern badges: small, flat, subtle border, muted text
+		if (!categoryArray || categoryArray.length === 0) return (
+			<span className="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-transparent border border-gray-200 text-gray-700">-</span>
+		);
+		return categoryArray.map((cat) => {
+			const id = Number(cat);
+			switch (id) {
+				case 1:
+					return (
+						<span key={id} className="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-white/3 border border-blue-200 text-blue-600 mr-1">
+							<FontAwesomeIcon icon={faGlobe} className="text-blue-500 mr-1 text-[11px]" />
+							<span>Web</span>
+						</span>
+					);
+				case 2:
+					return (
+						<span key={id} className="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-white/3 border border-red-200 text-red-600 mr-1">
+							<FontAwesomeIcon icon={faVideo} className="text-red-500 mr-1 text-[11px]" />
+							<span>Video</span>
+						</span>
+					);
+				case 3:
+					return (
+						<span key={id} className="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-white/3 border border-green-200 text-green-700 mr-1">
+							<FontAwesomeIcon icon={faMobileAlt} className="text-green-600 mr-1 text-[11px]" />
+							<span>Mobile</span>
+						</span>
+					);
+				case 9:
+					return (
+						<span key={id} className="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-white/3 border border-gray-200 text-gray-700 mr-1">
+							<span>Other</span>
+						</span>
+					);
+				case 10:
+					// intentionally hide Featured
+					return null;
+				default:
+					return (
+						<span key={id} className="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-medium bg-white/3 border border-gray-200 text-gray-700 mr-1">Cat {id}</span>
+					);
+			}
+		});
+	};
+
+
+
+	const handlePlayVideo = (video) => {
+		setSelectedVideo(video);
+		setIsVideoModalOpen(true);
+	};
+
+	const handleCloseVideoModal = () => {
+		setIsVideoModalOpen(false);
+		setSelectedVideo(null);
+	};
+
+	const isVideoProject = (project) => project.video && project.category.includes(2);
 	return (
 		<>
 			<main className="overflow-hidden">
@@ -73,43 +199,158 @@ export default function Page() {
 						<table className="space-y-3">
 							<thead>
 								<tr className=" hover:shadow-md  transition-all ease duration-500">
-									<th className="text-start">Year</th>
 									<th className="text-start">Title</th>
-									<th className="text-start">Technology</th>
+									<th className="text-start">Category</th>
 									<th className="text-start">Link</th>
 								</tr>
 							</thead>
 							<tbody>
-								{projects.map((project, index) => (
+								{filteredProjects.map((project, index) => (
 									<tr
 										key={index}
-										className="hover:shadow-md transition-all ease duration-500">
-										<td>{project.year}</td>
-										<td>
-											<Link href={`/projects/${project.slug}`}>
-												{project.title}
-											</Link>
+										className="hover:shadow-md transition-all ease duration-500 relative">
+										<td className="pl-6 relative">
+											{/* left color accent for category */}
+											<div className={`absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-8 rounded-r-md ${getCategoryColor(project.category?.[0])}`} />
+											{isVideoProject(project) ? (
+												<div onMouseEnter={() => setHoveredProjectIndex(index)} onMouseLeave={() => setHoveredProjectIndex(null)} className="relative inline-flex items-center gap-2 w-full p-2 sm:p-3 rounded-lg bg-gradient-to-r from-neutral-900/10 to-neutral-900/5 hover:shadow-lg transform hover:-translate-y-1 transition">
+													{/* Play Icon Badge - Left Side Only */}
+													<motion.div
+														whileHover={{ scale: 1.15, rotate: 5 }}
+														whileTap={{ scale: 0.95 }}
+														animate={isVideoProject(project) ? { scale: [1, 1.06, 1] } : {}}
+														transition={isVideoProject(project) ? { duration: 1.6, repeat: Infinity } : {}}
+														className="flex-shrink-0 w-8 h-8 rounded-full bg-red-600/20 border-2 border-red-600 flex items-center justify-center cursor-pointer"
+														onClick={() => handlePlayVideo(project.video)}
+													>
+														<FontAwesomeIcon 
+															icon={faPlay}
+															className="text-red-600 text-xs ml-0.5"
+														/>
+													</motion.div>
+
+													{/* Title with gradient text */}
+													<span 
+														onClick={() => handlePlayVideo(project.video)}
+														className="font-semibold bg-gradient-to-r from-red-500 via-red-600 to-orange-500 bg-clip-text text-transparent hover:from-red-400 hover:via-red-500 hover:to-orange-400 transition-all duration-300 hover:underline underline-offset-2 cursor-pointer"
+													>
+														{project.title}
+													</span>
+
+													{/* Hover Preview Modal */}
+													<AnimatePresence>
+														{hoveredProjectIndex === index && (
+																<motion.div
+																	initial={{ opacity: 0, scale: 0.8, y: 10 }}
+																	animate={{ opacity: 1, scale: 1, y: 0 }}
+																	exit={{ opacity: 0, scale: 0.8, y: 10 }}
+																	transition={{ 
+																		type: "spring",
+																		stiffness: 300,
+																		damping: 30,
+																		duration: 0.2
+																	}}
+																	className={index < 3 ? "absolute left-0 top-full z-50 bg-black rounded-lg overflow-hidden shadow-2xl border border-red-600/30 mt-2" : "absolute left-0 bottom-full z-50 bg-black rounded-lg overflow-hidden shadow-2xl border border-red-600/30 mb-2"}
+																	style={{
+																		width: 'clamp(200px, 80vw, 280px)'
+																	}}
+																>
+																{/* Thumbnail */}
+																<div className="relative w-full aspect-video bg-gradient-to-br from-red-950 via-gray-900 to-black overflow-hidden">
+																	{/* Border glow */}
+																	<div className="absolute inset-0 bg-gradient-to-r from-red-600/20 via-transparent to-red-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+																	
+																	{/* Image */}
+																	<Image
+																		src={project.thumbnail}
+																		alt={project.title}
+																		width={480}
+																		height={270}
+																		className="w-full h-full object-cover"
+																	/>
+
+																	{/* Play Button Overlay */}
+																	<motion.button
+																		onClick={() => handlePlayVideo(project.video)}
+																		whileHover={{ scale: 1.2 }}
+																		whileTap={{ scale: 0.9 }}
+																		className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition-colors"
+																	>
+																		<motion.div
+																			animate={{
+																				boxShadow: [
+																					"0 0 0 0px rgba(239, 68, 68, 0.8)",
+																					"0 0 0 20px rgba(239, 68, 68, 0)"
+																				]
+																			}}
+																			transition={{
+																				duration: 1.5,
+																				repeat: Infinity
+																			}}
+																			className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center shadow-lg"
+																		>
+																			<FontAwesomeIcon 
+																				icon={faPlay}
+																				className="text-white text-lg ml-1"
+																			/>
+																		</motion.div>
+																	</motion.button>
+																</div>
+
+																{/* Info Section */}
+																<div className="p-2 bg-gradient-to-r from-gray-950 to-red-950/30 border-t border-red-600/20">
+																	<p className="text-white text-xs font-bold line-clamp-1">
+																		{project.title}
+																	</p>
+																	<div className="mt-0.5">{renderRightBadge(project)}</div>
+																</div>
+															</motion.div>
+														)}
+													</AnimatePresence>
+												</div>
+											) : (
+												<div className="w-full p-2 sm:p-3 rounded-lg bg-neutral-900/5">
+													<Link href={`/projects/${project.slug}`}>
+														<span className="font-semibold">{project.title}</span> {(project.left || project.year) && <span className="text-sm text-gray-400"> ({project.left || project.year})</span>}
+													</Link>
+												</div>
+											)}
 										</td>
-										<td>{project.tech.map((t) => `${t}, `)}</td>
+										<td className="py-2">{renderRightBadge(project)}</td>
 										<td>
 											<div className="flex flex-row justify-center items-center">
-												{project.code && (
-													<a href={project.code} title="Link to GitHub">
+												{isVideoProject(project) ? (
+													<button
+														onClick={() => handlePlayVideo(project.video)}
+														title="Play video"
+														className="text-red-600 hover:text-red-700 transition-colors"
+													>
 														<FontAwesomeIcon
-															icon={faGithub}
-															className="text-xl mr-2"
+															icon={faPlay}
+															className="text-lg"
 														/>
-													</a>
-												)}
-												{project.preview && (
-													<a
-														href={project.preview}
-														title="Link to project preview">
-														<FontAwesomeIcon
-															icon={faArrowUpRightFromSquare}
-															className="text-xl"
-														/>
-													</a>
+													</button>
+												) : (
+													<>
+														{project.code && (
+															<a href={project.code} title="Link to GitHub">
+																<FontAwesomeIcon
+																	icon={faGithub}
+																	className="text-xl mr-2"
+																/>
+															</a>
+														)}
+														{project.preview && (
+															<a
+																href={project.preview}
+																title="Link to project preview">
+																<FontAwesomeIcon
+																	icon={faArrowUpRightFromSquare}
+																	className="text-xl"
+																/>
+															</a>
+														)}
+													</>
 												)}
 											</div>
 										</td>
@@ -120,6 +361,34 @@ export default function Page() {
 					</div>
 				</div>
 			</main>
+
+			{/* Video Modal */}
+			<AnimatePresence>
+				{isVideoModalOpen && selectedVideo && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+						onClick={handleCloseVideoModal}
+					>
+						<motion.div
+							initial={{ opacity: 0, scale: 0.5 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.5 }}
+							onClick={(e) => e.stopPropagation()}
+							className="w-full max-w-4xl aspect-video rounded-lg overflow-hidden shadow-2xl"
+						>
+							<iframe
+								src={selectedVideo}
+								className="w-full h-full"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowFullScreen
+							/>
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</>
 	);
 }

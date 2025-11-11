@@ -6,12 +6,17 @@ import { useEffect, useRef, useState } from "react";
 import BlurImage from "@/public/image/placeholder/blur.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faEye, faPlay, faTimes } from "@fortawesome/free-solid-svg-icons";
+import ReactPlayer from "react-player";
 
 export default function ProjectCard({ project, index, activeCategory }) {
 	const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 	
 	// Check jika ini video editing project (category 2 atau ada field video)
 	const isVideoEditing = project.category.includes(2) || project.video;
+
+	// Detect common portrait-ish embed sources (for mobile modal handling)
+	// If a video source is from jumpshare or screenpal, prefer portrait modal on small screens
+	const isPortraitSource = project.video && /jumpshare|screenpal/i.test(project.video);
 
 	const handleButtonClick = (e) => {
 		e.stopPropagation();
@@ -182,10 +187,12 @@ export default function ProjectCard({ project, index, activeCategory }) {
 					{/* Overlay - Darkens on hover */}
 					<div className="absolute inset-0 bg-black/0 group-hover/tes:bg-black/40 transition-all ease duration-500"></div>
 					
-					{/* Top Left Badge */}
-					<div className="absolute top-2 left-2 md:top-3 md:left-3 px-3 py-1.5 md:px-4 md:py-2 bg-gray-300/90 dark:bg-gray-900/80 backdrop-blur-sm opacity-100 group-hover/tes:opacity-100 transition-opacity duration-500 z-20 rounded-lg">
-						<h4 className="text-white text-xs md:text-sm font-medium whitespace-nowrap">{project.left || project.year}</h4>
-					</div>
+					{/* Top Left Badge - Only show if project.left or project.year exists */}
+					{(project.left || project.year) && (
+						<div className="absolute top-2 left-2 md:top-3 md:left-3 px-3 py-1.5 md:px-4 md:py-2 bg-gray-300/90 dark:bg-gray-900/80 backdrop-blur-sm opacity-100 group-hover/tes:opacity-100 transition-opacity duration-500 z-20 rounded-lg">
+							<h4 className="text-white text-xs md:text-sm font-medium whitespace-nowrap">{project.left || project.year}</h4>
+						</div>
+					)}
 					{/* Top Right Badge */}
 					<div className="absolute top-2 right-2 md:top-3 md:right-3 px-3 py-1.5 md:px-4 md:py-2 bg-gray-300/90 dark:bg-gray-900/80 backdrop-blur-sm opacity-100 group-hover/tes:opacity-100 transition-opacity duration-500 z-20 rounded-lg">
 						<h4 className="text-white text-xs md:text-sm font-medium whitespace-nowrap">{project.right}</h4>
@@ -193,39 +200,75 @@ export default function ProjectCard({ project, index, activeCategory }) {
 					
 					{/* Content - Different for Video Editing vs Regular Projects */}
 					{isVideoEditing ? (
-						/* Video Editing - Only Play Button on Hover */
-						<div className="transition-all ease duration-500 opacity-0 content text-center group-hover/tes:opacity-100 z-30 absolute inset-0 flex flex-col justify-center items-center p-4 md:p-6">
-							<motion.button
-								onClick={handlePlayVideo}
-								whileHover={{ scale: 1.1 }}
-								whileTap={{ scale: 0.95 }}
-								className="relative z-10 w-20 h-20 md:w-24 md:h-24 rounded-full bg-red-600 hover:bg-red-700 flex items-center justify-center shadow-2xl transition-all duration-300 group/play"
-							>
-								{/* Ripple effect */}
+						/* Video Editing - Play Button and Title on Hover */
+						<div className="transition-all ease duration-500 opacity-0 content text-center group-hover/tes:opacity-100 z-30 absolute inset-0 flex flex-col justify-start md:justify-center items-center pt-6 md:pt-0 p-4 md:p-6">
+							<div className="flex flex-col items-center space-y-6">
+								<motion.button
+									onClick={handlePlayVideo}
+									whileHover={{ scale: 1.05 }}
+									whileTap={{ scale: 0.95 }}
+									className="relative z-10 w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.5)] transition-all duration-300 group/play overflow-hidden"
+								>
+									{/* Outer glow effect */}
+									<div className="absolute inset-0 bg-gradient-to-br from-red-400 to-red-600 opacity-0 group-hover/play:opacity-100 transition-opacity duration-300" />
+                                    
+									{/* Ripple effect */}
+									<motion.div
+										className="absolute inset-0 rounded-full bg-gradient-to-br from-red-400 to-red-600"
+										animate={{
+											scale: [1, 2],
+											opacity: [0.3, 0],
+										}}
+										transition={{
+											duration: 2,
+											repeat: Infinity,
+											ease: "easeOut",
+										}}
+									/>
+                                    
+									{/* Second ripple effect with delay */}
+									<motion.div
+										className="absolute inset-0 rounded-full bg-gradient-to-br from-red-400 to-red-600"
+										animate={{
+											scale: [1, 2],
+											opacity: [0.3, 0],
+										}}
+										transition={{
+											duration: 2,
+											repeat: Infinity,
+											ease: "easeOut",
+											delay: 1,
+										}}
+									/>
+                                    
+									{/* Inner white circle */}
+									<div className="absolute inset-2 md:inset-3 rounded-full bg-white/10 backdrop-blur-sm" />
+                                    
+									{/* Play icon */}
+									<FontAwesomeIcon 
+										icon={faPlay} 
+										className="text-white text-3xl md:text-4xl ml-2 relative z-10 group-hover/play:scale-110 transition-transform duration-300" 
+									/>
+								</motion.button>
+
+								{/* Title with glass effect */}
 								<motion.div
-									className="absolute inset-0 rounded-full bg-red-600"
-									animate={{
-										scale: [1, 1.5, 1.5],
-										opacity: [0.6, 0, 0],
-									}}
-									transition={{
-										duration: 2,
-										repeat: Infinity,
-										ease: "easeOut",
-									}}
-								/>
-								<FontAwesomeIcon 
-									icon={faPlay} 
-									className="text-white text-2xl md:text-3xl ml-1 relative z-10" 
-								/>
-							</motion.button>
+									initial={{ opacity: 0, y: 10 }}
+									animate={{ opacity: 1, y: 0 }}
+									className="backdrop-blur-sm"
+								>
+									<h2 className="text-white text-lg md:text-xl font-semibold drop-shadow-lg">
+										{project.title}
+									</h2>
+								</motion.div>
+							</div>
 						</div>
 					) : (
 						/* Regular Project - Title, Description, Tech Tags, and Buttons */
-						<div className="transition-all ease duration-500 opacity-0 content text-center group-hover/tes:opacity-100 z-30 absolute inset-0 flex flex-col justify-center items-center p-4 md:p-6">
+						<div className="transition-all ease duration-500 opacity-0 content text-center group-hover/tes:opacity-100 z-30 absolute inset-0 flex flex-col justify-start md:justify-center items-center pt-6 md:pt-0 p-4 md:p-6">
 							{/* Title and Description Container */}
 							<div className="flex flex-col items-center justify-center space-y-2 md:space-y-3 mb-3 md:mb-4">
-								<h1 className="text-lg md:text-xl lg:text-2xl font-bold text-white drop-shadow-lg line-clamp-2 px-2 max-w-full break-words">
+								<h1 className="text-base md:text-lg lg:text-2xl font-bold text-white drop-shadow-lg line-clamp-2 px-2 max-w-full break-words">
 									{project.title}
 								</h1>
 								<p className="text-white/90 drop-shadow-md text-xs md:text-sm line-clamp-2 md:line-clamp-3 px-2 max-w-full break-words">
@@ -410,7 +453,8 @@ export default function ProjectCard({ project, index, activeCategory }) {
 							initial={{ scale: 0.8, opacity: 0 }}
 							animate={{ scale: 1, opacity: 1 }}
 							exit={{ scale: 0.8, opacity: 0 }}
-							className="relative w-full max-w-4xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl"
+							// Make modal portrait on small screens for known portrait sources (jumpshare/screenpal)
+							className={`relative w-full ${isPortraitSource ? 'max-w-lg aspect-[9/16] md:max-w-4xl md:aspect-video' : 'max-w-4xl aspect-video'} bg-black rounded-lg overflow-hidden shadow-2xl`}
 							onClick={(e) => e.stopPropagation()}
 						>
 							{/* Close Button */}

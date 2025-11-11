@@ -13,13 +13,13 @@ import ProjectAll from "@/public/image/projects.jpg"
 
 import Hr from "@/components/Hr"
 import ProjectCard from "./components/ProjectCard"
-import Projects from "@/json/data.json"
+import Projects from "@/json/projects-data.json"
 import FixedButon from "@/components/FixedButton"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft, faGlobe, faVideo, faLayerGroup, faMobileAlt, faEllipsisH } from "@fortawesome/free-solid-svg-icons"
 
 // Re-defining AnimatedImage here for clarity, but ideally it would be a shared component
-function AnimatedImage({ src, alt, width, height, className }) {
+function AnimatedImage({ src, alt, width, height, className, objectPosition }) {
   const [hovered, setHovered] = useState(false)
   const [xy, setXY] = useState([0, 1])
 
@@ -65,6 +65,7 @@ function AnimatedImage({ src, alt, width, height, className }) {
         layout={width && height ? undefined : "fill"}
         className={className}
         objectFit="cover"
+        objectPosition={objectPosition || "center 20%"}
         placeholder="blur"
       />
     </motion.div>
@@ -95,12 +96,12 @@ export default function Page() {
         <div className="relative h-screen w-screen  gap-4 p-10 flex justify-center items-center flex-col mb-10 overflow-hidden">
           <div className="z-0 mb-48 md:mb-0  md:absolute top-1/4  md:right-[10%] md:-translate-y-16 ">
             <motion.div
-              initial={{ scale: 1 }}
-              animate={{ scale: 1.6 }}
-              transition={{ duration: 1, ease: "circOut" }}
-              className="relative bg-slate-300 dark:bg-gray-700 rounded-sm h-[400px] md:h-[600px] w-[80vw] md:w-[30vw] shadow-2xl overflow-hidden"
-            >
-              <AnimatedImage src={ProjectAll} alt="Destio" layout="fill" objectFit="cover" placeholder="blur" />
+                initial={{ scale: 1 }}
+                animate={{ scale: 1.6 }}
+                transition={{ duration: 1, ease: "circOut" }}
+                className="relative bg-slate-300 dark:bg-gray-700 rounded-sm h-[320px] md:h-[600px] w-[80vw] md:w-[30vw] shadow-2xl overflow-hidden"
+              >
+                <AnimatedImage src={ProjectAll} alt="Destio" layout="fill" objectFit="cover" objectPosition="center 20%" placeholder="blur" />
               <div className="absolute inset-0 bg-black/0 dark:bg-black/10 pointer-events-none" />
             </motion.div>
           </div>
@@ -110,10 +111,10 @@ export default function Page() {
             </h1>
             <Hr />
             <p className="title text-xl mt-4 tracking-wider text-gray-500 dark:text-gray-400 leading-[1.7rem] mb-5">
-              List of my projects that I have done and{" "}
+              List of my projects that I have{" "}
               <span className="bg-gray-300 dark:bg-gray-700 bg-opacity-90 dark:bg-opacity-50 px-2 py-1 rounded text-black dark:text-white">
                 {" "}
-                currently working on.
+                done and currently working on.
               </span>
             </p>
             <motion.div

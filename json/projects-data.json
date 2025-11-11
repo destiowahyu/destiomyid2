@@ -9,7 +9,7 @@
       "left": "2025",
       "right": "Web Development",
       "preview": "https://laundry.destio.my.id",
-      "code": "",
+      "code": "https://github.com/destiowahyu/zeea-laundry",
       "thumbnail": "/image/projects/web/zeea-laundry/thumbnail.jpg",
       "images": [
         "/image/projects/web/zeea-laundry/1.png",
@@ -20,7 +20,6 @@
         "/image/projects/web/zeea-laundry/6.png",
         "/image/projects/web/zeea-laundry/7.png",
         "/image/projects/web/zeea-laundry/8.png"
-        
       ],
       "tech": [
         "PHP",
@@ -29,35 +28,32 @@
         "TailwindCSS",
         "MySQL",
         "JavaScript"
-      ], 
+      ],
       "slug": "zeea-laundry",
-      "category": [1]
+      "category": [
+        1,
+        10
+      ]
     },
-
-
-
-
     {
       "show": true,
       "title": "Sistem Poliklinik",
       "desc": [
-        "Deskripsi project"
+        "The Polyclinic System is a web-based application built with PHP and MySQL that manages medical services through three roles: admin, doctor, and patient. Doctors can examine patients and answer consultations, while patients can register for examinations, choose doctors, and view prescriptions. Admins manage data for doctors, patients, and polyclinics."
       ],
       "left": "2025",
       "right": "Web Development",
       "preview": "https://poliklinik.destio.my.id",
-      "code": "",
+      "code": "https://github.com/destiowahyu/poliklinik-destio.git",
       "thumbnail": "/image/projects/web/poliklinik/thumbnail.jpg",
       "images": [
-        "/image/projects/web/zeea-laundry/1.png",
-        "/image/projects/web/zeea-laundry/2.png",
-        "/image/projects/web/zeea-laundry/3.png",
-        "/image/projects/web/zeea-laundry/4.png",
-        "/image/projects/web/zeea-laundry/5.png",
-        "/image/projects/web/zeea-laundry/6.png",
-        "/image/projects/web/zeea-laundry/7.png",
-        "/image/projects/web/zeea-laundry/8.png"
-        
+        "/image/projects/web/poliklinik/1.png",
+        "/image/projects/web/poliklinik/2.png",
+        "/image/projects/web/poliklinik/3.png",
+        "/image/projects/web/poliklinik/4.png",
+        "/image/projects/web/poliklinik/5.png",
+        "/image/projects/web/poliklinik/6.png",
+        "/image/projects/web/poliklinik/7.png"
       ],
       "tech": [
         "HTML",
@@ -66,48 +62,41 @@
         "TailwindCSS",
         "MySQL",
         "JavaScript"
-      ], 
+      ],
       "slug": "poliklinik",
-      "category": [1]
+      "category": [
+        1,
+        10
+      ]
     },
-
-
-
-
     {
       "show": true,
       "title": "LindungiKita",
       "desc": [
-        "Deskripsi project"
+        "LindungiKita is a front-end prototype of an evacuation shelter information system designed for disaster situations. It simulates features such as finding nearby shelters and viewing available facilities and capacities, serving as a conceptual design to support emergency response awareness."
       ],
       "left": "2024",
       "right": "Frontend Development",
       "preview": "https://lindungikita.destio.my.id",
-      "code": "",
+      "code": "https://github.com/destiowahyu/lindungikita2",
       "thumbnail": "/image/projects/web/lindungikita/thumbnail.jpg",
       "images": [
-        "/image/projects/web/zeea-laundry/1.png",
-        "/image/projects/web/zeea-laundry/2.png",
-        "/image/projects/web/zeea-laundry/3.png",
-        "/image/projects/web/zeea-laundry/4.png",
-        "/image/projects/web/zeea-laundry/5.png",
-        "/image/projects/web/zeea-laundry/6.png",
-        "/image/projects/web/zeea-laundry/7.png",
-        "/image/projects/web/zeea-laundry/8.png"
-        
+        "/image/projects/web/lindungikita/1.png",
+        "/image/projects/web/lindungikita/2.png",
+        "/image/projects/web/lindungikita/3.png"
       ],
       "tech": [
         "React",
         "React Router",
         "TailwindCSS",
         "JavaScript"
-      ], 
+      ],
       "slug": "lindungikita",
-      "category": [1]
+      "category": [
+        1,
+        10
+      ]
     },
-
-
-
     {
       "show": true,
       "title": "Magang Diskominfo",
@@ -118,31 +107,26 @@
       "right": "Web Development",
       "preview": "https://magang.destio.my.id",
       "code": "",
-      "thumbnail": "/image/projects/web/lindungikita/thumbnail.jpg",
+      "thumbnail": "/image/projects/web/diskominfo/thumbnail.jpg",
       "images": [
-        "/image/projects/web/zeea-laundry/1.png",
-        "/image/projects/web/zeea-laundry/2.png",
-        "/image/projects/web/zeea-laundry/3.png",
-        "/image/projects/web/zeea-laundry/4.png",
-        "/image/projects/web/zeea-laundry/5.png",
-        "/image/projects/web/zeea-laundry/6.png",
-        "/image/projects/web/zeea-laundry/7.png",
-        "/image/projects/web/zeea-laundry/8.png"
-        
+        "/image/projects/web/diskominfo/1.png",
+        "/image/projects/web/diskominfo/2.png",
+        "/image/projects/web/diskominfo/3.png",
+        "/image/projects/web/diskominfo/4.png"
       ],
       "tech": [
-        "React",
-        "React Router",
-        "TailwindCSS",
+        "HTML",
+        "PHP",
+        "Bootstrap",
+        "MySQL",
         "JavaScript"
-      ], 
+      ],
       "slug": "lindungikita",
-      "category": [1]
+      "category": [
+        1,
+        10
+      ]
     },
-
-
-
-
     {
       "show": true,
       "title": "Invervyou AI",
@@ -172,9 +156,12 @@
         "Midtrans",
         "Gemini API",
         "GCP"
-      ], 
+      ],
       "slug": "intervyou",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": false,
@@ -199,9 +186,12 @@
         "ReactJS",
         "TailwindCSS",
         "Typescript"
-      ], 
+      ],
       "slug": "apii-porto",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
@@ -229,15 +219,18 @@
         "MySQL",
         "jQuery",
         "DataTables"
-      ], 
+      ],
       "slug": "mind-mirror",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
       "title": "Javanese Translation Website",
       "desc": [
-        "A Javanese ngoko - krama translation website that I created as a collaborative project with my friends. The website is built using the original Transformer architecture by Vaswani et al. (2017). Built with Python, TensorFlow, Flask, HTML, and CSS, the website allows users to input text in Javanese krama and receive the corresponding ngoko translation.", 
+        "A Javanese ngoko - krama translation website that I created as a collaborative project with my friends. The website is built using the original Transformer architecture by Vaswani et al. (2017). Built with Python, TensorFlow, Flask, HTML, and CSS, the website allows users to input text in Javanese krama and receive the corresponding ngoko translation.",
         "The website is designed to be simple to use, with a clean and modern interface that appeals to a wide audience. Users can input text in Javanese krama and receive the corresponding ngoko translation. The Project also provide ipynb file for the model training and the model itself."
       ],
       "year": "2024",
@@ -255,9 +248,12 @@
         "Flask",
         "HTML",
         "CSS"
-      ], 
+      ],
       "slug": "javanese-translation",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
@@ -284,9 +280,12 @@
         "Flask",
         "HTML",
         "CSS"
-      ], 
+      ],
       "slug": "heart-attack",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
@@ -310,9 +309,12 @@
         "Tailwind CSS",
         "Firebase",
         "Gemini API"
-      ], 
+      ],
       "slug": "trivia",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
@@ -336,16 +338,18 @@
         "Tailwind CSS",
         "Prisma",
         "MySQL"
-      ], 
+      ],
       "slug": "saku-senyum",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
       "title": "Simadun",
       "desc": [
         "Simadun is an Exam Management System developed for doctoral students in the Department of Electrical Engineering and Informatics Universitas Negeri Malang. The system facilitates the management of five different types of examinations, allowing students to apply for exams with ease. Professors and program heads can efficiently oversee the exam processes.",
-        
         "With Simadun, students can submit their exam applications online, track their application status, and receive timely notifications regarding their exam schedules. Program heads and relevant lecturers have access to comprehensive dashboards where they can manage exam requests, allocate resources, and monitor overall exam logistics. "
       ],
       "year": "2024",
@@ -364,17 +368,20 @@
         "MySQL",
         "jQuery",
         "DataTables"
-
-      ], 
+      ],
       "slug": "simadun",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
       "title": "LUDOang",
       "desc": [
         "LUDOang is a game that my team and I created for a final project in my university. The game is built python, pygame, and OpenGL. The game is a 2D game that is inspired by a Ludo game. The game has a few features such randomZone, and a 3D dice.",
-        "RandomZone is a feature that allows the player to get a random number of steps. The 3D dice is a feature that allows the player to roll a 3D dice. The game also has a few other features menuy screen and also loading screen.", "Beside that the game also has a audio theme that will play when the game is started. The game also has a few sound effects such as dice roll sound, and a sound when the player win the game."
+        "RandomZone is a feature that allows the player to get a random number of steps. The 3D dice is a feature that allows the player to roll a 3D dice. The game also has a few other features menuy screen and also loading screen.",
+        "Beside that the game also has a audio theme that will play when the game is started. The game also has a few sound effects such as dice roll sound, and a sound when the player win the game."
       ],
       "year": "2023",
       "preview": "https://github.com/DestioWahyu/ludo-game/releases/tag/pre-release",
@@ -389,15 +396,19 @@
         "Python",
         "Pygame",
         "OpenGL"
-      ], 
+      ],
       "slug": "ludoang",
-      "category": [9]
+      "category": [
+        9
+      ],
+      "right": "Other"
     },
     {
       "show": true,
       "title": "VICC Landing Page",
       "desc": [
-        "This project is one of my freelance projects. This project is a landing page for Vocational Inter-cultural Camp event held by Vocational Faculty of Universitas Negeri Malang. The website is built using Next.js, Javascript, and Tailwind CSS.", "The website is mainly frontend project, which is already using responsive design. The website has a few features such carousel, and a few animations. The website also has a few pages such as home, topic, and speaker page."
+        "This project is one of my freelance projects. This project is a landing page for Vocational Inter-cultural Camp event held by Vocational Faculty of Universitas Negeri Malang. The website is built using Next.js, Javascript, and Tailwind CSS.",
+        "The website is mainly frontend project, which is already using responsive design. The website has a few features such carousel, and a few animations. The website also has a few pages such as home, topic, and speaker page."
       ],
       "year": "2023",
       "preview": "https://inter-cultural-camp.vercel.app",
@@ -413,7 +424,10 @@
         "Tailwind CSS"
       ],
       "slug": "vicc",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
@@ -440,16 +454,17 @@
         "Daisy UI"
       ],
       "slug": "react-chat",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
       "title": "React Tools",
       "desc": [
         "React Tools is a groundbreaking and user-friendly project that brings together a comprehensive collection of tools and components crafted with cutting-edge technologies, including React, React Router, and TailwindCSS. What sets this project apart is that it's not just a suite of powerful features, but it's also a significant milestone as it marks my very first venture into the world of React development.",
-
         "Unlike traditional web applications, React Tools cleverly utilizes browser local storage, eliminating the need for external databases. This not only ensures seamless performance but also prioritizes user data privacy. ",
-
         "The Todo List keeps tasks in check with intuitive task management capabilities, ensuring you never miss a beat. The note-taking feature provides a hassle-free way to jot down ideas and crucial information, accessible whenever inspiration strikes. Additionally, our robust expense tracker simplifies financial management by recording and categorizing expenses, delivering insightful spending analysis."
       ],
       "year": "2023",
@@ -469,13 +484,18 @@
         "TailwindCSS"
       ],
       "slug": "react-tools",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
       "title": "Aleph Discord Bot",
       "desc": [
-        "Aleph is a Discord bot that I created for my dircord server to use. The bot is built using Python and the discord.py library. The bot has image grabber feauture that takes argument (keywords) and returns an image from the internet.", "Other than that this bot has a few other features such as utility command to delete a messages, and a command to get the server's ping. This bot is still in development and I plan to add more features in the future."],
+        "Aleph is a Discord bot that I created for my dircord server to use. The bot is built using Python and the discord.py library. The bot has image grabber feauture that takes argument (keywords) and returns an image from the internet.",
+        "Other than that this bot has a few other features such as utility command to delete a messages, and a command to get the server's ping. This bot is still in development and I plan to add more features in the future."
+      ],
       "year": "2023",
       "preview": "",
       "code": "https://github.com/DestioWahyu/aleph-discord-bot",
@@ -490,8 +510,11 @@
         "Google Serp API"
       ],
       "slug": "aleph-discord-bot",
-      "category": [9]
-    }, 
+      "category": [
+        9
+      ],
+      "right": "Other"
+    },
     {
       "show": true,
       "title": "LPTK Cup 2023 Website",
@@ -518,13 +541,19 @@
         "DataTables"
       ],
       "slug": "lptk-cup-2023",
-      "category": [1]
-    }, 
+      "category": [
+        1
+      ],
+      "right": "Web Development"
+    },
     {
       "show": true,
       "title": "NU INO Website",
       "desc": [
-        "My first freelance project. This project is a website for a School based on a JALAKAR curriculum. The website is built mainly using Laravel and Bootstrap.", "This website is LMS like system, have a user management, user auth, quiz and material for student and FAQ",  "In this project I learned how to work with a team and how to manage a project. I also learned new library such as livewire and alpine.js."],
+        "My first freelance project. This project is a website for a School based on a JALAKAR curriculum. The website is built mainly using Laravel and Bootstrap.",
+        "This website is LMS like system, have a user management, user auth, quiz and material for student and FAQ",
+        "In this project I learned how to work with a team and how to manage a project. I also learned new library such as livewire and alpine.js."
+      ],
       "year": "2023",
       "preview": "",
       "code": "",
@@ -544,29 +573,110 @@
         "DataTables"
       ],
       "slug": "nu-ino-website",
-      "category": [1]
+      "category": [
+        1
+      ],
+      "right": "Web Development"
     },
     {
       "show": true,
-      "title": "Video Editing Project",
-      "desc": [
-        "A professional video editing project showcasing creative storytelling and advanced editing techniques."
-      ],
-      "left": "2025",
+      "title": "Ora Astrea Ora Mesra",
       "right": "Video Editing",
-      "preview": "",
-      "code": "",
       "video": "https://www.youtube.com/embed/RIfswNkYbRM",
-      "thumbnail": "/image/placeholder/blur.jpg",
-      "images": [],
-      "tech": [
-        "Adobe Premiere Pro",
-        "After Effects",
-        "Color Grading",
-        "Motion Graphics"
-      ],
-      "slug": "video-editing-project",
-      "category": [2]
+      "thumbnail": "/image/projects/video/astrea.jpg",
+      "slug": "",
+      "category": [
+        2,
+        10
+      ]
+    },
+    {
+      "show": true,
+      "title": "Curug Lawe",
+      "right": "Video Editing",
+      "video": "https://www.youtube.com/embed/Ketuep03Vns",
+      "thumbnail": "/image/projects/video/curuglawe.jpg",
+      "category": [
+        2,
+        10
+      ]
+    },
+    {
+      "show": true,
+      "title": "3D Spotify - a part of curug lawe",
+      "right": "Video Editing",
+      "video": "https://www.youtube.com/embed/b2JKTI43lu8",
+      "thumbnail": "/image/projects/video/3dspotify.jpg",
+      "category": [
+        2,
+        10
+      ]
+    },
+    {
+      "show": true,
+      "title": "Magang Diskominfo",
+      "right": "Video Editing",
+      "video": "https://www.youtube.com/embed/Z41_91s5N4Y",
+      "thumbnail": "/image/projects/video/diskominfo.jpg",
+      "category": [
+        2,
+        10
+      ]
+    },
+    {
+      "show": true,
+      "title": "Genderang Pembebasan",
+      "right": "Video Editing",
+      "video": "https://go.screenpal.com/player/cTXX1UnFG30?width=100%&height=100%&ff=1&title=0&a=1&bg=transparent",
+      "thumbnail": "/image/projects/video/genderang.jpg",
+      "category": [
+        2,
+        10
+      ]
+    },
+    {
+      "show": false,
+      "title": "Genderang Pembebasan",
+      "right": "Video Editing",
+      "video": "https://jumpshare.com/embed/D8e9uM3MDVBZBNNjlk3j",
+      "thumbnail": "/image/projects/video/genderang.jpg",
+      "category": [
+        2,
+        10
+      ]
+    },
+    {
+      "show": true,
+      "title": "Suka Sama Kamu",
+      "right": "Video Editing",
+      "video": "https://youtube.com/embed/vXkI0r4BzYA?si=Y-HlPKK24BXFZFcj",
+      "thumbnail": "/image/projects/video/sukasamakamu.jpg",
+      "category": [
+        2,
+        10
+      ]
+    },
+    {
+      "show": true,
+      "title": "Berpisah Itu Mudah, eh susah",
+      "right": "Video Editing",
+      "video": "https://youtube.com/embed/tZ1-j-o1htg",
+      "thumbnail": "/image/projects/video/berpisah.jpg",
+      "category": [
+        2,
+        10
+      ]
+    },
+    {
+      "show": true,
+      "title": "Berharap Kau Kembali",
+      "right": "Video Editing",
+      "video": "https://youtube.com/embed/_ULVOi61G4o",
+      "thumbnail": "/image/projects/video/berharap.jpg",
+      "category": [
+        2,
+        10
+      ]
     }
   ]
 }
