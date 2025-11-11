@@ -10,7 +10,7 @@ const categoryMap = {
   2: 'Video Editing',
   3: 'Mobile',
   9: 'Other',
-  10: 'Featured'
+  10: 'All'
 };
 
 let changed = 0;
