@@ -75,7 +75,7 @@ function AnimatedImage({ src, alt, width, height, className, objectPosition }) {
 const categories = [
   { id: 1, label: "Web Development", icon: faGlobe },
   { id: 2, label: "Video Editing", icon: faVideo },
-  { id: 3, label: "Mobile Apps", icon: faMobileAlt },
+  { id: 3, label: "UI UX Design", icon: faMobileAlt },
   { id: 9, label: "Other", icon: faEllipsisH },
   { id: 10, label: "All", icon: faLayerGroup },
 ]

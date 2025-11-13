@@ -226,18 +226,18 @@ export default function Page() {
 
           <div className="mx-auto container md:px-10 grid grid-cols-1 mb-">
             {/* invisible table */}
-            <table className="space-y-3">
+            <table className="space-y-3 w-full">
               <thead>
-                <tr className=" hover:shadow-md  transition-all ease duration-500">
-                  <th className="text-start">Title</th>
-                  <th className="text-start">Category</th>
-                  <th className="text-start">Link</th>
+                <tr className="hover:shadow-md transition-all ease duration-500 flex flex-row">
+                  <th className="text-start flex-1 min-w-0">Title</th>
+                  <th className="text-start flex-shrink-0">Category</th>
+                  <th className="text-start flex-shrink-0 w-20">Link</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredProjects.map((project, index) => (
-                  <tr key={index} className="hover:shadow-md transition-all ease duration-500 relative">
-                    <td className="pl-6 relative">
+                  <tr key={index} className="hover:shadow-md transition-all ease duration-500 relative flex flex-row">
+                    <td className="pl-6 relative flex-1 min-w-0">
                       {/* left color accent for category */}
                       <div
                         className={`absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-8 rounded-r-md ${getCategoryColor(project.category?.[0])}`}
@@ -263,7 +263,7 @@ export default function Page() {
                             onClick={() => handlePlayVideo(project.video)}
                             onMouseEnter={() => setHoveredProjectIndex(index)}
                             onMouseLeave={() => setHoveredProjectIndex(null)}
-                            className="font-semibold bg-gradient-to-r from-red-500 via-red-600 to-orange-500 bg-clip-text text-transparent hover:from-red-400 hover:via-red-500 hover:to-orange-400 transition-all duration-300 hover:underline underline-offset-2 cursor-pointer flex-1"
+                            className="font-semibold bg-gradient-to-r from-red-500 via-red-600 to-orange-500 bg-clip-text text-transparent hover:from-red-400 hover:via-red-500 hover:to-orange-400 transition-all duration-300 hover:underline underline-offset-2 cursor-pointer flex-1 min-w-0"
                           >
                             {project.title}
                           </span>
@@ -352,26 +352,26 @@ export default function Page() {
                         </div>
                       )}
                     </td>
-                    <td className="py-2">{renderRightBadge(project)}</td>
-                    <td>
-                      <div className="flex flex-row justify-center items-center">
+                    <td className="py-2 flex-shrink-0">{renderRightBadge(project)}</td>
+                    <td className="flex-shrink-0 w-20">
+                      <div className="flex flex-row justify-center items-center gap-2">
                         {isVideoProject(project) ? (
                           <button
                             onClick={() => handlePlayVideo(project.video)}
                             title="Play video"
-                            className="text-red-600 hover:text-red-700 transition-colors"
+                            className="text-red-600 hover:text-red-700 transition-colors flex-shrink-0"
                           >
                             <FontAwesomeIcon icon={faPlay} className="text-lg" />
                           </button>
                         ) : (
                           <>
                             {project.code && (
-                              <a href={project.code} title="Link to GitHub">
-                                <FontAwesomeIcon icon={faGithub} className="text-xl mr-2" />
+                              <a href={project.code} title="Link to GitHub" className="flex-shrink-0">
+                                <FontAwesomeIcon icon={faGithub} className="text-xl" />
                               </a>
                             )}
                             {project.preview && (
-                              <a href={project.preview} title="Link to project preview">
+                              <a href={project.preview} title="Link to project preview" className="flex-shrink-0">
                                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-xl" />
                               </a>
                             )}
