@@ -49,33 +49,7 @@ This is my debut project utilizing Next.js, a portfolio website featuring four p
    ```shell
    pnpm next dev
    ```
-6. Update the Intelliticks chat widget script in components/Chat.jsx, with your own
 
-   ```javascript
-    "use client"
-    import { useEffect } from "react";
-
-    // Component for Intelliticks chat widget
-    const Chat = () => {
-    	useEffect(() => {
-    		// Replace the Intelliticks script here
-
-    	}, []);
-
-    	return null;
-    };
-
-    export default Chat;
-   ```
-7. Set env.local by copying env.example and fill the variable
-
-   ```
-   NEXT_PUBLIC_SPOTIFY_CLIENT_ID=
-   NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET=
-   NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN=
-   ```
-
-   for further reference on how to setup spotify api you can check this [link ](https://leerob.io/blog/spotify-api-nextjs "leerob blog")
 
 ## Usage
 
