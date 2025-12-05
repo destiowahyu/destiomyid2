@@ -623,6 +623,18 @@
     },
     {
       "show": true,
+      "title": "Perknenalan 2021",
+      "right": "Video Editing",
+      "video": "https://www.youtube.com/embed/v05EwBK4Qyo?si=eKEn8-Y8988XBwT4",
+      "thumbnail": "/image/projects/video/perkenalan.jpg",
+      "slug": "",
+      "category": [
+        2,
+        10
+      ]
+    },
+    {
+      "show": true,
       "title": "Ora Astrea Ora Mesra",
       "right": "Video Editing",
       "video": "https://www.youtube.com/embed/RIfswNkYbRM",
