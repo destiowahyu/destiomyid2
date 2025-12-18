@@ -11,66 +11,52 @@ import { LanguageProvider } from "@/components/LanguageProvider"
 import { Suspense } from "react"
 
 export const metadata = {
-  title: "Destio Wahyu | Portfolio",
+  metadataBase: new URL("https://www.destio.my.id"),
+
+  title: {
+    default: "Destio Wahyu | Portfolio",
+    template: "%s | Destio Wahyu",
+  },
 
   description:
-    "I'm Destio Wahyu, a web developer and experienced video editor who loves blending technology and creativity. I graduated from Universitas Dian Nuswantoro in Software Engineering, and I'm also passionate about music and artificial intelligence.",
+    "I'm Destio Wahyu, a web developer and experienced video editor who blends technology and creativity. Graduate of Universitas Dian Nuswantoro, passionate about music and artificial intelligence.",
 
-  author: "Destio Wahyu",
-  siteUrl: "https://www.destio.my.id",
   applicationName: "Destio Wahyu Lanio",
 
   keywords: [
-    "destio",
-    "destio wahyu",
-    "wahyu",
-    "destio wahyu",
-    "destio wahyu lanio",
-    "tio destio",
-    "tio lanio",
-    "destio porto",
-    "destio udinus",
+    "Destio Wahyu",
+    "Destio Portfolio",
+    "Web Developer Udinus",
+    "Video Editor",
+    "Destio Lanio",
   ],
 
   icons: {
     icon: [
-      {
-        url: "/image/logo.png",
-        sizes: "32x32",
-        type: "image/png",
-      },
-      {
-        url: "/image/logo.png",
-        sizes: "16x16",
-        type: "image/png",
-      },
+      { url: "/image/logo.png", sizes: "32x32", type: "image/png" },
+      { url: "/image/logo.png", sizes: "16x16", type: "image/png" },
     ],
-    apple: [
-      {
-        url: "/image/logo.png",
-        sizes: "180x180",
-        type: "image/png",
-      },
-    ],
+    apple: "/image/logo.png",
   },
 
   openGraph: {
     type: "website",
     url: "https://www.destio.my.id",
     title: "Destio Wahyu | Portfolio",
-    site_name: "Destio Wahyu Lanio",
-    description: "Destio Wahyu Lanio is a web developer, skilled video editor, music enthusiast, and AI enthusiast.",
-    width: 1200,
-    height: 630,
+    description:
+      "Destio Wahyu Lanio — web developer, video editor, music enthusiast, and AI enthusiast.",
+    siteName: "Destio Wahyu Lanio",
     images: [
       {
         url: "/og-image-rev.png",
-        alt: "Destio Portfolio",
+        width: 1200,
+        height: 630,
+        alt: "Destio Wahyu Portfolio",
       },
     ],
-    site_name: "Destio Wahyu Lanio",
   },
-}
+};
+
 
 export default function RootLayout({ children }) {
   return (
