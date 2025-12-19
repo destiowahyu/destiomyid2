@@ -362,7 +362,7 @@ const MyPage = () => {
                   >
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Button variation="primary">
-                        <Link href={"/docs/cv-destio.pdf"} target="_blank" rel="noopener noreferrer" download>
+                        <Link href={"/docs/cvdestio.pdf"} target="_blank" rel="noopener noreferrer" download>
                           {t.home.downloadCV}
                         </Link>
                       </Button>
