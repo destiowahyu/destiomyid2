@@ -1,25 +1,31 @@
-// sitemap-generator.js
-const { SitemapStream, streamToPromise } = require("sitemap");
-const { createGzip } = require("zlib");
-const fs = require("fs");
+const { SitemapStream, streamToPromise } = require("sitemap")
+const fs = require("fs")
+const projectsData = require("./json/projects-data.json")
+
+const BASE_URL = "https://www.destio.my.id"
 
 async function generateSitemap() {
-	const sitemap = new SitemapStream({
-		hostname: "https://destio.my.id/",
-	});
+  const sitemap = new SitemapStream({ hostname: BASE_URL })
+  const lastmod = new Date().toISOString()
 
-	// Add URLs to your sitemap
-	sitemap.write({ url: "/", changefreq: "daily", priority: 1.0 });
-	sitemap.write({ url: "/about", changefreq: "daily", priority: 0.9 });
-	sitemap.write({ url: "/projects", changefreq: "daily", priority: 0.9 });
-	sitemap.write({ url: "/projects/archive", changefreq: "daily", priority: 0.7 });
+  sitemap.write({ url: "/", changefreq: "daily", priority: 1.0, lastmod })
+  sitemap.write({ url: "/about", changefreq: "weekly", priority: 0.9, lastmod })
+  sitemap.write({ url: "/projects", changefreq: "weekly", priority: 0.9, lastmod })
+  sitemap.write({ url: "/projects/archive", changefreq: "monthly", priority: 0.7, lastmod })
 
-	sitemap.end();
+  projectsData.Projects.filter((project) => project.show && project.slug).forEach((project) => {
+    sitemap.write({
+      url: `/projects/${project.slug}`,
+      changefreq: "weekly",
+      priority: 0.8,
+      lastmod,
+    })
+  })
 
-	const sitemapXML = (await streamToPromise(sitemap)).toString();
-	const gzippedSitemap = createGzip();
+  sitemap.end()
 
-	fs.writeFileSync("./public/sitemap.xml.gz", sitemapXML);
+  const sitemapXML = (await streamToPromise(sitemap)).toString()
+  fs.writeFileSync("./public/sitemap.xml", sitemapXML)
 }
 
-generateSitemap();
+generateSitemap()

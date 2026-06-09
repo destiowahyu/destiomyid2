@@ -519,7 +519,7 @@ const Navbar = () => {
           >
             <Image
               src={Logotype}
-              alt="Destio Wahyu"
+              alt="Destio Wahyu Lanio"
               width={120}
               height={40}
               className="h-8 w-auto"

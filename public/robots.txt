@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.destio.my.id/sitemap2.xml
+Sitemap: https://www.destio.my.id/sitemap.xml

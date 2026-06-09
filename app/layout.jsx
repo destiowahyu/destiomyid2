@@ -10,20 +10,21 @@ import { ThemeProvider } from "@/components/ThemeProvider"
 import { LanguageProvider } from "@/components/LanguageProvider"
 import { Suspense } from "react"
 
-export const metadata = {
-  metadataBase: new URL("https://www.destio.my.id"),
+const SITE_URL = "https://www.destio.my.id"
+const SITE_NAME = "Destio Wahyu Lanio"
 
-  title: {
-    default: "Destio Wahyu | Portfolio",
-    template: "%s | Destio Wahyu",
-  },
+export const metadata = {
+  metadataBase: new URL(SITE_URL),
+
+  title: "Destio Wahyu Lanio | Portfolio",
 
   description:
-    "I'm Destio Wahyu, a web developer and experienced video editor who blends technology and creativity. Graduate of Universitas Dian Nuswantoro, passionate about music and artificial intelligence.",
+    "Destio Wahyu Lanio — web developer, video editor, network enthusiast, and AI enthusiast. Informatics Engineering graduate from Universitas Dian Nuswantoro.",
 
-  applicationName: "Destio Wahyu Lanio",
+  applicationName: SITE_NAME,
 
   keywords: [
+    "Destio Wahyu Lanio",
     "Destio Wahyu",
     "Destio Portfolio",
     "Web Developer Udinus",
@@ -31,43 +32,68 @@ export const metadata = {
     "Destio Lanio",
   ],
 
-  icons: {
-    icon: [
-      { url: "/image/logo.png", sizes: "32x32", type: "image/png" },
-      { url: "/image/logo.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: "/image/logo.png",
-  },
-
   openGraph: {
     type: "website",
-    url: "https://www.destio.my.id",
-    title: "Destio Wahyu | Portfolio",
+    url: SITE_URL,
+    title: "Destio Wahyu Lanio | Portfolio",
     description:
-      "Destio Wahyu Lanio — web developer, video editor, music enthusiast, and AI enthusiast.",
-    siteName: "Destio Wahyu Lanio",
+      "Destio Wahyu Lanio — web developer, video editor, network enthusiast, and AI enthusiast.",
+    siteName: SITE_NAME,
     images: [
       {
         url: "/og-image-rev.png",
         width: 1200,
         height: 630,
-        alt: "Destio Wahyu Portfolio",
+        alt: "Destio Wahyu Lanio Portfolio",
       },
     ],
   },
-};
 
+  twitter: {
+    card: "summary_large_image",
+    title: "Destio Wahyu Lanio | Portfolio",
+    description:
+      "Destio Wahyu Lanio — web developer, video editor, network enthusiast, and AI enthusiast.",
+    images: ["/og-image-rev.png"],
+  },
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_URL,
+      description:
+        "Portfolio website of Destio Wahyu Lanio, web developer and video editor.",
+    },
+    {
+      "@type": "Person",
+      name: SITE_NAME,
+      url: SITE_URL,
+      jobTitle: "Web Developer & Video Editor",
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Universitas Dian Nuswantoro",
+      },
+      sameAs: [
+        "https://github.com/destiowahyu",
+        "https://www.linkedin.com/in/destiowahyu",
+        "https://www.instagram.com/destiowahyu/",
+      ],
+    },
+  ],
+}
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/image/logo.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/image/logo.png" />
-    
-
-      </head>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider>
           <LanguageProvider>
             <Suspense fallback={null}>
